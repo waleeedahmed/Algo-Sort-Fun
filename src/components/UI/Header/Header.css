@@ -1,4 +1,7 @@
 .Header {
-    height: 60px;
-    background-color: aqua;
+    height: 56px;
+    background-image: linear-gradient(#ff2c72, #f17979);
+    top: 0;
+    left: 0;
+    padding: 0 10px;
 }
