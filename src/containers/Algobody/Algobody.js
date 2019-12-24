@@ -7,8 +7,8 @@ class Algobody extends Component {
         return (
             <Auxiliary>
                 <ArrayBuilder/>
-                <p>Array description component</p>
                 <p>Step explanation component</p>
+                <p>Array description component</p>
                 <p>Sorting statistics</p>
             </Auxiliary>
         )

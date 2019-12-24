@@ -17,7 +17,7 @@ class Drawer extends Component {
         return (
             <Auxiliary>
                 <ul>
-                    <li className = {classes.Li} onClick = {this.toggleVisibility}>Pick an algorithm</li>
+                    <li className = {classes.Li} onClick = {this.toggleVisibility}>Pick an Algorithm &#9662;</li>
                 </ul>
                 <DrawerExtension toggleStatus = {this.state.drawerVisibility}/>     
             </Auxiliary>

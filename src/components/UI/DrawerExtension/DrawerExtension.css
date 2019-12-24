@@ -3,8 +3,8 @@
     position: fixed;
     top: 62px;
     width: 200px;
-    left: 215px;
-    transition: opacity 0.2s;
+    left: 235px;
+    transition: opacity 0.05s;
     color: brown;
     list-style: none;
     font-size: 1.08rem;
