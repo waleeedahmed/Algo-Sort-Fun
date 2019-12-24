@@ -1,0 +1,22 @@
+.Drawerext {
+    background-color: antiquewhite;
+    position: fixed;
+    top: 62px;
+    width: 200px;
+    left: 215px;
+    transition: opacity 0.2s;
+    color: brown;
+    list-style: none;
+    font-size: 1.08rem;
+    box-shadow: 3px 3px 8px #9c9494;
+    border-radius: 5px;
+}
+
+.Open {
+    opacity: 1;
+}
+
+.Close {
+    opacity: 0;
+}
+

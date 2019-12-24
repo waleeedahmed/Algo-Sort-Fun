@@ -1,0 +1,20 @@
+.Ul {
+    padding: 0px 0px;
+    list-style-type: none;
+    width: 100%;
+    margin:0;
+    border: 0;
+}
+
+.Ul .Li {
+    padding: 20px 0;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.Ul .Li:hover,
+.Ul .Li:active {
+    background-color: indianred;
+    color: white;
+}
+

@@ -1,0 +1,14 @@
+.Li {
+    font-size: 1.15rem;
+    list-style: none;
+    padding: 15px 10px;
+    height: 95%;
+    transition: color 0.3s ease-in-out;
+}
+
+.Li:hover,
+.Li:active,
+.Li.active {
+    color: #f0ed5d;
+}
+

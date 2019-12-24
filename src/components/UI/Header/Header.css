@@ -1,7 +1,16 @@
 .Header {
     height: 56px;
-    background-image: linear-gradient(#ff2c72, #f17979);
+    background-color: indianred;
     top: 0;
     left: 0;
-    padding: 0 10px;
+    padding: 0px 20px;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    display: flex;
+    box-sizing: border-box;
+    font-weight: bold;
+    font-family: 'Lato', sans-serif;
+    font-size: 1.6rem;
+    color: antiquewhite;
 }
