@@ -10,7 +10,7 @@ class Drawer extends Component {
     }
 
     toggleVisibility = () => {
-        this.setState({drawerVisibility: !this.state.drawerVisibility})
+        this.setState( {drawerVisibility: !this.state.drawerVisibility} )
     }
 
     render() {

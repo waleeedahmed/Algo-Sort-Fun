@@ -7,28 +7,11 @@ import Auxiliary from './../../../hoc/Auxiliary/Auxiliary';
 class ArrayBuilder extends Component {
     
     
-    state = {
-        generatedNumArray: []
-    }
-    
-    generateNumbers = (quantity) => {
-        //let emptyArray = [];
-        //this.setState({generatedNumArray: emptyArray})
-        let newArray = []; //= this.state.generatedNumArray;
-
-        for (let i = 0; i <= quantity; i++) {
-            newArray.push((Math.random() * 50).toFixed(0));
-        }
-        this.setState({generatedNumArray: newArray});
-    }
-
-    
-    
     render() {
         
-        const displayNums = this.state.generatedNumArray.map((currentElement, index) => {
+        const displayNums = this.props.arrayInfo.map((currentElement, index) => {
     
-            if (index === this.state.generatedNumArray.length - 1) {
+            if (index === this.props.arrayInfo.length - 1) {
                 return <div className = {classes.Arraycell} key = {currentElement + Math.random()}>{currentElement}</div>    
             }
             else return <div className = {classes.Arraycell} key = {currentElement + Math.random()}>{currentElement},</div>
@@ -36,13 +19,10 @@ class ArrayBuilder extends Component {
 
         return (
             <Auxiliary>
-                <button style = {{width: '120px', height: '45px'}} onClick = {() => this.generateNumbers(14)}>Generate Numbers!</button>
                 <div className = {classes.Array}>[ {displayNums} ]</div>
             </Auxiliary>
         )
     }
 } 
-
-
 
 export default ArrayBuilder;
