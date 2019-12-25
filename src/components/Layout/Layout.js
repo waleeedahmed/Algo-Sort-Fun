@@ -12,7 +12,13 @@ class Layout extends Component {
     state = {
         generatedNumArray: [],
         otherState: true,
-        thirdValue: 3
+        thirdValue: 3,
+        algorithms: {
+            bubble: false,
+            selection: false,
+            insertion: false, 
+            merge: false
+        }
     }
     
     generateNumbers = (quantity) => {
@@ -25,18 +31,26 @@ class Layout extends Component {
     }
 
 
+    bubbleOn = () => {
+        this.setState( {bubble: true} )
+        
+    }
+
+
     render() {
         return (
             <Auxiliary>
                 <GlobalPropsContext.Provider value = {{
+
                     generatedNumArray: this.state.generatedNumArray,
                     otherState: this.state.otherState,
-                    thirdValue: this.state.thirdValue
+                    thirdValue: this.state.thirdValue,
+                    algorithms: this.state.algorithms,
+                    bubbleOn: this.bubbleOn 
                 }}>
                 <Header>
                     Algo-Sort Fun
                     <Drawer/>
-
                     <div className = {classes.ArrayGenDiv} onClick = {() => this.generateNumbers(14)}>Generate New Array</div>
                 </Header>
                 
@@ -44,6 +58,7 @@ class Layout extends Component {
                     <Algobody/>
                 </main>
                 <p>footer</p> 
+
                 </GlobalPropsContext.Provider>   
             </Auxiliary>
         )

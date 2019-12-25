@@ -2,6 +2,7 @@ import React from 'react';
 import classes from './DrawerExtension.css';
 import NavigationItems from './../NavigationItems/NavigationItems';
 
+
 const drawerExtension = props => {
 
     let assignedClasses = [classes.Drawerext, classes.Close]
