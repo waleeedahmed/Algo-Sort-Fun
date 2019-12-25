@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import classes from './ArrayBuilder.css';
 //import ArrayNumbers from './ArrayNumbers/ArrayNumbers';
 import Auxiliary from '../../../../hoc/Auxiliary/Auxiliary';
-import GlobalPropsContext from '../../../../context/globalPropsContext';
 import withContext from '../../../../context/withContext';
 
 // this component will generate a series of divs from arrayNumbers.js
@@ -10,7 +9,7 @@ class ArrayBuilder extends Component {
     
     
     render() {
-        console.log(this.props.value.generatedNumArray);
+        //console.log(this.props.value.generatedNumArray);
         const emptyArray = <div style = {{fontSize: '2rem', padding: '0 10px'}}>Generate an array!</div>
         const displayNums = this.props.value.generatedNumArray.map((currentElement, index) => {
     

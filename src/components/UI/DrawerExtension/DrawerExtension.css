@@ -4,7 +4,7 @@
     top: 62px;
     width: 200px;
     left: 230px;
-    transition: opacity 0.05s;
+    transition: display 0.05s;
     color: brown;
     list-style: none;
     font-size: 1.08rem;
@@ -13,10 +13,10 @@
 }
 
 .Open {
-    opacity: 1;
+    display: block;
 }
 
 .Close {
-    opacity: 0;
+    display: none;
 }
 

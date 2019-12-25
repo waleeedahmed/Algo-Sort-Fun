@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Auxiliary from '../../hoc/Auxiliary/Auxiliary';
 import ArrayBuilder from '../../components/Body/Array/ArrayBuilder/ArrayBuilder';
+import ArrayDescriptor from '../../components/Body/Array/ArrayDescriptor/ArrayDescriptor';
 
 class Algobody extends Component {
     render() {
@@ -8,7 +9,7 @@ class Algobody extends Component {
             <Auxiliary>
                 <ArrayBuilder/>
                 <p>Step explanation component</p>
-                <p>Array description component</p>
+                <ArrayDescriptor/>
                 <p>Sorting statistics</p>
             </Auxiliary>
         )
