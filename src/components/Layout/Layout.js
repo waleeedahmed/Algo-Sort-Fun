@@ -5,11 +5,14 @@ import Drawer from '../UI/Drawer/Drawer';
 //import DrawerExtension from './../UI/DrawerExtension/DrawerExtension';
 import classes from './Layout.css';
 import Algobody from '../../containers/Algobody/Algobody';
+import GlobalPropsContext from '../../context/globalPropsContext';
 
 class Layout extends Component {
 
     state = {
-        generatedNumArray: []
+        generatedNumArray: [],
+        otherState: true,
+        thirdValue: 3
     }
     
     generateNumbers = (quantity) => {
@@ -25,6 +28,11 @@ class Layout extends Component {
     render() {
         return (
             <Auxiliary>
+                <GlobalPropsContext.Provider value = {{
+                    generatedNumArray: this.state.generatedNumArray,
+                    otherState: this.state.otherState,
+                    thirdValue: this.state.thirdValue
+                }}>
                 <Header>
                     Algo-Sort Fun
                     <Drawer/>
@@ -33,9 +41,10 @@ class Layout extends Component {
                 </Header>
                 
                 <main className = {classes.Content}>
-                    <Algobody arrayState = {this.state.generatedNumArray}/>
+                    <Algobody/>
                 </main>
-                <p>footer</p>    
+                <p>footer</p> 
+                </GlobalPropsContext.Provider>   
             </Auxiliary>
         )
     }

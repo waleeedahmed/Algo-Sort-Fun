@@ -1,14 +1,21 @@
 .ArrayGenDiv {
-    width: '120px';
-    height: '45px';
+    width: 170px;
+    height: 70%;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 0.9rem;
     margin-left: 500px;
+    transition: all 0.2s ease-in-out;
+    border-radius: 15px;
+    padding: 2px 2px;
+    text-align: center;
+    line-height: 37px;
 }
+
 
 .ArrayGenDiv:hover,
 .ArrayGenDiv:active,
 .ArrayGenDiv.active {
-    color: #f0ed5d;
+    color: blanchedalmond;
+    background-color: #a74747;
 }
 
