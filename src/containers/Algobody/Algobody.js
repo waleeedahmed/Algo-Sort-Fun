@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Auxiliary from '../../hoc/Auxiliary/Auxiliary';
-import ArrayBuilder from '../../components/Body/Array/ArrayBuilder';
+import ArrayBuilder from '../../components/Body/Array/ArrayBuilder/ArrayBuilder';
 
 class Algobody extends Component {
     render() {

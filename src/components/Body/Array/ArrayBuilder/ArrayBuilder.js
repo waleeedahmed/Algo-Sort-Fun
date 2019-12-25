@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import classes from './ArrayBuilder.css';
 //import ArrayNumbers from './ArrayNumbers/ArrayNumbers';
-import Auxiliary from './../../../hoc/Auxiliary/Auxiliary';
-import GlobalPropsContext from '../../../context/globalPropsContext';
-import withContext from '../../../context/withContext';
+import Auxiliary from '../../../../hoc/Auxiliary/Auxiliary';
+import GlobalPropsContext from '../../../../context/globalPropsContext';
+import withContext from '../../../../context/withContext';
 
 // this component will generate a series of divs from arrayNumbers.js
 class ArrayBuilder extends Component {
