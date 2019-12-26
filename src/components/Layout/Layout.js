@@ -11,8 +11,6 @@ class Layout extends Component {
 
     state = {
         generatedNumArray: [],
-        otherState: true,
-        thirdValue: 3,
         algorithms: {
             bubble: false,
             selection: false,
@@ -31,8 +29,18 @@ class Layout extends Component {
     }
 
 
-    bubbleOn = () => {
-        this.setState( {bubble: true} )
+    algoSwitchOnHandler = (algoName) => {
+        this.setState(prevState => (
+            object.keys(prevState.algorithms)
+                .map((currAlgorithm) => {
+                    return // object back again
+                })
+            
+            { 
+            algorithms: {...prevState.algorithms,
+                            algoName: true }
+            })
+        )
         
     }
 
