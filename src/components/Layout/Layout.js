@@ -30,18 +30,12 @@ class Layout extends Component {
 
 
     algoSwitchOnHandler = (algoName) => {
-        this.setState(prevState => (
-            object.keys(prevState.algorithms)
+            let newObj = {};
+            Object.keys(this.state.algorithms) // [bubble, insertion, selection]
                 .map((currAlgorithm) => {
-                    return // object back again
+                    return currAlgorithm === algoName ? newObj[currAlgorithm] = true : newObj[currAlgorithm] = false
                 })
-            
-            { 
-            algorithms: {...prevState.algorithms,
-                            algoName: true }
-            })
-        )
-        
+                this.setState( {algorithms: newObj} )
     }
 
 
@@ -49,12 +43,9 @@ class Layout extends Component {
         return (
             <Auxiliary>
                 <GlobalPropsContext.Provider value = {{
-
                     generatedNumArray: this.state.generatedNumArray,
-                    otherState: this.state.otherState,
-                    thirdValue: this.state.thirdValue,
                     algorithms: this.state.algorithms,
-                    bubbleOn: this.bubbleOn 
+                    algoSwitchHandler: this.algoSwitchOnHandler 
                 }}>
                 <Header>
                     Algo-Sort Fun
