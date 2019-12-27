@@ -10,7 +10,7 @@ class ArrayBuilder extends Component {
     
     render() {
         //console.log(this.props.value.generatedNumArray);
-        const emptyArray = <div style = {{fontSize: '2rem', padding: '0 10px'}}>Generate an array!</div>
+        const emptyArray = <div style = {{fontSize: '2rem', padding: '0 10px'}}>Array currently empty</div>
         const displayNums = this.props.value.generatedNumArray.map((currentElement, index) => {
     
             if (index === this.props.value.generatedNumArray.length - 1) {

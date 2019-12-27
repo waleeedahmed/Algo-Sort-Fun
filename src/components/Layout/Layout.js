@@ -48,9 +48,10 @@ class Layout extends Component {
                     algoSwitchHandler: this.algoSwitchOnHandler 
                 }}>
                 <Header>
-                    Algo-Sort Fun
+                    <span style = {{ fontFamily: 'Caveat, cursive', fontSize: '2rem', color: '#fcedb3', maxHeight: '98%' }}>Algo-Sort Fun!</span>
                     <Drawer/>
-                    <div className = {classes.ArrayGenDiv} onClick = {() => this.generateNumbers(14)}>Generate New Array</div>
+                    <button className = {`${classes.Buttons} ${classes.Leftmostbtn}`} onClick = {() => this.generateNumbers(14)}>Create New Array</button>
+                    <button className = {classes.Buttons}>Clear Array</button>
                 </Header>
                 
                 <main className = {classes.Content}>

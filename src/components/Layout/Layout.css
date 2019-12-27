@@ -1,20 +1,32 @@
-.ArrayGenDiv {
-    width: 170px;
-    height: 70%;
-    cursor: pointer;
-    font-size: 0.9rem;
-    margin-left: 500px;
+.Buttons {
     transition: all 0.2s ease-in-out;
     border-radius: 15px;
-    padding: 2px 2px;
-    text-align: center;
     line-height: 37px;
+    font-size: 0.91rem;
+    font-family: inherit;
+    border: 0;
+    padding: 0;
+    background-color: inherit;
+    cursor: pointer;
+    font-weight: inherit;
+    color: inherit;
+    width: 150px;
+    height: 70%; 
+    
 }
 
 
-.ArrayGenDiv:hover,
-.ArrayGenDiv:active,
-.ArrayGenDiv.active {
+.Leftmostbtn {
+    margin-left: 650px;
+}
+
+.Buttons:focus {
+    outline: 0;
+}
+
+.Buttons:hover,
+.Buttons:active,
+.Buttons.active {
     color: blanchedalmond;
     background-color: #a74747;
 }
