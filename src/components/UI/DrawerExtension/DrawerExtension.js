@@ -13,8 +13,7 @@ const drawerExtension = props => {
 
     return (
         <div className = {assignedClasses.join(' ')}>
-                    <NavigationItems/>
-            
+            <NavigationItems/>            
         </div>
     )
 }

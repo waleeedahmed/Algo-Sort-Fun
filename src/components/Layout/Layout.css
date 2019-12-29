@@ -1,7 +1,7 @@
 .Buttons {
     transition: all 0.2s ease-in-out;
     border-radius: 15px;
-    line-height: 37px;
+    line-height: 40px;
     font-size: 0.91rem;
     font-family: inherit;
     border: 0;
@@ -11,14 +11,14 @@
     font-weight: inherit;
     color: inherit;
     width: 150px;
-    height: 70%; 
-    
+
 }
 
 
-.Leftmostbtn {
-    margin-left: 650px;
-}
+/* .Leftmostbtn {
+    right: 25%;
+} */
+
 
 .Buttons:focus {
     outline: 0;
@@ -31,3 +31,23 @@
     background-color: #a74747;
 }
 
+.Btndiv {
+    position: absolute;
+    right: 20px;
+}
+
+.SmallBtn {
+    width: 110px;
+}
+
+
+@media (max-width: 800px) {
+    .Btndiv {
+        position: relative;
+        margin-left: 40px;
+    }
+
+    .Buttons {
+        font-size: 0.7rem;
+    }
+}

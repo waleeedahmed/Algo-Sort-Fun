@@ -2,7 +2,8 @@
     font-size: 1.12rem;
     list-style: none;
     padding: 15px 40px;
-    margin-left: 60px;
+    position: relative;
+    left: 57px;
     height: 95%;
     transition: color 0.3s ease-in-out;
     cursor: pointer;
@@ -14,3 +15,8 @@
     color: #f0ed5d;
 }
 
+@media (max-width: 800px) {
+    .Li {
+        font-size: 1rem;
+    }
+}

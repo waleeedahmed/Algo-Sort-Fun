@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Auxiliary from '../../hoc/Auxiliary/Auxiliary';
 import Header from '../UI/Header/Header';
 import Drawer from '../UI/Drawer/Drawer';
-//import DrawerExtension from './../UI/DrawerExtension/DrawerExtension';
 import classes from './Layout.css';
 import Algobody from '../../containers/Algobody/Algobody';
 import GlobalPropsContext from '../../context/globalPropsContext';
@@ -36,6 +35,12 @@ class Layout extends Component {
                     return currAlgorithm === algoName ? newObj[currAlgorithm] = true : newObj[currAlgorithm] = false
                 })
                 this.setState( {algorithms: newObj} )
+                //`${classes.Buttons} ${classes.Leftmostbtn}`
+    }
+
+    visualizationHandler = () => {
+        // manipulate the state here
+        
     }
 
 
@@ -49,16 +54,19 @@ class Layout extends Component {
                 }}>
                 <Header>
                     <span style = {{ fontFamily: 'Caveat, cursive', fontSize: '2rem', color: '#fcedb3', maxHeight: '98%' }}>Algo-Sort Fun!</span>
-                    <Drawer/>
-                    <button className = {`${classes.Buttons} ${classes.Leftmostbtn}`} onClick = {() => this.generateNumbers(14)}>Create New Array</button>
-                    <button className = {classes.Buttons}>Clear Array</button>
+                    <Drawer/>                    
+                    <div className = {classes.Btndiv}>
+                        <button className = {classes.Buttons} onClick = {() => this.generateNumbers(14)}>Create New Array</button>
+                        <button className = {classes.Buttons}>Clear Array</button>
+                        <button className = {`${classes.Buttons} ${classes.SmallBtn}`} onClick = {this.visualizationHandler}>Visualize!</button>
+                    </div>
                 </Header>
                 
                 <main className = {classes.Content}>
                     <Algobody/>
                 </main>
                 <p>footer</p> 
-
+                   
                 </GlobalPropsContext.Provider>   
             </Auxiliary>
         )
