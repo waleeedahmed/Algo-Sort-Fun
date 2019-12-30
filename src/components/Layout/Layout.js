@@ -15,6 +15,13 @@ class Layout extends Component {
             selection: false,
             insertion: false, 
             merge: false
+        },
+        algoSteps: {
+            bubbleSteps: {
+                bubbleIteration: '',
+                bubbleTraverse: '',
+                bubbleSwap: ''
+            }
         }
     }
     
@@ -40,7 +47,7 @@ class Layout extends Component {
 
     visualizationHandler = () => {
         // manipulate the state here
-        
+
     }
 
 
@@ -50,7 +57,10 @@ class Layout extends Component {
                 <GlobalPropsContext.Provider value = {{
                     generatedNumArray: this.state.generatedNumArray,
                     algorithms: this.state.algorithms,
-                    algoSwitchHandler: this.algoSwitchOnHandler 
+                    algoSwitchHandler: this.algoSwitchOnHandler,
+                    bubbleIteration: this.state.algoSteps.bubbleSteps.bubbleIteration,
+                    bubbleTraverse: this.state.algoSteps.bubbleSteps.bubbleTraverse,
+                    bubbleSwap: this.state.algoSteps.bubbleSteps.bubbleSwap 
                 }}>
                 <Header>
                     <span style = {{ fontFamily: 'Caveat, cursive', fontSize: '2rem', color: '#fcedb3', maxHeight: '98%' }}>Algo-Sort Fun!</span>

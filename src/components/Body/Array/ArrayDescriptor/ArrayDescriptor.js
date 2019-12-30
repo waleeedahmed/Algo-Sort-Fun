@@ -12,7 +12,7 @@ class ArrayDescriptor extends React.Component {
         if (this.props.value.algorithms.bubble) {
             arrDescValue = (
                 <p>
-                    Bubble Sort traverses the array comparing values and swaps if
+                    Bubble Sort traverses the array comparing values and swaps if <br/>
                     the smaller value is ahead of the larger one. The entire process 
                     keeps repeating until no more swaps have to be performed. 
                 </p>

@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './ArraySortSteps.css';
 import withContext from '../../../../context/withContext';
+import BubbleComponent from '../../Array/SortingLogic/bubble';
 
 class ArraySortSteps extends React.Component {
 
@@ -13,8 +14,7 @@ class ArraySortSteps extends React.Component {
         return (
             <div className = {classes.ArraySortSteps}>
                 Iteration Number:<br/>
-                {x}
-
+                <BubbleComponent/>
             </div>
         )
     }

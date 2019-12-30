@@ -4,8 +4,9 @@
     font-family: 'Lato';
     font-size: 1.2rem;
     color: #555555;
-    height: 250px;
+    height: 270px;
     margin: 20px 16px;
     border-radius: 30px;
-    text-align: center;   
+    text-align: left;  
+    overflow-y: scroll; 
 }
