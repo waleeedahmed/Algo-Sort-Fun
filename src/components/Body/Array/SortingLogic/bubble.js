@@ -33,9 +33,9 @@ class Bubble extends React.Component {
     
     
     bubbleSort = (array) => {
-    
+        console.log('bubblesort entered!!!')
         this.bubbleIteration(array);
-        return array;   
+        return this.props.value.generatedNumArray = array;   
     }
     
     render() {
@@ -54,30 +54,26 @@ class Bubble extends React.Component {
             `\t\t\tfor (let i = 0; i <= array.length; i++) {`
 
         var bubbleCodeIterate = 
-            `function BubbleSort(${this.props.value.generatedNumArray}) {  
-
+            `\tfunction BubbleSort(${this.props.value.generatedNumArray}) {  
                 let swapsPerformed;
-                
                 do {
                         swapsPerformed = false`
-
-                        
+                
         var endingCode = 
         `\t\t\t}
-
             }  while (swapsPerformed)
 
         return array; 
         }`
 
-        return (
-            
+        this.props.value.vsPressed ? this.bubbleSort(this.props.value.generatedNumArray) : null
+
+        return ( 
             <div style = {{whiteSpace: 'pre-wrap'}}>
                 <div>{bubbleCodeIterate}</div>
                 <div>{bubbleCodeTraverse}</div>
                 <div>{bubbleCodeSwap}</div>
                 <div>{endingCode}</div>
-
             </div>
         )
     }

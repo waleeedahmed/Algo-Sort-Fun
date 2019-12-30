@@ -16,6 +16,7 @@ class Layout extends Component {
             insertion: false, 
             merge: false
         },
+        visualizationPressed: false,
         algoSteps: {
             bubbleSteps: {
                 bubbleIteration: '',
@@ -47,7 +48,10 @@ class Layout extends Component {
 
     visualizationHandler = () => {
         // manipulate the state here
-
+        if (this.state.algorithms.bubble) {
+            // execute bubble sort
+            this.setState( {visualizationPressed: true} )
+        }
     }
 
 
@@ -60,7 +64,8 @@ class Layout extends Component {
                     algoSwitchHandler: this.algoSwitchOnHandler,
                     bubbleIteration: this.state.algoSteps.bubbleSteps.bubbleIteration,
                     bubbleTraverse: this.state.algoSteps.bubbleSteps.bubbleTraverse,
-                    bubbleSwap: this.state.algoSteps.bubbleSteps.bubbleSwap 
+                    bubbleSwap: this.state.algoSteps.bubbleSteps.bubbleSwap,
+                    vsPressed: this.state.visualizationPressed
                 }}>
                 <Header>
                     <span style = {{ fontFamily: 'Caveat, cursive', fontSize: '2rem', color: '#fcedb3', maxHeight: '98%' }}>Algo-Sort Fun!</span>

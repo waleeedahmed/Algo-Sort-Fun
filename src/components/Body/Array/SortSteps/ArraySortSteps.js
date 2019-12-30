@@ -13,7 +13,7 @@ class ArraySortSteps extends React.Component {
 
         return (
             <div className = {classes.ArraySortSteps}>
-                Iteration Number:<br/>
+                Iteration Number:<br/><br/>
                 <BubbleComponent/>
             </div>
         )
