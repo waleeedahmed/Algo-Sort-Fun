@@ -3,60 +3,16 @@ import withContext from '../../../../context/withContext';
 
 class Bubble extends React.Component {
     
-    state = {
-        generatedNumArray: []
-    }
-
-    bubbleSort = (array) => {
-        let swapsPerformed;
-        do {
-            swapsPerformed = false
-            for (let i = 0; i < array.length - 1; i++) {
-                if (array[i] > array[i + 1]) {
-                    // swap
-                            
-                    let k = array[i];
-                    array[i] = array[i + 1];
-                    array[i + 1] = k;
-                    swapsPerformed = true;
-                } else continue
-                
-            }
-        } while (swapsPerformed)
-        
-        console.log(array)
-        return this.props.value.generatedNumArray = array.map((curr) => {return curr.toString(10)});     
-    }
-
-
-    // shouldComponentUpdate(prevProps, prevState) {
-    //     // console.log(prevProps)
-    //     // console.log(prevState)
-    //     // console.log(this.props.value.vsPressed)
-    //     // console.log('shouldcomponentupdate entered')
-
-    // }
-
-    componentDidUpdate() {
-        console.log('componentdidupdate init bubble.js')
-        if (this.props.value.vsPressed)  {
-            console.log('inner if statement entered')
-            this.bubbleSort(this.props.value.generatedNumArray.map((curr) => {
-                return Number(curr)
-            }))
-        }
-    }
 
     render() {
 
         var bubbleCodeSwap = 
             `
-            \t\t\tif (array[i] > array[i + 1]) {
-                      
-                \t\tlet k = array[i];
-                \t\tarray[i] = array[i + 1];
-                \t\tarray[i + 1] = k;
-                \t\tswapsPerformed = true;
+            \t\t\tif (array[i] > array[i + 1]) {     
+                \t\t\tlet k = array[i];
+                \t\t\tarray[i] = array[i + 1];
+                \t\t\tarray[i + 1] = k;
+                \t\t\tswapsPerformed = true;
             \t\t\t}`
             
         var bubbleCodeTraverse = 

@@ -30,14 +30,15 @@ class Layout extends Component {
         let newArray = []; 
 
         for (let i = 0; i <= quantity; i++) {
-            newArray.push((Math.random() * 50).toFixed(0));
+            newArray.push(Number((Math.random() * 50).toFixed(0)));
         }
         this.setState({generatedNumArray: newArray, visualizationPressed: false });
         
     }
 
     // componentDidUpdate() {
-    //     console.log(this.state.generatedNumArray)
+    //     //console.log('layout.js componentdidupdate entered')
+    //     //console.log(this.state.generatedNumArray)
     // }
 
 
@@ -55,12 +56,36 @@ class Layout extends Component {
         // manipulate the state here
         if (this.state.algorithms.bubble) {
             // execute bubble sort
-            this.setState( {visualizationPressed: true} )
+            this.setState( {visualizationPressed: true, 
+                        generatedNumArray: this.bubbleSort(this.state.generatedNumArray)} )
         }
+    }
+
+    bubbleSort = (array) => {
+        let swapsPerformed;
+        do {
+            swapsPerformed = false
+            for (let i = 0; i < array.length - 1; i++) {
+                if (array[i] > array[i + 1]) {
+                    // swap
+                            
+                    let k = array[i];
+                    array[i] = array[i + 1];
+                    array[i + 1] = k;
+                    swapsPerformed = true;
+                } else continue
+                
+            }
+        } while (swapsPerformed)
+        
+        //this.setState({ generatedNumArray: array })
+        return array    
     }
 
 
     render() {
+        
+
         return (
             <Auxiliary>
                 <GlobalPropsContext.Provider value = {{
