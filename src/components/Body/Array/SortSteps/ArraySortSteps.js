@@ -6,9 +6,9 @@ import BubbleComponent from '../../Array/SortingLogic/bubble';
 class ArraySortSteps extends React.Component {
 
     render() {
-        let x = <p>123</p>
+        //let x = <p>123</p>
         if (this.props.value.algorithms.bubble) {
-            x = (<p>rhsfbsf</p>)
+            //x = (<p>rhsfbsf</p>)
         }
 
         return (

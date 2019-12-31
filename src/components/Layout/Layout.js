@@ -32,8 +32,13 @@ class Layout extends Component {
         for (let i = 0; i <= quantity; i++) {
             newArray.push((Math.random() * 50).toFixed(0));
         }
-        this.setState({generatedNumArray: newArray});
+        this.setState({generatedNumArray: newArray, visualizationPressed: false });
+        
     }
+
+    // componentDidUpdate() {
+    //     console.log(this.state.generatedNumArray)
+    // }
 
 
     algoSwitchOnHandler = (algoName) => {
