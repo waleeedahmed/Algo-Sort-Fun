@@ -19,9 +19,7 @@ class Layout extends Component {
         visualizationPressed: false,
         algoSteps: {
             bubbleSteps: {
-                bubbleIteration: '',
-                bubbleTraverse: '',
-                bubbleSwap: ''
+                swaps: false
             }
         }
     }
@@ -102,48 +100,67 @@ class Layout extends Component {
 
 
 
-        bubbleSwap = (numposition, i, x) => {
-            console.log('bubbleSwap entered!!!')
-                //setTimeout(() => {
+        bubbleSwap = (numposition, i) => {return new Promise(resolve => {
+            setTimeout(() => {
 
-                    if (numposition[i] > numposition[i + 1]) {
-                        // swap      
-                        let k = numposition[i];
-                        numposition[i] = numposition[i + 1];
-                        numposition[i + 1] = k;
-                        x = !x
-                        this.setState( {generatedNumArray: numposition} )
-                    }
-                    console.log(numposition)
-                //}, 1000 * i)   
-            //console.log(numposition[i] + " " + numposition[i + 1])
+                if (numposition[i] > numposition[i + 1]) {
+                    // swap      
+                    let k = numposition[i];
+                    numposition[i] = numposition[i + 1];
+                    numposition[i + 1] = k;
+                    this.setState(prevState => ({
+                        generatedNumArray: numposition,
+                        algorithms: {...prevState.algorithms},
+                        visualizationPressed: prevState.visualizationPressed,
+                        algoSteps: {...prevState.algoSteps,
+                        bubbleSteps: {
+                            ...prevState.bubbleSteps,
+                            swaps: true
+                        }}
+                    }))
+                    resolve('swap resolved')
+                    //console.log(this.state)        
+                }
+            }, 1000 * i) 
+        })}
+        
+            //console.log('bubbleSwap entered!!!')
+  
+            
+        
+
+
+        arrayTraverse = async (array) => { //return new Promise(resolve => {
+            //console.log('arrayTraverse entered!!!')
+            setTimeout(async () => {
+                for (let i = 0; i < array.length - 1; i++) {
+
+                    await this.bubbleSwap(array, i)
+                    // increment for iteration display
+                }
+            }, 200)
+
+            //console.log('continued from arrayTraversal')  
+            //})
         }
 
 
-        arrayTraverse = (array, swaps) => {
-            console.log('arrayTraverse entered!!!')
-            for (let i = 0; i < array.length; i++) {
-
-                this.bubbleSwap(array, i, swaps)
-                // increment for iteration display
-            }
-        }
-
-
-        bubbleIteration = (array) => {
-            console.log('bubbleIteration entered!!!')
-            let swapsPerformed;
+        bubbleIteration = async (array) => {
+            //console.log('bubbleIteration entered!!!')
             do {
-                swapsPerformed = false
-                this.arrayTraverse(array, swapsPerformed)
-            } while (swapsPerformed)
+                this.setState({
+                    algoSteps: {bubbleSteps: {swaps: false}}
+                })
+                await this.arrayTraverse(array)
+                console.log('continued from do block of bubbleIteration' + this.state.algoSteps.bubbleSteps.swaps)
+            } while (this.state.algoSteps.bubbleSteps.swaps)
         }
 
-
+        
         bubbleSort = (array) => {
-            console.log('bubblesort entered!!!')
+            //console.log('bubblesort entered!!!')
             this.bubbleIteration(array);
-            this.setState( { generatedNumArray: array } ) 
+            return array;
         }
 
 
