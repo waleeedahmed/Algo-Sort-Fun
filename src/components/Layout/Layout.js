@@ -61,26 +61,91 @@ class Layout extends Component {
         }
     }
 
-    bubbleSort = (array) => {
-        let swapsPerformed;
-        do {
-            swapsPerformed = false
-            for (let i = 0; i < array.length - 1; i++) {
-                if (array[i] > array[i + 1]) {
-                    // swap
+    // bubbleSort = (array) => {
+    //     let swapsPerformed;
+    //     let j = 0;
+
+    //     //setTimeout(() => {
+    //         do {
+    //             swapsPerformed = false
+    
+    //             setTimeout(() => {
+    //                 for (let i = 0; i < array.length; i++) {
+                    
+    //                 //setTimeout(() => {
+
+    //                         // eslint-disable-next-line
+    //                         setTimeout(() => {
+    //                         if (array[i] > array[i + 1]) {
+    //                             // swap
                             
-                    let k = array[i];
-                    array[i] = array[i + 1];
-                    array[i + 1] = k;
-                    swapsPerformed = true;
-                } else continue
-                
+    //                                 let k = array[i];
+    //                                 array[i] = array[i + 1];
+    //                                 array[i + 1] = k;
+    //                                 swapsPerformed = true;
+    //                                 this.setState( {generatedNumArray: array} )
+    //                                 //console.log(this.state.generatedNumArray)
+    //                             }},1000 * i)
+                            
+    //                     //}, 1500)
+    //                 }
+    //                 this.setState( {generatedNumArray: array} )
+    //             }, 1500 * j);
+    //             j++;
+    //             this.setState( {generatedNumArray: array} )
+    //         } while (swapsPerformed)
+    //     //}, 1500)
+
+    //     console.log(array)
+    //     return array    
+    // }
+
+
+
+        bubbleSwap = (numposition, i, x) => {
+            console.log('bubbleSwap entered!!!')
+                //setTimeout(() => {
+
+                    if (numposition[i] > numposition[i + 1]) {
+                        // swap      
+                        let k = numposition[i];
+                        numposition[i] = numposition[i + 1];
+                        numposition[i + 1] = k;
+                        x = !x
+                        this.setState( {generatedNumArray: numposition} )
+                    }
+                    console.log(numposition)
+                //}, 1000 * i)   
+            //console.log(numposition[i] + " " + numposition[i + 1])
+        }
+
+
+        arrayTraverse = (array, swaps) => {
+            console.log('arrayTraverse entered!!!')
+            for (let i = 0; i < array.length; i++) {
+
+                this.bubbleSwap(array, i, swaps)
+                // increment for iteration display
             }
-        } while (swapsPerformed)
-        
-        //this.setState({ generatedNumArray: array })
-        return array    
-    }
+        }
+
+
+        bubbleIteration = (array) => {
+            console.log('bubbleIteration entered!!!')
+            let swapsPerformed;
+            do {
+                swapsPerformed = false
+                this.arrayTraverse(array, swapsPerformed)
+            } while (swapsPerformed)
+        }
+
+
+        bubbleSort = (array) => {
+            console.log('bubblesort entered!!!')
+            this.bubbleIteration(array);
+            this.setState( { generatedNumArray: array } ) 
+        }
+
 
 
     render() {

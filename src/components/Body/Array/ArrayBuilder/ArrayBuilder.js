@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import classes from './ArrayBuilder.css';
-//import ArrayNumbers from './ArrayNumbers/ArrayNumbers';
 import Auxiliary from '../../../../hoc/Auxiliary/Auxiliary';
 import withContext from '../../../../context/withContext';
 
-// this component will generate a series of divs from arrayNumbers.js
+// this component will generate a series of number divs
 class ArrayBuilder extends Component {
     
     
     render() {
-        //console.log(this.props.value.generatedNumArray);
+        
         const emptyArray = <div style = {{fontSize: '2rem', padding: '0 10px'}}>Array currently empty</div>
         const displayNums = this.props.value.generatedNumArray.map((currentElement, index) => {
     
