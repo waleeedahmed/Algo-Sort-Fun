@@ -31,152 +31,120 @@ class Layout extends Component {
             newArray.push(Number((Math.random() * 50).toFixed(0)));
         }
         this.setState({generatedNumArray: newArray, visualizationPressed: false });
-        
     }
-
-    // componentDidUpdate() {
-    //     //console.log('layout.js componentdidupdate entered')
-    //     //console.log(this.state.generatedNumArray)
-    // }
 
 
     algoSwitchOnHandler = (algoName) => {
+            //console.log(this.state)
             let newObj = {};
             Object.keys(this.state.algorithms) // [bubble, insertion, selection]
                 .map((currAlgorithm) => {
                     return currAlgorithm === algoName ? newObj[currAlgorithm] = true : newObj[currAlgorithm] = false
                 })
                 this.setState( {algorithms: newObj} )
-                //`${classes.Buttons} ${classes.Leftmostbtn}`
     }
 
+    // !!! Two issues: *** vsPressed takes time to become true, state is being updated in genNumarray
     visualizationHandler = () => {
+    
         // manipulate the state here
+        this.setState( { visualizationPressed: true } )
+
         if (this.state.algorithms.bubble) {
             // execute bubble sort
-            this.setState( {visualizationPressed: true, 
-                        generatedNumArray: this.bubbleSort(this.state.generatedNumArray)} )
+    
+
+            // TODO put below in an if statement
+            let clone = Object.assign({}, this.state)
+            console.log(clone.generatedNumArray)
+            
+            // NOTE: this was the original way of doing it
+            this.bubbleSort(clone.generatedNumArray) 
+
+            // Other way doing it. *Trial*
+            // this.setState( {generatedNumArray: this.bubbleSort(this.state.generatedNumArray)} )
+                        
         }
+        // console.log(this.state)
     }
 
-    // bubbleSort = (array) => {
-    //     let swapsPerformed;
-    //     let j = 0;
-
-    //     //setTimeout(() => {
-    //         do {
-    //             swapsPerformed = false
-    
-    //             setTimeout(() => {
-    //                 for (let i = 0; i < array.length; i++) {
-                    
-    //                 //setTimeout(() => {
-
-    //                         // eslint-disable-next-line
-    //                         setTimeout(() => {
-    //                         if (array[i] > array[i + 1]) {
-    //                             // swap
-                            
-    //                                 let k = array[i];
-    //                                 array[i] = array[i + 1];
-    //                                 array[i + 1] = k;
-    //                                 swapsPerformed = true;
-    //                                 this.setState( {generatedNumArray: array} )
-    //                                 //console.log(this.state.generatedNumArray)
-    //                             }},1000 * i)
-                            
-    //                     //}, 1500)
-    //                 }
-    //                 this.setState( {generatedNumArray: array} )
-    //             }, 1500 * j);
-    //             j++;
-    //             this.setState( {generatedNumArray: array} )
-    //         } while (swapsPerformed)
-    //     //}, 1500)
-
-    //     console.log(array)
-    //     return array    
-    // }
 
 
 
-        bubbleSwap = (numposition, i) => {return new Promise(resolve => {
-            setTimeout(() => {
-
-                if (numposition[i] > numposition[i + 1]) {
-                    // swap      
-                    let k = numposition[i];
-                    numposition[i] = numposition[i + 1];
-                    numposition[i + 1] = k;
-                    this.setState(prevState => ({
-                        generatedNumArray: numposition,
-                        algorithms: {...prevState.algorithms},
-                        visualizationPressed: prevState.visualizationPressed,
-                        algoSteps: {...prevState.algoSteps,
+    bubbleSwap = (extraArray, i) => {//=> {return new Promise(resolve => {
+        
+        setTimeout(() => {
+            console.log('bubbleswap entered')
+            if (extraArray[i] > extraArray[i + 1]) {
+                // swap      
+                let k = extraArray[i];
+                extraArray[i] = extraArray[i + 1];
+                extraArray[i + 1] = k;
+                
+                this.setState(prevState => ({
+                    generatedNumArray: extraArray,
+                    ...prevState,
+                    algoSteps: {...prevState.algoSteps,
                         bubbleSteps: {
                             ...prevState.bubbleSteps,
                             swaps: true
                         }}
-                    }))
-                    resolve('swap resolved')
-                    //console.log(this.state)        
-                }
-            }, 1000 * i) 
-        })}
+                }), () => console.log(this.state))                  
+        }}, 1000 * i)  
+    }
+    
+
+    arrayTraverse = () => { //return new Promise(resolve => {
         
-            //console.log('bubbleSwap entered!!!')
-  
+        //console.log(this.state)
+        //setTimeout(async () => {
+            console.log('arrayTraverse entered!!!')
+            let extraArray = [...this.state.generatedNumArray]
+
+            for (let i = 0; i < extraArray.length; i++) {
+
+                this.bubbleSwap(extraArray, i)
+            } 
+            // }, 200)
+        //})
+    }
+
+
+    bubbleIteration = () => {
+        console.log('bubbleIteration entered!!!')
+        
+        do {
+            this.setState(prevState => ({
+                ...prevState,
+                algoSteps: {...prevState.algoSteps,
+                    bubbleSteps: {...prevState.bubbleSteps,
+                        swaps: false}}
+            }))
+            this.arrayTraverse()
             
-        
+        } while (this.state.algoSteps.bubbleSteps.swaps)
+    }
 
-
-        arrayTraverse = async (array) => { //return new Promise(resolve => {
-            //console.log('arrayTraverse entered!!!')
-            setTimeout(async () => {
-                for (let i = 0; i < array.length - 1; i++) {
-
-                    await this.bubbleSwap(array, i)
-                    // increment for iteration display
-                }
-            }, 200)
-
-            //console.log('continued from arrayTraversal')  
-            //})
-        }
-
-
-        bubbleIteration = async (array) => {
-            //console.log('bubbleIteration entered!!!')
-            do {
-                this.setState({
-                    algoSteps: {bubbleSteps: {swaps: false}}
-                })
-                await this.arrayTraverse(array)
-                console.log('continued from do block of bubbleIteration' + this.state.algoSteps.bubbleSteps.swaps)
-            } while (this.state.algoSteps.bubbleSteps.swaps)
-        }
-
-        
-        bubbleSort = (array) => {
-            //console.log('bubblesort entered!!!')
-            this.bubbleIteration(array);
-            return array;
-        }
+    
+    bubbleSort = () => {
+        //console.log('bubblesort entered!!!')
+        this.bubbleIteration();
+        return;
+    }
 
 
 
     render() {
         
-
         return (
             <Auxiliary>
                 <GlobalPropsContext.Provider value = {{
                     generatedNumArray: this.state.generatedNumArray,
                     algorithms: this.state.algorithms,
                     algoSwitchHandler: this.algoSwitchOnHandler,
-                    bubbleIteration: this.state.algoSteps.bubbleSteps.bubbleIteration,
-                    bubbleTraverse: this.state.algoSteps.bubbleSteps.bubbleTraverse,
-                    bubbleSwap: this.state.algoSteps.bubbleSteps.bubbleSwap,
+                    //bubbleIteration: this.state.algoSteps.bubbleSteps.bubbleIteration,
+                    //bubbleTraverse: this.state.algoSteps.bubbleSteps.bubbleTraverse,
+                    //bubbleSwap: this.state.algoSteps.bubbleSteps.bubbleSwap,
                     vsPressed: this.state.visualizationPressed
                 }}>
                 <Header>
