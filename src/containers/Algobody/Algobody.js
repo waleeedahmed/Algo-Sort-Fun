@@ -3,15 +3,19 @@ import Auxiliary from '../../hoc/Auxiliary/Auxiliary';
 import ArrayBuilder from '../../components/Body/Array/ArrayBuilder/ArrayBuilder';
 import ArrayDescriptor from '../../components/Body/Array/ArrayDescriptor/ArrayDescriptor';
 import ArraySortSteps from '../../components/Body/Array/SortSteps/ArraySortSteps';
+import ArraySortData from '../../components/Body/Array/ArraySortData/ArraySortData';
+import classes from './Algobody.css';
 
 class Algobody extends Component {
     render() {
         return (
             <Auxiliary>
                 <ArrayBuilder/>
-                <ArraySortSteps/>
-                <ArrayDescriptor/>
-                <p>Sorting statistics</p>
+                <div className = {classes.AlgobodyInfo}>
+                    <ArraySortSteps/>
+                    <ArraySortData/>
+                    <ArrayDescriptor/>
+                </div>
             </Auxiliary>
         )
     }

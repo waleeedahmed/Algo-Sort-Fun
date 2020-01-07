@@ -6,6 +6,7 @@ import classes from './Layout.css';
 import Algobody from '../../containers/Algobody/Algobody';
 import GlobalPropsContext from '../../context/globalPropsContext';
 
+
 class Layout extends Component {
 
     state = {
@@ -176,7 +177,7 @@ class Layout extends Component {
                     </div>
                 </Header>
                 
-                <main className = {classes.Content}>
+                <main>
                     <Algobody/>
                 </main>
                 <p>footer</p> 
