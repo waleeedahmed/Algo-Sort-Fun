@@ -20,8 +20,10 @@ class Layout extends Component {
         algoSteps: {
             bubbleSteps: {
                 swaps: false
+                
             }
-        }
+        },
+        traverseLength: 0
     }
     
     generateNumbers = (quantity) => {
@@ -35,30 +37,27 @@ class Layout extends Component {
 
 
     algoSwitchOnHandler = (algoName) => {
-            //console.log(this.state)
-            let newObj = {};
-            Object.keys(this.state.algorithms) // [bubble, insertion, selection]
-                .map((currAlgorithm) => {
-                    return currAlgorithm === algoName ? newObj[currAlgorithm] = true : newObj[currAlgorithm] = false
-                })
-                this.setState( {algorithms: newObj} )
+        //console.log(this.state)
+        let newObj = {};
+        Object.keys(this.state.algorithms) // [bubble, insertion, selection]
+            .map((currAlgorithm) => {
+                return currAlgorithm === algoName ? newObj[currAlgorithm] = true : newObj[currAlgorithm] = false
+            })
+            this.setState( {algorithms: newObj} )
     }
 
-    // !!! Two issues: *** vsPressed takes time to become true, state is being updated in genNumarray
+
     visualizationHandler = () => {
     
-        // manipulate the state here
-        this.setState( { visualizationPressed: true } )
+        // vsPressed becomes true regardless of which algorithm is selected 
+        this.setState( { visualizationPressed: true, traverseLength: 0 } )
 
         if (this.state.algorithms.bubble) {
-            // execute bubble sort
-    
-
-            // TODO put below in an if statement
+        
+            // Tentative: TODO put below in an if statement
             let clone = Object.assign({}, this.state)
-            console.log(clone.generatedNumArray)
             
-            // NOTE: this was the original way of doing it
+            // NOTE: this was the original way of execution
             this.bubbleSort(clone.generatedNumArray) 
 
             // Other way doing it. *Trial*
@@ -69,9 +68,7 @@ class Layout extends Component {
     }
 
 
-
-
-    bubbleSwap = (extraArray, i) => {//=> {return new Promise(resolve => {
+    bubbleSwap = (extraArray, i) => { return new Promise(resolve => {
         
         setTimeout(() => {
             console.log('bubbleswap entered')
@@ -81,36 +78,58 @@ class Layout extends Component {
                 extraArray[i] = extraArray[i + 1];
                 extraArray[i + 1] = k;
                 
+                //this.setState({generatedNumArray: extraArray}, () => console.log(this.state))
                 this.setState(prevState => ({
-                    generatedNumArray: extraArray,
                     ...prevState,
+                    generatedNumArray: extraArray,
                     algoSteps: {...prevState.algoSteps,
                         bubbleSteps: {
-                            ...prevState.bubbleSteps,
+                            ...prevState.algoSteps.bubbleSteps,
                             swaps: true
                         }}
-                }), () => console.log(this.state))                  
-        }}, 1000 * i)  
+                }), () => resolve('swapped'))                  
+            } else resolve('not swapped')
+            
+        }, 200)  
     }
+    )}
     
 
-    arrayTraverse = () => { //return new Promise(resolve => {
+    arrayTraverse = () => { return new Promise(async (resolve) => {
         
         //console.log(this.state)
         //setTimeout(async () => {
             console.log('arrayTraverse entered!!!')
             let extraArray = [...this.state.generatedNumArray]
 
-            for (let i = 0; i < extraArray.length; i++) {
+            for (let i = 0; i < extraArray.length - this.state.traverseLength; i++) {
 
-                this.bubbleSwap(extraArray, i)
-            } 
+                let result = await this.bubbleSwap(extraArray, i)
+                console.log('continued from bubbleswap() call ' + result)
+                //if (result) 
+            }
+            if (this.state.algoSteps.bubbleSteps.swaps) {
+                //console.log('enters IF statement')
+                // this.setState(prevState => ({
+                //     ...prevState,
+                //     algoSteps: {...prevState.algoSteps,
+                //         bubbleSteps: {
+                //             ...prevState.algoSteps.bubbleSteps,
+                //             traverseLength: prevState.algoSteps.bubbleSteps.traverseLength + 1 
+                //         }
+                //     }
+                // }), () => console.log(this.state.algoSteps.bubbleSteps.traverseLength)) 
+                this.setState(prevState => ({
+                    traverseLength: prevState.traverseLength + 1
+                }), () => console.log(this.state.traverseLength))
+            }
+            resolve('arrayTraversed!') 
             // }, 200)
-        //})
+        })
     }
 
 
-    bubbleIteration = () => {
+    bubbleIteration = async () => {
         console.log('bubbleIteration entered!!!')
         
         do {
@@ -120,8 +139,8 @@ class Layout extends Component {
                     bubbleSteps: {...prevState.bubbleSteps,
                         swaps: false}}
             }))
-            this.arrayTraverse()
-            
+            let answer = await this.arrayTraverse()
+            console.log('continued from arraytraverse() call ' + this.state.algoSteps.bubbleSteps.swaps + ' ' + answer)
         } while (this.state.algoSteps.bubbleSteps.swaps)
     }
 
@@ -166,6 +185,7 @@ class Layout extends Component {
             </Auxiliary>
         )
     }
+
  }
 
  export default Layout;

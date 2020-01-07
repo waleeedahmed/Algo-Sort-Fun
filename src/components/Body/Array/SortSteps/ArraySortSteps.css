@@ -9,4 +9,5 @@
     border-radius: 30px;
     text-align: left;  
     overflow-y: scroll; 
+    justify-content: flex-start;
 }

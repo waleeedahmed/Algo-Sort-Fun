@@ -1,5 +1,6 @@
 import React from 'react';
-import withContext from '../../../../context/withContext';
+import withContext from '../../../../../context/withContext';
+import classes from './Bubble.css';
 
 class Bubble extends React.Component {
     
@@ -35,7 +36,7 @@ class Bubble extends React.Component {
         
 
         return ( 
-            <div style = {{whiteSpace: 'pre-wrap'}}>
+            <div className = {classes.Bubble}>
                 <div>{bubbleCodeIterate}</div>
                 <div>{bubbleCodeTraverse}</div>
                 <div>{bubbleCodeSwap}</div>
