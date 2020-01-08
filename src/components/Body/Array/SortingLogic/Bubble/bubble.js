@@ -13,8 +13,7 @@ class Bubble extends React.Component {
                 // set 'swapsPerformed' to true
             }`
             
-        var bubbleCodeTraverse = `
-        // for loop current value 'i' up till array length {`
+        var bubbleCodeTraverse = `\t// for loop current value 'i' up till array length {`
 
         var bubbleCodeIterate = 
 

@@ -21,10 +21,10 @@ class Layout extends Component {
         algoSteps: {
             bubbleSteps: {
                 swaps: false
-                
             }
         },
-        traverseLength: 0
+        traverseLength: 0,
+        bubbleIndex: NaN
     }
     
     generateNumbers = (quantity) => {
@@ -72,6 +72,7 @@ class Layout extends Component {
     bubbleSwap = (extraArray, i) => { return new Promise(resolve => {
         
         setTimeout(() => {
+            this.setState({bubbleIndex: i})
             console.log('bubbleswap entered')
             if (extraArray[i] > extraArray[i + 1]) {
                 // swap      
@@ -149,6 +150,7 @@ class Layout extends Component {
     bubbleSort = () => {
         //console.log('bubblesort entered!!!')
         this.bubbleIteration();
+        //this.setState( {bubbleIdx: NaN} )
         return;
     }
 
@@ -165,6 +167,7 @@ class Layout extends Component {
                     //bubbleIteration: this.state.algoSteps.bubbleSteps.bubbleIteration,
                     //bubbleTraverse: this.state.algoSteps.bubbleSteps.bubbleTraverse,
                     //bubbleSwap: this.state.algoSteps.bubbleSteps.bubbleSwap,
+                    bubbleIdx: this.state.bubbleIndex,
                     vsPressed: this.state.visualizationPressed
                 }}>
                 <Header>
