@@ -5,7 +5,7 @@ const arraySortData = props => {
     
     return(
         <div className = {classes.ArraySortData}>
-            <p>ArraySortData</p>
+            <p>Iteration Number: </p>
         </div>
     )
 }

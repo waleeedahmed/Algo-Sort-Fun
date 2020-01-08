@@ -7,30 +7,28 @@ class Bubble extends React.Component {
 
     render() {
 
-        var bubbleCodeSwap = 
-            `
-            \t\t\tif (array[i] > array[i + 1]) {     
-                \t\t\tlet k = array[i];
-                \t\t\tarray[i] = array[i + 1];
-                \t\t\tarray[i + 1] = k;
-                \t\t\tswapsPerformed = true;
-            \t\t\t}`
+        var bubbleCodeSwap = `
+            if (array[i] > array[i + 1]) {     
+                // swap 'i' and 'i + 1'
+                // set 'swapsPerformed' to true
+            }`
             
-        var bubbleCodeTraverse = 
-            `\t\t\tfor (let i = 0; i <= array.length; i++) {`
+        var bubbleCodeTraverse = `
+        // for loop current value 'i' up till array length {`
 
         var bubbleCodeIterate = 
-            `\tfunction BubbleSort(${this.props.value.generatedNumArray}) {  
-                let swapsPerformed;
-                do {
-                        swapsPerformed = false`
+
+            `BubbleSort(array) function declaration {
+    // initialize 'swapsPerformed: boolean' variable
+    // repeat following block of code {
+        // set 'swapsPerformed' to false`
                 
         var endingCode = 
-        `\t\t\t}
-            }  while (swapsPerformed)
+        `\t} // end for
+    } // while swapsPerformed is true
 
-        return array; 
-        }`
+// return sorted array 
+}`
 
         
         
