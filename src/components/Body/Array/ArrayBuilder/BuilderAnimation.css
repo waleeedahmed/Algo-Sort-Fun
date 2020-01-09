@@ -1,0 +1,19 @@
+.enter {
+    opacity: 1;
+    color: white;
+  }
+  
+  .enterActive {
+    opacity: 0;
+    transition: opacity 200ms ease-in-out;
+  }
+  
+  .exit {
+    color: blueviolet;
+    opacity: 1;
+  }
+  
+  .exitActive {
+    opacity: 0;
+    transition: opacity 200ms ease-in-out;
+  }

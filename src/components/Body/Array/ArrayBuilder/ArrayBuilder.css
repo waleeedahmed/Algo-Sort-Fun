@@ -9,6 +9,7 @@
     margin: auto;
     padding-top: 55px;
     color: rgb(80, 87, 92);
+    transition: opacity 0.3s ease-in-out;
 }
 
 .Arraycell {

@@ -33,7 +33,7 @@ class Layout extends Component {
         for (let i = 0; i <= quantity; i++) {
             newArray.push(Number((Math.random() * 50).toFixed(0)));
         }
-        this.setState({generatedNumArray: newArray, visualizationPressed: false });
+        this.setState({generatedNumArray: newArray, visualizationPressed: false, bubbleIndex: NaN });
     }
 
 
@@ -92,7 +92,7 @@ class Layout extends Component {
                 }), () => resolve('swapped'))                  
             } else resolve('not swapped')
             
-        }, 200)  
+        }, 1000)  
     }
     )}
     
@@ -143,6 +143,7 @@ class Layout extends Component {
             }))
             let answer = await this.arrayTraverse()
             console.log('continued from arraytraverse() call ' + this.state.algoSteps.bubbleSteps.swaps + ' ' + answer)
+            if (!this.state.algoSteps.bubbleSteps.swaps) this.setState( {bubbleIndex: NaN} )
         } while (this.state.algoSteps.bubbleSteps.swaps)
     }
 
@@ -150,7 +151,7 @@ class Layout extends Component {
     bubbleSort = () => {
         //console.log('bubblesort entered!!!')
         this.bubbleIteration();
-        //this.setState( {bubbleIdx: NaN} )
+        
         return;
     }
 
