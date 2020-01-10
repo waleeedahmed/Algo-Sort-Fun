@@ -5,15 +5,15 @@
   
   .enterActive {
     opacity: 0;
-    transition: opacity 200ms ease-in-out;
+    transition: opacity 50ms ease-in-out;
   }
   
-  .exit {
+  /* .exit {
     color: blueviolet;
     opacity: 1;
   }
   
   .exitActive {
     opacity: 0;
-    transition: opacity 200ms ease-in-out;
-  }
+    transition: opacity 100ms ease-in-out;
+  } */

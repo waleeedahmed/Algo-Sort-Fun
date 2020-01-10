@@ -10,14 +10,17 @@
     padding-top: 55px;
     color: rgb(80, 87, 92);
     transition: opacity 0.3s ease-in-out;
+    transition: color 0.2s ease-in-out;
 }
 
 .Arraycell {
     padding: 0 8px;
 }
 
-.CurrentSwap {
-    color: rgb(198, 53, 255)
+
+.Array .CurrentSwap {
+    color: rgb(198, 53, 255);
+    padding: 0 8px;
 }
 
 @media (max-width: 1000px) {

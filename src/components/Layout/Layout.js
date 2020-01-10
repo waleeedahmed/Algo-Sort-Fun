@@ -24,16 +24,24 @@ class Layout extends Component {
             }
         },
         traverseLength: 0,
-        bubbleIndex: NaN
+        bubbleIndex: NaN,
+        newArrayClicked: false
     }
+
+    arrayClickToggleHandler = () => {
+        this.setState({newArrayClicked: false})
+    }
+
     
     generateNumbers = (quantity) => {
+        console.log(this.state.newArrayClicked)
         let newArray = []; 
 
         for (let i = 0; i <= quantity; i++) {
             newArray.push(Number((Math.random() * 50).toFixed(0)));
         }
-        this.setState({generatedNumArray: newArray, visualizationPressed: false, bubbleIndex: NaN });
+        this.setState({generatedNumArray: newArray, visualizationPressed: false, bubbleIndex: NaN, newArrayClicked: true});
+
     }
 
 
@@ -169,7 +177,9 @@ class Layout extends Component {
                     //bubbleTraverse: this.state.algoSteps.bubbleSteps.bubbleTraverse,
                     //bubbleSwap: this.state.algoSteps.bubbleSteps.bubbleSwap,
                     bubbleIdx: this.state.bubbleIndex,
-                    vsPressed: this.state.visualizationPressed
+                    vsPressed: this.state.visualizationPressed,
+                    newArrClicked: this.state.newArrayClicked,
+                    arrayClickToggleHandler: this.arrayClickToggleHandler
                 }}>
                 <Header>
                     <span style = {{ fontFamily: 'Caveat, cursive', fontSize: '2rem', color: '#fcedb3', maxHeight: '98%' }}>Algo-Sort Fun!</span>
