@@ -29,12 +29,11 @@ class Layout extends Component {
     }
 
     arrayClickToggleHandler = () => {
-        this.setState({newArrayClicked: false})
+        this.setState({newArrayClicked: !this.state.newArrayClicked})
     }
 
     
     generateNumbers = (quantity) => {
-        console.log(this.state.newArrayClicked)
         let newArray = []; 
 
         for (let i = 0; i <= quantity; i++) {
@@ -100,7 +99,7 @@ class Layout extends Component {
                 }), () => resolve('swapped'))                  
             } else resolve('not swapped')
             
-        }, 1000)  
+        }, 500)  
     }
     )}
     

@@ -9,8 +9,8 @@
     margin: auto;
     padding-top: 55px;
     color: rgb(80, 87, 92);
-    transition: opacity 0.3s ease-in-out;
-    transition: color 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    transition: color 0.3 linear;
 }
 
 .Arraycell {
@@ -18,7 +18,7 @@
 }
 
 
-.Array .CurrentSwap {
+.CurrentSwap {
     color: rgb(198, 53, 255);
     padding: 0 8px;
 }
