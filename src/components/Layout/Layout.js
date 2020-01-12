@@ -10,7 +10,7 @@ import GlobalPropsContext from '../../context/globalPropsContext';
 class Layout extends Component {
 
     state = {
-        generatedNumArray: [],
+        generatedNumArray: [1,2,3],
         algorithms: {
             bubble: false,
             selection: false,
@@ -25,7 +25,7 @@ class Layout extends Component {
         },
         traverseLength: 0,
         bubbleIndex: NaN,
-        newArrayClicked: false
+        newArrayClicked: false,
     }
 
     arrayClickToggleHandler = () => {
@@ -90,7 +90,7 @@ class Layout extends Component {
                 //this.setState({generatedNumArray: extraArray}, () => console.log(this.state))
                 this.setState(prevState => ({
                     ...prevState,
-                    generatedNumArray: extraArray,
+                    //generatedNumArray: extraArray,
                     algoSteps: {...prevState.algoSteps,
                         bubbleSteps: {
                             ...prevState.algoSteps.bubbleSteps,
