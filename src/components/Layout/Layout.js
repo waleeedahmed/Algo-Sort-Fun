@@ -10,7 +10,7 @@ import GlobalPropsContext from '../../context/globalPropsContext';
 class Layout extends Component {
 
     state = {
-        generatedNumArray: [1,2,3],
+        generatedNumArray: [],
         algorithms: {
             bubble: false,
             selection: false,
@@ -26,6 +26,7 @@ class Layout extends Component {
         traverseLength: 0,
         bubbleIndex: NaN,
         newArrayClicked: false,
+        bubbleSwapEntered: false
     }
 
     arrayClickToggleHandler = () => {
@@ -77,57 +78,52 @@ class Layout extends Component {
 
 
     bubbleSwap = (extraArray, i) => { return new Promise(resolve => {
-        
+        this.setState({bubbleIndex: i})
         setTimeout(() => {
-            this.setState({bubbleIndex: i})
-            console.log('bubbleswap entered')
+            this.setState({bubbleSwapEntered: false})
+            //console.log('bubbleswap entered')
             if (extraArray[i] > extraArray[i + 1]) {
-                // swap      
-                let k = extraArray[i];
-                extraArray[i] = extraArray[i + 1];
-                extraArray[i + 1] = k;
-                
-                //this.setState({generatedNumArray: extraArray}, () => console.log(this.state))
-                this.setState(prevState => ({
+
+                    this.setState(prevState => ({
                     ...prevState,
-                    //generatedNumArray: extraArray,
                     algoSteps: {...prevState.algoSteps,
                         bubbleSteps: {
                             ...prevState.algoSteps.bubbleSteps,
                             swaps: true
-                        }}
-                }), () => resolve('swapped'))                  
-            } else resolve('not swapped')
+                        }},
+                        bubbleSwapEntered: true
+                }))
+                
+                // swap      
+                let k = extraArray[i];
+                extraArray[i] = extraArray[i + 1];
+                extraArray[i + 1] = k;
+                resolve(extraArray)
+                                 
+            } else resolve(null)
+
+            //this.setState({ generatedNumArray: extraArray })
             
-        }, 500)  
-    }
-    )}
+        }, 1000)  
+    })}
     
 
     arrayTraverse = () => { return new Promise(async (resolve) => {
         
-        //console.log(this.state)
         //setTimeout(async () => {
             console.log('arrayTraverse entered!!!')
             let extraArray = [...this.state.generatedNumArray]
 
             for (let i = 0; i < extraArray.length - this.state.traverseLength; i++) {
 
-                let result = await this.bubbleSwap(extraArray, i)
+                let result = await this.bubbleSwap(this.state.generatedNumArray, i)
+                if (result) {
+                    this.setState({ generatedNumArray: result }, () => console.log(this.state.generatedNumArray))
+                }
                 console.log('continued from bubbleswap() call ' + result)
-                //if (result) 
             }
+
             if (this.state.algoSteps.bubbleSteps.swaps) {
-                //console.log('enters IF statement')
-                // this.setState(prevState => ({
-                //     ...prevState,
-                //     algoSteps: {...prevState.algoSteps,
-                //         bubbleSteps: {
-                //             ...prevState.algoSteps.bubbleSteps,
-                //             traverseLength: prevState.algoSteps.bubbleSteps.traverseLength + 1 
-                //         }
-                //     }
-                // }), () => console.log(this.state.algoSteps.bubbleSteps.traverseLength)) 
                 this.setState(prevState => ({
                     traverseLength: prevState.traverseLength + 1
                 }), () => console.log(this.state.traverseLength))
@@ -139,7 +135,7 @@ class Layout extends Component {
 
 
     bubbleIteration = async () => {
-        console.log('bubbleIteration entered!!!')
+        //console.log('bubbleIteration entered!!!')
         
         do {
             this.setState(prevState => ({
@@ -149,8 +145,9 @@ class Layout extends Component {
                         swaps: false}}
             }))
             let answer = await this.arrayTraverse()
-            console.log('continued from arraytraverse() call ' + this.state.algoSteps.bubbleSteps.swaps + ' ' + answer)
-            if (!this.state.algoSteps.bubbleSteps.swaps) this.setState( {bubbleIndex: NaN} )
+            console.log(answer)
+            // at below point, sorting is complete
+            if (!this.state.algoSteps.bubbleSteps.swaps) this.setState( {bubbleIndex: NaN, visualizationPressed: false} )
         } while (this.state.algoSteps.bubbleSteps.swaps)
     }
 
@@ -178,7 +175,8 @@ class Layout extends Component {
                     bubbleIdx: this.state.bubbleIndex,
                     vsPressed: this.state.visualizationPressed,
                     newArrClicked: this.state.newArrayClicked,
-                    arrayClickToggleHandler: this.arrayClickToggleHandler
+                    arrayClickToggleHandler: this.arrayClickToggleHandler,
+                    bubbleSwapEntered: this.state.bubbleSwapEntered
                 }}>
                 <Header>
                     <span style = {{ fontFamily: 'Caveat, cursive', fontSize: '2rem', color: '#fcedb3', maxHeight: '98%' }}>Algo-Sort Fun!</span>

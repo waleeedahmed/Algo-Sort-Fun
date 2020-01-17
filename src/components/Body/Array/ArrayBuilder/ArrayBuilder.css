@@ -1,3 +1,4 @@
+
 .Array {
     display: flex;
     width: fit-content;
@@ -8,7 +9,7 @@
     justify-content: center;
     margin: auto;
     padding-top: 55px;
-    color: rgb(80, 87, 92);
+    color: rgb(87, 91, 95);
     transition: all 0.2s ease-in-out;
     transition: color 0.3 linear;
 }
@@ -29,3 +30,4 @@
         font-size: 1.5rem;
     }
 }
+

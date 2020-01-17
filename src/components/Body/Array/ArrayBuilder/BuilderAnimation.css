@@ -1,12 +1,57 @@
-.enter {
-    opacity: 1;
-    color: white;
+/* .enter {
+  display: flex;
+  width: fit-content;
+  font-family: 'Lato', sans-serif;
+  font-size: 2.2rem;
+  font-weight: bold;
+  height: 150px;
+  justify-content: center;
+  margin: auto;
+  padding-top: 55px;
+  color: rgb(87, 91, 95);
+  opacity: 0;
+}
+
+.enterActive {
+  display: flex;
+  width: fit-content;
+  font-family: 'Lato', sans-serif;
+  font-size: 2.2rem;
+  font-weight: bold;
+  height: 150px;
+  justify-content: center;
+  margin: auto;
+  padding-top: 55px;
+  color: rgb(87, 91, 95);
+  opacity: 1;
+  transition: opacity 50ms;
+}
+
+.enterDone {
+  display: flex;
+  width: fit-content;
+  font-family: 'Lato', sans-serif;
+  font-size: 2.2rem;
+  font-weight: bold;
+  height: 150px;
+  justify-content: center;
+  margin: auto;
+  padding-top: 55px;
+  color: rgb(87, 91, 95);
+  transition: all 0.2s ease-in-out;
+  transition: color 0.3 linear;
+  opacity: 1;
+} */
+
+
+  .enter {
+    color: transparent;
   }
   
   .enterActive {
-    opacity: 0;
-    transition: opacity 50ms ease-in-out;
+    transition: opacity 50ms;
   }
+
   
   /* .exit {
     color: blueviolet;
