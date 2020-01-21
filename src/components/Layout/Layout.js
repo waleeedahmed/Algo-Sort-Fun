@@ -23,7 +23,7 @@ class Layout extends Component {
                 swaps: false
             }
         },
-        traverseLength: 0,
+        traverseLength: 1,
         bubbleIndex: NaN,
         newArrayClicked: false,
         bubbleSwapEntered: false
@@ -78,58 +78,65 @@ class Layout extends Component {
 
 
     bubbleSwap = (extraArray, i) => { return new Promise(resolve => {
-        this.setState({bubbleIndex: i})
+    
         setTimeout(() => {
-            this.setState({bubbleSwapEntered: false})
+            this.setState({bubbleIndex: i}) 
+             
             //console.log('bubbleswap entered')
             if (extraArray[i] > extraArray[i + 1]) {
+                //console.log('bubbleswap if statement entered')
 
-                    this.setState(prevState => ({
-                    ...prevState,
-                    algoSteps: {...prevState.algoSteps,
-                        bubbleSteps: {
-                            ...prevState.algoSteps.bubbleSteps,
-                            swaps: true
-                        }},
-                        bubbleSwapEntered: true
-                }))
-                
-                // swap      
+                this.setState(prevState => ({
+                ...prevState,
+                algoSteps: {...prevState.algoSteps,
+                    bubbleSteps: {
+                        ...prevState.algoSteps.bubbleSteps,
+                        swaps: true
+                    }},
+                    bubbleSwapEntered: true
+                }), () => { 
+
+                // swap   
                 let k = extraArray[i];
                 extraArray[i] = extraArray[i + 1];
                 extraArray[i + 1] = k;
-                resolve(extraArray)
+                    setTimeout(() => {
+                        resolve(extraArray)
+                    }, 800)
+                })
                                  
-            } else resolve(null)
-
-            //this.setState({ generatedNumArray: extraArray })
-            
-        }, 1000)  
+            } else {
+                setTimeout(() => resolve(null), 800) 
+            }
+       
+        }, 200)  
     })}
     
 
     arrayTraverse = () => { return new Promise(async (resolve) => {
         
-        //setTimeout(async () => {
-            console.log('arrayTraverse entered!!!')
+            //console.log('arrayTraverse entered!!!')
             let extraArray = [...this.state.generatedNumArray]
 
             for (let i = 0; i < extraArray.length - this.state.traverseLength; i++) {
-
-                let result = await this.bubbleSwap(this.state.generatedNumArray, i)
+                console.log('for loop iteration number: ' + i)
+                 
+                let result = await this.bubbleSwap(extraArray, i)
+              
                 if (result) {
-                    this.setState({ generatedNumArray: result }, () => console.log(this.state.generatedNumArray))
+                    this.setState({ generatedNumArray: result, bubbleSwapEntered: false, bubbleIndex: NaN }, () => console.log('SETSTATE CALLED!!!'))
                 }
-                console.log('continued from bubbleswap() call ' + result)
             }
 
             if (this.state.algoSteps.bubbleSteps.swaps) {
                 this.setState(prevState => ({
                     traverseLength: prevState.traverseLength + 1
                 }), () => console.log(this.state.traverseLength))
-            }
-            resolve('arrayTraversed!') 
-            // }, 200)
+    
+                resolve('arrayTraversed!')
+                 
+            // at below point, sorting is complete
+            } else this.setState({visualizationPressed: false, bubbleIndex: NaN})
         })
     }
 
@@ -146,8 +153,7 @@ class Layout extends Component {
             }))
             let answer = await this.arrayTraverse()
             console.log(answer)
-            // at below point, sorting is complete
-            if (!this.state.algoSteps.bubbleSteps.swaps) this.setState( {bubbleIndex: NaN, visualizationPressed: false} )
+            
         } while (this.state.algoSteps.bubbleSteps.swaps)
     }
 
@@ -169,9 +175,7 @@ class Layout extends Component {
                     generatedNumArray: this.state.generatedNumArray,
                     algorithms: this.state.algorithms,
                     algoSwitchHandler: this.algoSwitchOnHandler,
-                    //bubbleIteration: this.state.algoSteps.bubbleSteps.bubbleIteration,
-                    //bubbleTraverse: this.state.algoSteps.bubbleSteps.bubbleTraverse,
-                    //bubbleSwap: this.state.algoSteps.bubbleSteps.bubbleSwap,
+                    tLength: this.state.traverseLength,
                     bubbleIdx: this.state.bubbleIndex,
                     vsPressed: this.state.visualizationPressed,
                     newArrClicked: this.state.newArrayClicked,
