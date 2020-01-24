@@ -192,7 +192,7 @@ class Layout extends Component {
                     <Algobody/>
                 </main>
                 <Footer>
-                    
+                    <span className = {classes.FooterSpan} style = {{ color: '#FADADA', fontSize: '0.9rem' }}>About</span>
                 </Footer>
                    
                 </GlobalPropsContext.Provider>   

@@ -40,6 +40,10 @@
     width: 110px;
 }
 
+.FooterSpan {
+    float: right;
+}
+
 
 @media (max-width: 800px) {
     .Btndiv {

@@ -1,7 +1,11 @@
 .Footer {
-    background-color: rgb(109, 90, 63);
+    padding: 4px 20px;
+    display: inline-block;
+    box-sizing: border-box;
+    background: linear-gradient(#411515 0%, #201d1d 100%);
     bottom: 0;
     width: 100%;
-    position: absolute;
+    position: fixed;
     height: 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
