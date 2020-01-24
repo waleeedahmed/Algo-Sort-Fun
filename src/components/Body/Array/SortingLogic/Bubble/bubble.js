@@ -9,24 +9,24 @@ class Bubble extends React.Component {
 
         var bubbleCodeSwap = `
             if (array[i] > array[i + 1]) {     
-                // swap 'i' and 'i + 1'
-                // set 'swapsPerformed' to true
+                // Swap 'i' and 'i + 1'
+                // Set 'swapsPerformed' to true
             }`
             
-        var bubbleCodeTraverse = `\t// for loop current value 'i' up till array length {`
+        var bubbleCodeTraverse = `\t// for loop (start: 0, end: array.length, current: i) {`
 
         var bubbleCodeIterate = 
 
-            `BubbleSort(array) function declaration {
-    // initialize 'swapsPerformed: boolean' variable
-    // repeat following block of code {
-        // set 'swapsPerformed' to false`
+            `BubbleSort(unsortedArray) {
+    // Initialize 'swapsPerformed: boolean'
+    do { // Repeat this block of code 
+        // Set 'swapsPerformed' to false`
                 
         var endingCode = 
-        `\t} // end for
+        `\t} // End for
     } // while swapsPerformed is true
 
-// return sorted array 
+// return sortedArray 
 }`
 
         
@@ -34,6 +34,7 @@ class Bubble extends React.Component {
 
         return ( 
             <div className = {classes.Bubble}>
+                <h2 style = {{fontFamily: 'Lato, sans-serif', textDecoration: 'underline'}}>Pseudocode Walkthrough</h2>
                 <div>{bubbleCodeIterate}</div>
                 <div>{bubbleCodeTraverse}</div>
                 <div>{bubbleCodeSwap}</div>

@@ -1,10 +1,10 @@
 .ArraySortSteps {
 
     background-color: #d8d8d8;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 1.05rem;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.95rem;
     font-weight: bold;
-    color: #555555;
+    color: #4b4b4b;
     height: inherit;
     margin: 10px 0;
     margin-left: 8px;
@@ -12,7 +12,8 @@
     border-radius: 10px;
     text-align: left;  
     width: 32.9%;
-    line-height: 23px;
+    line-height: 25px;
     padding: 15px 15px;
     box-sizing: border-box;
+    
 }
