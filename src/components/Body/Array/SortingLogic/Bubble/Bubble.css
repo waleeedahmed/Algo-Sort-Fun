@@ -3,3 +3,15 @@
     padding: 10px 10px;
     
 }
+
+.BubbleSwap {
+    color: rgb(61, 160, 31);
+}
+
+.BubbleNoSwap {
+    color: rgb(248, 28, 28);
+}
+
+.Complete {
+    color: rgb(248, 28, 138);
+}

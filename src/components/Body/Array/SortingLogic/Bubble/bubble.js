@@ -4,41 +4,54 @@ import classes from './Bubble.css';
 
 class Bubble extends React.Component {
     
+    classAssign = () => {
+        if (this.props.value.bubbleArrayStatus === 3) return classes.BubbleNoSwap
+
+        else if (this.props.value.bubbleArrayStatus === 1) return classes.BubbleSwap
+
+        else if (this.props.value.bubbleArrayStatus === 4) return null
+    }
+
+    classAssignSwap = () => {
+        if (this.props.value.bubbleArrayStatus === 1) return classes.BubbleSwap
+        else return null
+    }
 
     render() {
 
         var bubbleCodeSwap = `
-            if (array[i] > array[i + 1]) {     
-                // Swap 'i' and 'i + 1'
-                // Set 'swapsPerformed' to true
-            }`
+            if (array[i] > array[i + 1])`
+
+        var bubbleCodeSwapBody = `\t      {
+              // Swap 'i' and 'i + 1'
+              // Set 'swapsPerformed' to true
+              }`
             
         var bubbleCodeTraverse = `\t// for loop (start: 0, end: array.length, current: i) {`
 
         var bubbleCodeIterate = 
-
             `BubbleSort(unsortedArray) {
     // Initialize 'swapsPerformed: boolean'
     do { // Repeat this block of code 
         // Set 'swapsPerformed' to false`
                 
         var endingCode = 
-        `\t} // End for
-    } // while swapsPerformed is true
+        `\t    } // End for
+    } // while swapsPerformed is true`
 
-// return sortedArray 
-}`
 
-        
-        
+        var returnCode = `// return sortedArray`         
 
         return ( 
             <div className = {classes.Bubble}>
-                <h2 style = {{fontFamily: 'Lato, sans-serif', textDecoration: 'underline'}}>Pseudocode Walkthrough</h2>
+                <h3 style = {{fontSize: '1.34rem', fontFamily: 'Lato, sans-serif', textDecoration: 'underline'}}>Pseudocode Walkthrough</h3>
                 <div>{bubbleCodeIterate}</div>
                 <div>{bubbleCodeTraverse}</div>
-                <div>{bubbleCodeSwap}</div>
+                <div className = {this.classAssign()}>{bubbleCodeSwap}</div>
+                <div className = {this.classAssignSwap()}>{bubbleCodeSwapBody}</div>
                 <div>{endingCode}</div>
+                <div className = {this.props.value.bubbleArrayStatus === 4 ? classes.Complete : null}>{returnCode}</div>
+                }
             </div>
         )
     }
@@ -50,84 +63,3 @@ class Bubble extends React.Component {
 
 
 export default withContext(Bubble);
-
-
-
-
-
-
-
-
-
-
-
-// bubbleSwap = (numposition, i, x) => {
-        
-//     if (numposition[i] > numposition[i + 1]) {
-//         // swap      
-//         let k = numposition[i];
-//         numposition[i] = numposition[i + 1];
-//         numposition[i + 1] = k;
-//         x = true;
-//     }
-//     console.log(numposition[i] + " " + numposition[i + 1])
-// }
-
-
-// arrayTraverse = (array, swapsPerformed) => {
-//     for (let i = 0; i <= array.length - 1; i++) {
-
-//         this.bubbleSwap(array, i, swapsPerformed)
-//         // increment for iteration display
-//     }
-// }
-
-
-// bubbleIteration = (array) => {
-//     let swapsPerformed;
-//     do {
-//         swapsPerformed = false
-//         this.arrayTraverse(array, swapsPerformed)
-//     } while (swapsPerformed)
-// }
-
-
-// bubbleSort = (array) => {
-//     console.log('bubblesort entered!!!')
-//     this.bubbleIteration(array);
-     
-//     return this.props.value.generatedNumArray = array;  
-    
-// }
-
-
-
-
-
-// var bubbleCodeSwap = `
-// if (array[i] > array[i + 1]) {
-//     // swap
-            
-//     let k = array[i];
-//     array[i] = array[i + 1];
-//     array[i + 1] = k;
-//     swapsPerformed = true;
-// }`
-
-// var bubbleCodeTraverse = `
-// for (let i = 0; i <= array.length; i++) {
-// `
-
-// var bubbleCodeIterate = 
-// `function BubbleSort(array) {     
-//     let swapsPerformed;
-//         do {
-//             swapsPerformed = false`
-
-            
-// var endingCode = `
-//     }
-// } while (swapsPerformed)
-
-// return array;     
-// }`

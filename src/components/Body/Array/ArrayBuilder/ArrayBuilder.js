@@ -31,6 +31,9 @@ class ArrayBuilder extends Component {
         else if ((currIdx2 === i || currIdx2 + 1 === i) && this.props.value.bubbleArrayStatus === 3) {
             return [classes.Array, classes.CurrentNoSwap].join(' ')
         }
+        else if (isNaN(currIdx2) && this.props.value.bubbleArrayStatus === 4) {
+            return [classes.Array, classes.Complete].join(' ')
+        }
         else {
             return classes.Arraycell
         }
@@ -43,7 +46,7 @@ class ArrayBuilder extends Component {
 
         var displayNums = this.props.value.generatedNumArray.map((currentElement, index) => {
             let currentIdx = this.props.value.bubbleIdx;
-            let currentIdx2 = this.props.value.bubbleIdx2
+            let currentIdx2 = this.props.value.bubbleIdx2;
             
             return  <Animate key = {index}>
                         {data => (
