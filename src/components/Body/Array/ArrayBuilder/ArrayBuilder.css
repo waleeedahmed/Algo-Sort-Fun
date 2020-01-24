@@ -11,17 +11,31 @@
     padding-top: 55px;
     color: rgb(87, 91, 95);
     transition: all 0.2s ease-in-out;
-    transition: color 0.3 linear;
+    transition: color 0.2 linear;
 }
 
 .Arraycell {
     padding: 0 8px;
 }
 
-
 .CurrentSwap {
-    color: rgb(198, 53, 255);
+    color: rgb(149, 1, 248);
     padding: 0 8px;
+}
+
+.CurrentNewArray {
+    color: rgb(61, 160, 31);
+    padding: 0 8px;    
+}
+
+.CurrentNoSwap {
+    color: rgb(248, 28, 28);
+    padding: 0 8px;    
+}
+
+.Array:hover {
+    height: 130px;
+    font-size: 2.3rem;
 }
 
 @media (max-width: 1000px) {
