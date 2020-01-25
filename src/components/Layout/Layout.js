@@ -61,7 +61,7 @@ class Layout extends Component {
     visualizationHandler = () => {
     
         // vsPressed becomes true regardless of which algorithm is selected 
-        this.setState( { visualizationPressed: true, traverseLength: 0 } )
+        this.setState({ visualizationPressed: true, traverseLength: 0 })
 
         if (this.state.algorithms.bubble) {
         
@@ -79,10 +79,10 @@ class Layout extends Component {
     bubbleSwap = (extraArray, i) => {return new Promise(resolve => {
     
         // Decide whether to swap or not
-        this.setState({bubbleIndex2: i, bubbleArrayStatus: 0, bubbleIndex: NaN})
+        this.setState({bubbleIndex: NaN, bubbleIndex2: i, bubbleArrayStatus: 0})
 
         setTimeout(() => {
-            this.setState(prevState => ({bubbleIndex: i, bubbleIndex2: i, bubbleArrayStatus: 0})) 
+            this.setState(prevState => ({bubbleIndex: i, bubbleArrayStatus: 0})) 
 
             if (extraArray[i] > extraArray[i + 1]) {
 
@@ -105,8 +105,7 @@ class Layout extends Component {
                     }, 600)
                 })
                                  
-            } else {
-                
+            } else {                
                 setTimeout(() => resolve(null), 600) 
             }
        
@@ -122,30 +121,23 @@ class Layout extends Component {
                 
                 let result = await this.bubbleSwap(extraArray, i)
                 if (result) {
-                    this.setState({ generatedNumArray: result, bubbleSwapEntered: false, bubbleIndex: NaN })  
+                    this.setState({ generatedNumArray: result, bubbleIndex: NaN, bubbleSwapEntered: false })  
                     setTimeout(() => {
-                        this.setState(prevState => ({bubbleSwapEntered: false, bubbleArrayStatus: 1, bubbleIndex2: i}))
+                        this.setState({bubbleIndex2: i, bubbleSwapEntered: false, bubbleArrayStatus: 1})
                     }, 30);       
                 }
                 else {
                     setTimeout(() => {
-                        this.setState({bubbleSwapEntered: false, bubbleArrayStatus: 3, bubbleIndex: NaN, bubbleIndex2: i})
+                        this.setState({bubbleIndex: NaN, bubbleIndex2: i, bubbleSwapEntered: false, bubbleArrayStatus: 3})
                     }, 30);
                 }
             }
-
-            // When array traversed
-            if (this.state.algoSteps.bubbleSteps.swaps) {
-                this.setState(prevState => ({traverseLength: prevState.traverseLength + 1, bubbleArrayStatus: 0, bubbleSwapEntered: false}))
-                resolve('arrayTraversed!')
-
-            // At below point, sorting is complete
-            } else this.setState({visualizationPressed: false, bubbleIndex: NaN, bubbleIndex2: NaN, bubbleArrayStatus: 4}, () => console.log('final state set'))
+            resolve(true)
         })
     }
 
 
-    bubbleIteration = async () => {
+    bubbleIteration = async () => {return new Promise(async (resolve) => {
         
         do {
             this.setState(prevState => ({
@@ -154,14 +146,28 @@ class Layout extends Component {
                     bubbleSteps: {...prevState.bubbleSteps,
                         swaps: false}}
             }))
-            await this.arrayTraverse()
+            let ans = await this.arrayTraverse()
+
+            // When array traversed
+            if (ans) {
+                if (this.state.algoSteps.bubbleSteps.swaps) {
+                    this.setState(prevState => ({traverseLength: prevState.traverseLength + 1, bubbleArrayStatus: 0, bubbleSwapEntered: false}))
+                    
+                // At below point, sorting is complete
+                } else {
+                    setTimeout(() => {
+                        this.setState({visualizationPressed: false, bubbleIndex: NaN, bubbleIndex2: NaN, bubbleArrayStatus: 4}) 
+                    }, 200);
+                }
+            }
                 
         } while (this.state.algoSteps.bubbleSteps.swaps)
-    }
+    })}
 
     bubbleSort = () => {
         this.bubbleIteration();
-        return;
+        //this.setState({bubbleIndex2: NaN, bubbleArrayStatus: 4}, () => console.log('final state set'))
+        return
     }
 
 
