@@ -131,6 +131,7 @@ class Layout extends Component {
                         this.setState({bubbleIndex: NaN, bubbleIndex2: i, bubbleSwapEntered: false, bubbleArrayStatus: 3})
                     }, 30);
                 }
+                //if (i === (((extraArray.length - 1) - this.state.traverseLength)) - 1) resolve(true)
             }
             resolve(true)
         })
@@ -150,14 +151,17 @@ class Layout extends Component {
 
             // When array traversed
             if (ans) {
+    
                 if (this.state.algoSteps.bubbleSteps.swaps) {
-                    this.setState(prevState => ({traverseLength: prevState.traverseLength + 1, bubbleArrayStatus: 0, bubbleSwapEntered: false}))
+                    setTimeout(() => {
+                        this.setState(prevState => ({traverseLength: prevState.traverseLength + 1, bubbleArrayStatus: 5, bubbleSwapEntered: false, bubbleIndex2: NaN }))
+                    }, 30);
                     
                 // At below point, sorting is complete
                 } else {
                     setTimeout(() => {
                         this.setState({visualizationPressed: false, bubbleIndex: NaN, bubbleIndex2: NaN, bubbleArrayStatus: 4}) 
-                    }, 200);
+                    }, 30);
                 }
             }
                 

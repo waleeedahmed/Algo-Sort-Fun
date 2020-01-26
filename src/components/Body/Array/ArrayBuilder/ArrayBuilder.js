@@ -31,8 +31,11 @@ class ArrayBuilder extends Component {
         else if ((currIdx2 === i || currIdx2 + 1 === i) && this.props.value.bubbleArrayStatus === 3) {
             return [classes.Array, classes.CurrentNoSwap].join(' ')
         }
-        else if (isNaN(currIdx2) && this.props.value.bubbleArrayStatus === 4) {
-            return [classes.Array, classes.Complete].join(' ')
+        // else if (isNaN(currIdx2) && this.props.value.bubbleArrayStatus === 4) {
+        //     return [classes.Array, classes.Complete].join(' ')
+        // }
+        else if (isNaN(currIdx2) && this.props.value.bubbleArrayStatus === 5) {
+            return [classes.Array, classes.TraverseComplete].join(' ')
         }
         else {
             return classes.Arraycell
@@ -60,7 +63,7 @@ class ArrayBuilder extends Component {
             })
          
             return (<CSSTransition in = {this.props.value.newArrClicked} onEntered = {this.props.value.arrayClickToggleHandler} classNames = {{...trans}} timeout = {100}>
-                        <div className = {classes.Array}>[{this.props.value.generatedNumArray.length === 0 ? emptyArray : displayNums}]</div>
+                        <div className = {isNaN(this.props.value.bubbleIdx2) && this.props.value.bubbleArrayStatus === 4 ? `${classes.Array} ${classes.Complete}` : classes.Array}>[{this.props.value.generatedNumArray.length === 0 ? emptyArray : displayNums}]</div>
                     </CSSTransition>)
             
     }

@@ -46,7 +46,7 @@ class Bubble extends React.Component {
             <div className = {classes.Bubble}>
                 <h3 style = {{fontSize: '1.34rem', fontFamily: 'Lato, sans-serif', textDecoration: 'underline'}}>Pseudocode Walkthrough</h3>
                 <div>{bubbleCodeIterate}</div>
-                <div>{bubbleCodeTraverse}</div>
+                <div className = {this.props.value.bubbleArrayStatus === 5 && isNaN(this.props.value.bubbleIdx2) ? classes.TraverseComplete : null}>{bubbleCodeTraverse}</div>
                 <div className = {this.classAssign()}>{bubbleCodeSwap}</div>
                 <div className = {this.classAssignSwap()}>{bubbleCodeSwapBody}</div>
                 <div>{endingCode}</div>
