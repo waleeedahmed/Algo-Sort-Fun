@@ -31,8 +31,10 @@ class Bubble extends React.Component {
 
         var bubbleCodeIterate = 
             `BubbleSort(unsortedArray) {
-    // Initialize 'swapsPerformed: boolean'
-    do { // Repeat this block of code 
+    // Initialize 'swapsPerformed: boolean'`
+
+        var doLoop = 
+        `    do { // Repeat this block of code 
         // Set 'swapsPerformed' to false`
                 
         var endingCode = 
@@ -46,10 +48,11 @@ class Bubble extends React.Component {
             <div className = {classes.Bubble}>
                 <h3 style = {{fontSize: '1.34rem', fontFamily: 'Lato, sans-serif', textDecoration: 'underline'}}>Pseudocode Walkthrough</h3>
                 <div>{bubbleCodeIterate}</div>
-                <div className = {this.props.value.bubbleArrayStatus === 5 && isNaN(this.props.value.bubbleIdx2) ? classes.TraverseComplete : null}>{bubbleCodeTraverse}</div>
+                <div className = {this.props.value.bubbleArrayStatus === 6 ? classes.DoLoop : null}>{doLoop}</div>
+                <div className = {this.props.value.bubbleArrayStatus === 7 ? classes.ForLoop : null}>{bubbleCodeTraverse}</div>
                 <div className = {this.classAssign()}>{bubbleCodeSwap}</div>
                 <div className = {this.classAssignSwap()}>{bubbleCodeSwapBody}</div>
-                <div>{endingCode}</div>
+                <div className = {this.props.value.bubbleArrayStatus === 5 && isNaN(this.props.value.bubbleIdx2) ? classes.TraverseComplete : null}>{endingCode}</div>
                 <div className = {this.props.value.bubbleArrayStatus === 4 ? classes.Complete : null}>{returnCode}</div>
                 }
             </div>

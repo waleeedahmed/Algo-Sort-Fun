@@ -82,7 +82,7 @@ class Layout extends Component {
         this.setState({bubbleIndex: NaN, bubbleIndex2: i, bubbleArrayStatus: 0})
 
         setTimeout(() => {
-            this.setState(prevState => ({bubbleIndex: i, bubbleArrayStatus: 0})) 
+            this.setState({bubbleIndex: i, bubbleArrayStatus: 0})    
 
             if (extraArray[i] > extraArray[i + 1]) {
 
@@ -115,56 +115,72 @@ class Layout extends Component {
 
     arrayTraverse = () => {return new Promise(async (resolve) => {
 
-            let extraArray = [...this.state.generatedNumArray]
+        let extraArray = [...this.state.generatedNumArray]
+        setTimeout(async () => {
+            
+            setTimeout(() => {
+                this.setState({bubbleArrayStatus: 7})
+            }, 20); 
 
             for (let i = 0; i < ((extraArray.length - 1) - this.state.traverseLength); i++) {
                 
                 let result = await this.bubbleSwap(extraArray, i)
                 if (result) {
+                    
                     this.setState({ generatedNumArray: result, bubbleIndex: NaN, bubbleSwapEntered: false })  
                     setTimeout(() => {
                         this.setState({bubbleIndex2: i, bubbleSwapEntered: false, bubbleArrayStatus: 1})
-                    }, 30);       
+                        //if (i === (((extraArray.length - 1) - this.state.traverseLength)) - 1) resolve(true)
+                    }, 20);       
                 }
                 else {
                     setTimeout(() => {
                         this.setState({bubbleIndex: NaN, bubbleIndex2: i, bubbleSwapEntered: false, bubbleArrayStatus: 3})
-                    }, 30);
+                        //if (i === (((extraArray.length - 1) - this.state.traverseLength)) - 1) resolve(true)
+                    }, 20);
                 }
-                //if (i === (((extraArray.length - 1) - this.state.traverseLength)) - 1) resolve(true)
+                
             }
             resolve(true)
-        })
-    }
+        }, 2000);
+    })}
 
 
     bubbleIteration = async () => {return new Promise(async (resolve) => {
         
         do {
-            this.setState(prevState => ({
-                ...prevState,
-                algoSteps: {...prevState.algoSteps,
-                    bubbleSteps: {...prevState.bubbleSteps,
-                        swaps: false}}
-            }))
-            let ans = await this.arrayTraverse()
-
-            // When array traversed
+            let ans;
+            setTimeout(() => {
+                this.setState(prevState => ({
+                    ...prevState,
+                    algoSteps: {...prevState.algoSteps,
+                        bubbleSteps: {...prevState.bubbleSteps,
+                            swaps: false}
+                    },
+                    bubbleArrayStatus: 6
+                }))
+        
+            }, 1000);                
+            
+            ans  = await this.arrayTraverse()
+            
+                    
+            // Code below executes when traversal is complete   
             if (ans) {
-    
+
                 if (this.state.algoSteps.bubbleSteps.swaps) {
                     setTimeout(() => {
                         this.setState(prevState => ({traverseLength: prevState.traverseLength + 1, bubbleArrayStatus: 5, bubbleSwapEntered: false, bubbleIndex2: NaN }))
-                    }, 30);
+                    }, 20); // if less, do loop doesnt work. if more, this itself doesnt work
                     
                 // At below point, sorting is complete
                 } else {
                     setTimeout(() => {
                         this.setState({visualizationPressed: false, bubbleIndex: NaN, bubbleIndex2: NaN, bubbleArrayStatus: 4}) 
-                    }, 30);
-                }
+                    }, 20);
+                }   
             }
-                
+
         } while (this.state.algoSteps.bubbleSteps.swaps)
     })}
 
@@ -193,23 +209,23 @@ class Layout extends Component {
                     bubbleSwapEntered: this.state.bubbleSwapEntered,
                     bubbleArrayStatus: this.state.bubbleArrayStatus
                 }}>
-                <Header>
-                    <span style = {{ fontFamily: 'Caveat, cursive', fontSize: '2rem', color: '#fcedb3', maxHeight: '98%' }}>Algo-Sort Fun!</span>
-                    <Drawer/>                    
-                    <div className = {classes.Btndiv}>
-                        <button className = {classes.Buttons} onClick = {() => this.generateNumbers(14)}>Create New Array</button>
-                        <button className = {classes.Buttons}>Clear Array</button>
-                        <button className = {`${classes.Buttons} ${classes.SmallBtn}`} onClick = {this.visualizationHandler}>Visualize!</button>
-                    </div>
-                </Header>
-                
-                <main>
-                    <Algobody/>
-                </main>
-                <Footer>
-                    <span className = {classes.FooterSpan} style = {{ color: '#FADADA', fontSize: '0.9rem' }}>About</span>
-                </Footer>
-                   
+                    <Header>
+                        <span style = {{ fontFamily: 'Caveat, cursive', fontSize: '2rem', color: '#fcedb3', maxHeight: '98%' }}>Algo-Sort Fun!</span>
+                        <Drawer/>                    
+                        <div className = {classes.Btndiv}>
+                            <button className = {classes.Buttons} onClick = {() => this.generateNumbers(14)}>Create New Array</button>
+                            <button className = {classes.Buttons}>Clear Array</button>
+                            <button className = {`${classes.Buttons} ${classes.SmallBtn}`} onClick = {this.visualizationHandler}>Visualize!</button>
+                        </div>
+                    </Header>
+                    
+                    <main>
+                        <Algobody/>
+                    </main>
+                    <Footer>
+                        <span className = {classes.FooterSpan} style = {{ color: '#FADADA', fontSize: '0.9rem' }}>About</span>
+                    </Footer>
+
                 </GlobalPropsContext.Provider>   
             </Auxiliary>
         )

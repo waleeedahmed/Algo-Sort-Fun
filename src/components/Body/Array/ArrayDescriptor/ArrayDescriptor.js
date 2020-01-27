@@ -5,8 +5,13 @@ import Auxiliary from '../../../../hoc/Auxiliary/Auxiliary';
 
 class ArrayDescriptor extends React.Component {
 
-    render() {
+    shouldComponentUpdate(nextProps) {
+        return nextProps.value.algorithms.bubble !== this.props.value.algorithms.bubble ||  nextProps.value.algorithms.selection !== this.props.value.algorithms.selection || 
+                nextProps.value.algorithms.insertion !== this.props.value.algorithms.insertion 
+    }
 
+    render() {
+        
         let arrDescValue;
 
         if (this.props.value.algorithms.bubble) {
