@@ -4,6 +4,14 @@
     
 }
 
+.ShouldBubbleSwap, .ShouldBubbleSwap::after {
+    color: rgb(140, 3, 194);
+    font-size: 0.94rem;
+    transition: all 0.2s ease-in-out;    
+    content: ' // Deciding...';
+}
+
+
 .BubbleSwap {
     color: rgb(61, 160, 31);
     font-size: 0.94rem;
@@ -23,7 +31,7 @@
 }
 
 .DoLoop {
-    color: rgb(140, 3, 194);
+    color: lightcoral;
     font-size: 0.94rem;
     transition: all 0.2s ease-in-out;    
 }

@@ -79,13 +79,18 @@ class Layout extends Component {
     bubbleSwap = (extraArray, i) => {return new Promise(resolve => {
     
         // Decide whether to swap or not
-        this.setState({bubbleIndex: NaN, bubbleIndex2: i, bubbleArrayStatus: 0})
+        setTimeout(() => {
+             this.setState({bubbleIndex: NaN, bubbleIndex2: i, bubbleArrayStatus: -1, bubbleSwapEntered: false})
+            
+        }, 600);
 
         setTimeout(() => {
-            this.setState({bubbleIndex: i, bubbleArrayStatus: 0})    
+
+            this.setState({bubbleIndex: i, bubbleArrayStatus: 0, bubbleSwapEntered: false})   
 
             if (extraArray[i] > extraArray[i + 1]) {
 
+                // Perform swap animation
                 this.setState(prevState => ({
                 ...prevState,
                 algoSteps: {...prevState.algoSteps,
@@ -96,20 +101,20 @@ class Layout extends Component {
                     bubbleSwapEntered: true
                 }), () => { 
 
-                // Swap   
+                // Swap in the state 
                 let k = extraArray[i];
                 extraArray[i] = extraArray[i + 1];
                 extraArray[i + 1] = k;
                     setTimeout(() => {
                         resolve(extraArray)
-                    }, 600)
+                    }, 500)
                 })
                                  
             } else {                
-                setTimeout(() => resolve(null), 600) 
+                setTimeout(() => resolve(null), 100) 
             }
        
-        }, 600)  
+        }, 1200)  
     })}
     
 
@@ -119,24 +124,26 @@ class Layout extends Component {
         setTimeout(async () => {
             
             setTimeout(() => {
+                // Code 7 Highlights for loop
                 this.setState({bubbleArrayStatus: 7})
-            }, 20); 
+            }, 10); 
 
             for (let i = 0; i < ((extraArray.length - 1) - this.state.traverseLength); i++) {
-                
+
                 let result = await this.bubbleSwap(extraArray, i)
+
                 if (result) {
-                    
+                    // Sets state after animation
                     this.setState({ generatedNumArray: result, bubbleIndex: NaN, bubbleSwapEntered: false })  
                     setTimeout(() => {
-                        this.setState({bubbleIndex2: i, bubbleSwapEntered: false, bubbleArrayStatus: 1})
-                        //if (i === (((extraArray.length - 1) - this.state.traverseLength)) - 1) resolve(true)
-                    }, 20);       
+                        // Code 1 for green, swap performed
+                        this.setState({bubbleIndex2: i, bubbleSwapEntered: false, bubbleArrayStatus: 1}) 
+                    }, 5);       
                 }
                 else {
                     setTimeout(() => {
+                        // Code 3 for red, no swap performed
                         this.setState({bubbleIndex: NaN, bubbleIndex2: i, bubbleSwapEntered: false, bubbleArrayStatus: 3})
-                        //if (i === (((extraArray.length - 1) - this.state.traverseLength)) - 1) resolve(true)
                     }, 20);
                 }
                 
@@ -151,6 +158,7 @@ class Layout extends Component {
         do {
             let ans;
             setTimeout(() => {
+                // Code 6 highlights do initial do loop
                 this.setState(prevState => ({
                     ...prevState,
                     algoSteps: {...prevState.algoSteps,
@@ -163,19 +171,20 @@ class Layout extends Component {
             }, 1000);                
             
             ans  = await this.arrayTraverse()
-            
-                    
-            // Code below executes when traversal is complete   
+             
+            // Traversal complete at this point   
             if (ans) {
 
                 if (this.state.algoSteps.bubbleSteps.swaps) {
                     setTimeout(() => {
+                        // Code 5 highlights end for and while clause
                         this.setState(prevState => ({traverseLength: prevState.traverseLength + 1, bubbleArrayStatus: 5, bubbleSwapEntered: false, bubbleIndex2: NaN }))
-                    }, 20); // if less, do loop doesnt work. if more, this itself doesnt work
+                    }, 20); 
                     
                 // At below point, sorting is complete
                 } else {
                     setTimeout(() => {
+                        // Code 4 highlights the entire array once sorting complete
                         this.setState({visualizationPressed: false, bubbleIndex: NaN, bubbleIndex2: NaN, bubbleArrayStatus: 4}) 
                     }, 20);
                 }   
@@ -186,7 +195,6 @@ class Layout extends Component {
 
     bubbleSort = () => {
         this.bubbleIteration();
-        //this.setState({bubbleIndex2: NaN, bubbleArrayStatus: 4}, () => console.log('final state set'))
         return
     }
 

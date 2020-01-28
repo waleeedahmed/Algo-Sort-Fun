@@ -25,17 +25,20 @@ class ArrayBuilder extends Component {
         if (currIdx === i || currIdx + 1 === i) {
             return [classes.Array, classes.CurrentSwap].join(' ')
         }
+        else if ((currIdx2 === i || currIdx2 + 1 === i) && this.props.value.bubbleArrayStatus === -1) {
+            return [classes.Array, classes.CurrentSwap].join(' ')
+        }
         else if ((currIdx2 === i || currIdx2 + 1 === i) && this.props.value.bubbleArrayStatus === 1) {
             return [classes.Array, classes.CurrentNewArray].join(' ')
         }
         else if ((currIdx2 === i || currIdx2 + 1 === i) && this.props.value.bubbleArrayStatus === 3) {
             return [classes.Array, classes.CurrentNoSwap].join(' ')
         }
-        // else if (isNaN(currIdx2) && this.props.value.bubbleArrayStatus === 4) {
-        //     return [classes.Array, classes.Complete].join(' ')
-        // }
-        else if (isNaN(currIdx2) && this.props.value.bubbleArrayStatus === 5) {
+        else if (isNaN(currIdx2) && this.props.value.bubbleArrayStatus === 5 && i <= ((this.props.value.generatedNumArray.length) - this.props.value.tLength)) {
             return [classes.Array, classes.TraverseComplete].join(' ')
+        }
+        else if (i >= ((this.props.value.generatedNumArray.length) - this.props.value.tLength)) {
+            return [classes.Array, classes.SortComplete].join(' ')
         }
         else {
             return classes.Arraycell
@@ -52,7 +55,7 @@ class ArrayBuilder extends Component {
             let currentIdx2 = this.props.value.bubbleIdx2;
             
             return  <Animate key = {index}>
-                        {data => (
+                        {() => (
                             <div style = {{transform: `translateX(${this.props.value.bubbleSwapEntered ? this.indexHelper(currentIdx, index) : '0'}px)`}}
                             className = {this.classAssignment(currentIdx, index, currentIdx2)} 
                             key = {index} data-key = {index}> 
@@ -63,7 +66,9 @@ class ArrayBuilder extends Component {
             })
          
             return (<CSSTransition in = {this.props.value.newArrClicked} onEntered = {this.props.value.arrayClickToggleHandler} classNames = {{...trans}} timeout = {100}>
-                        <div className = {isNaN(this.props.value.bubbleIdx2) && this.props.value.bubbleArrayStatus === 4 ? `${classes.Array} ${classes.Complete}` : classes.Array}>[{this.props.value.generatedNumArray.length === 0 ? emptyArray : displayNums}]</div>
+                        <div className = {isNaN(this.props.value.bubbleIdx2) && this.props.value.bubbleArrayStatus === 4 ? `${classes.Array} ${classes.Complete}` : classes.Array}>
+                                [{this.props.value.generatedNumArray.length === 0 ? emptyArray : displayNums}]
+                        </div>
                     </CSSTransition>)
             
     }

@@ -7,7 +7,9 @@ class Bubble extends React.Component {
     classAssign = () => {
         if (this.props.value.bubbleArrayStatus === 3) return classes.BubbleNoSwap
 
-        else if (this.props.value.bubbleArrayStatus === 1) return classes.BubbleSwap
+        else if (this.props.value.bubbleArrayStatus === -1) return classes.ShouldBubbleSwap
+
+        //else if (this.props.value.bubbleArrayStatus === 1) return classes.BubbleSwap
 
         else if (this.props.value.bubbleArrayStatus === 4) return null
     }
