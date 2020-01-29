@@ -5,21 +5,13 @@ import Auxiliary from '../../../hoc/Auxiliary/Auxiliary';
 
 class Drawer extends Component {
 
-    state = {
-        drawerVisibility: false
-    }
-
-    toggleVisibility = () => {
-        this.setState( {drawerVisibility: !this.state.drawerVisibility} )
-    }
-
     render() {
         return (
             <Auxiliary>
                 <ul>
-                    <li className = {classes.Li} onClick = {this.toggleVisibility}>Pick an Algorithm &#9662;</li>
+                    <li className = {classes.Li} onClick = {this.props.toggleVis}>Pick an Algorithm &#9662;</li>
                 </ul>
-                <DrawerExtension toggleStatus = {this.state.drawerVisibility}/>     
+                <DrawerExtension toggleStatus = {this.props.visibility}/>     
             </Auxiliary>
         )
     }

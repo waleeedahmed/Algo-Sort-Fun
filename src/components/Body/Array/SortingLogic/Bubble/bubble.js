@@ -9,8 +9,6 @@ class Bubble extends React.Component {
 
         else if (this.props.value.bubbleArrayStatus === -1) return classes.ShouldBubbleSwap
 
-        //else if (this.props.value.bubbleArrayStatus === 1) return classes.BubbleSwap
-
         else if (this.props.value.bubbleArrayStatus === 4) return null
     }
 

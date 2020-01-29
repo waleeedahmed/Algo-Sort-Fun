@@ -9,11 +9,21 @@
     cursor: pointer;
 }
 
-.Li:hover,
-.Li:active,
-.Li.active {
+/* .Li:hover, */
+.Li:active {
     color: #f0ed5d;
 }
+
+
+
+/* .algoBtn {
+    border: 0;
+    padding: 0;
+    background: inherit;
+    color: inherit;
+    font: inherit;
+} */
+
 
 @media (max-width: 800px) {
     .Li {

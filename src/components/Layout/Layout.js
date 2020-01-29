@@ -24,6 +24,7 @@ class Layout extends Component {
                 swaps: false
             }
         },
+        drawerVisibility: false,
         traverseLength: 0,
         bubbleIndex: NaN,
         bubbleIndex2: NaN,
@@ -37,6 +38,11 @@ class Layout extends Component {
     }
 
     
+    toggleVisibility = () => {
+        this.setState( {drawerVisibility: !this.state.drawerVisibility} )
+    }
+
+
     generateNumbers = (quantity) => {
         let newArray = []; 
 
@@ -54,7 +60,7 @@ class Layout extends Component {
             .map((currAlgorithm) => {
                 return currAlgorithm === algoName ? newObj[currAlgorithm] = true : newObj[currAlgorithm] = false
             })
-            this.setState( {algorithms: newObj} )
+            this.setState( {algorithms: newObj, drawerVisibility: false} )
     }
 
 
@@ -219,7 +225,7 @@ class Layout extends Component {
                 }}>
                     <Header>
                         <span style = {{ fontFamily: 'Caveat, cursive', fontSize: '2rem', color: '#fcedb3', maxHeight: '98%' }}>Algo-Sort Fun!</span>
-                        <Drawer/>                    
+                        <Drawer visibility = {this.state.drawerVisibility} toggleVis = {this.toggleVisibility}/>                    
                         <div className = {classes.Btndiv}>
                             <button className = {classes.Buttons} onClick = {() => this.generateNumbers(14)}>Create New Array</button>
                             <button className = {classes.Buttons}>Clear Array</button>
