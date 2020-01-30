@@ -1,15 +1,16 @@
 .Drawerext {
     background-color: antiquewhite;
-    position: fixed;
+    position: absolute;
     top: 62px;
     width: 200px;
-    left: 290px;
+    left: 330px;
     transition: display 0.05s;
     color: brown;
     list-style: none;
     font-size: 1.08rem;
     box-shadow: 3px 3px 8px #9c9494;
     border-radius: 5px;
+    z-index: 2;
 }
 
 .Open {

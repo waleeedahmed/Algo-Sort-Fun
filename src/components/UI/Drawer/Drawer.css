@@ -1,18 +1,26 @@
-.Li {
+.Ul {
+    position: relative;
+    left: 153px; 
+    padding: 15px 20px;
     font-size: 1.12rem;
     list-style: none;
-    padding: 15px 20px;
-    position: relative;
-    left: 73px;
     transition: color 0.2s ease-in-out;
-    cursor: pointer;
+    cursor: pointer;   
 }
 
-.Li:hover {
+/* .Li {
+    padding: 15px 20px;
+    font-size: 1.12rem;
+    list-style: none;
+    transition: color 0.2s ease-in-out;
+    cursor: pointer;
+} */
+
+.Ul:hover {
     color: #f0ed5d;
 }
 
-.Li:active {
+.Ul:active {
     color: #bebc1a;   
 }
 

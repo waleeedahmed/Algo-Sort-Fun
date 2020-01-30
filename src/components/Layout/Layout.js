@@ -33,11 +33,46 @@ class Layout extends Component {
         bubbleArrayStatus: 0
     }
 
+
+    // This method clears up the state aside from 
+    // properties otherwise set in its args
+    clearState = (...args) => {
+
+        const emptyState = {
+            generatedNumArray: [],
+            algorithms: {
+                bubble: false,
+                selection: false,
+                insertion: false, 
+                merge: false
+            },
+            visualizationPressed: false,
+            algoSteps: {
+                bubbleSteps: {
+                    swaps: false
+                }
+            },
+            drawerVisibility: false,
+            traverseLength: 0,
+            bubbleIndex: NaN,
+            bubbleIndex2: NaN,
+            newArrayClicked: false,
+            bubbleSwapEntered: false,
+            bubbleArrayStatus: 0
+        }
+
+        this.setState((state, props) => { 
+            return Object.assign(emptyState, ...args)
+        })
+    }
+
+
     arrayClickToggleHandler = () => {
         this.setState({newArrayClicked: !this.state.newArrayClicked})
     }
 
     
+
     toggleVisibility = () => {
         this.setState( {drawerVisibility: !this.state.drawerVisibility} )
     }
@@ -49,8 +84,7 @@ class Layout extends Component {
         for (let i = 0; i <= quantity; i++) {
             newArray.push(Number((Math.random() * 50).toFixed(0)));
         }
-        this.setState({generatedNumArray: newArray, visualizationPressed: false, bubbleIndex: NaN, newArrayClicked: true});
-
+        this.clearState({generatedNumArray: newArray, newArrayClicked: true, algorithms: {...this.state.algorithms}})
     }
 
 
@@ -230,7 +264,9 @@ class Layout extends Component {
                         <Drawer visibility = {this.state.drawerVisibility} toggleVis = {this.toggleVisibility}/>                    
                         <div className = {classes.Btndiv}>
                             <button className = {classes.Buttons} onClick = {() => this.generateNumbers(14)}>Create New Array</button>
-                            <button className = {classes.Buttons}>Clear Array</button>
+                            <button className = {classes.Buttons} 
+                                    onClick = {() => this.clearState({newArrayClicked: true, algorithms: {...this.state.algorithms}})}>Clear Array
+                            </button>
                             <button className = {`${classes.Buttons} ${classes.SmallBtn}`} onClick = {this.visualizationHandler}>Visualize!</button>
                         </div>
                     </Header>
@@ -239,7 +275,7 @@ class Layout extends Component {
                         <Algobody/>
                     </main>
                     <Footer>
-                        <span className = {classes.FooterSpan} style = {{ color: '#FADADA', fontSize: '0.9rem' }}>About</span>
+                        <span className = {classes.FooterSpan} style = {{ color: '#FADADA', fontSize: '0.9rem'}}>About</span>
                     </Footer>
 
                 </GlobalPropsContext.Provider>   

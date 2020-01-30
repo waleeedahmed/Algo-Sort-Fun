@@ -8,8 +8,8 @@ class Drawer extends Component {
     render() {
         return (
             <Auxiliary>
-                <ul>
-                    <li className = {this.props.visibility ? `${classes.Li} ${classes.DrawerOn}` : classes.Li} onClick = {this.props.toggleVis}>Pick an Algorithm &#9662;</li>
+                <ul className = {this.props.visibility ? `${classes.Ul} ${classes.Li} ${classes.DrawerOn}` : classes.Ul} onClick = {this.props.toggleVis}>
+                    <li>Pick an Algorithm &#9662;</li>
                 </ul>
                 <DrawerExtension toggleStatus = {this.props.visibility}/>     
             </Auxiliary>
