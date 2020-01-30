@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Auxiliary from '../../hoc/Auxiliary/Auxiliary';
+//import Auxiliary from '../../hoc/Auxiliary/Auxiliary';
 import Header from '../UI/Header/Header';
 import Footer from '../UI/Footer/Footer';
 import Drawer from '../UI/Drawer/Drawer';
@@ -211,7 +211,7 @@ class Layout extends Component {
     render() {
         
         return (
-            <Auxiliary>
+            <div onClick = {this.state.drawerVisibility ? this.toggleVisibility : null}>
                 <GlobalPropsContext.Provider value = {{
                     generatedNumArray: this.state.generatedNumArray,
                     algorithms: this.state.algorithms,
@@ -243,7 +243,7 @@ class Layout extends Component {
                     </Footer>
 
                 </GlobalPropsContext.Provider>   
-            </Auxiliary>
+            </div>
         )
     }
 
