@@ -17,7 +17,7 @@ class ArrayDescriptor extends React.Component {
         if (this.props.value.algorithms.bubble) {
             arrDescValue = (
                 <Auxiliary>
-                    <h3 style = {{fontSize: '1.34rem', fontFamily: 'Lato, sans-serif', textDecoration: 'underline'}}>Algorithm Overview</h3>
+                    <h3 style = {{fontSize: '1.34rem', fontFamily: 'Lato, sans-serif'}}>Algorithm Overview</h3>
                     <p>
                         Bubble Sort traverses the array comparing values and 'bubbles' the
                         largest value to the end. In each comparison, values are swapped if

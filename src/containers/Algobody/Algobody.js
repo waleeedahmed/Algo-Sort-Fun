@@ -12,9 +12,9 @@ class Algobody extends Component {
             <Auxiliary>
                 <ArrayBuilder/>
                 <div className = {classes.AlgobodyInfo}>
+                    <ArrayDescriptor/>
                     <ArraySortSteps/>
                     <ArraySortData/>
-                    <ArrayDescriptor/>
                 </div>
             </Auxiliary>
         )

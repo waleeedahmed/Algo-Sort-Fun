@@ -22,14 +22,15 @@ class ArrayBuilder extends Component {
 
     classAssignment = (currIdx, i, currIdx2) => {
 
+        // During Swapping
         if (currIdx === i || currIdx + 1 === i) {
-            return [classes.Array, classes.CurrentSwap].join(' ')
+            return [classes.Array, classes.Swapping].join(' ')
         }
         else if ((currIdx2 === i || currIdx2 + 1 === i) && this.props.value.bubbleArrayStatus === -1) {
-            return [classes.Array, classes.CurrentSwap].join(' ')
+            return [classes.Array, classes.ShouldSwap].join(' ')
         }
         else if ((currIdx2 === i || currIdx2 + 1 === i) && this.props.value.bubbleArrayStatus === 1) {
-            return [classes.Array, classes.CurrentNewArray].join(' ')
+            return [classes.Array, classes.PostSwap].join(' ')
         }
         else if ((currIdx2 === i || currIdx2 + 1 === i) && this.props.value.bubbleArrayStatus === 3) {
             return [classes.Array, classes.CurrentNoSwap].join(' ')

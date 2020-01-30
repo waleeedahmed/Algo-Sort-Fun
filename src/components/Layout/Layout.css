@@ -24,10 +24,13 @@
     outline: 0;
 }
 
-.Buttons:hover,
-.Buttons:active,
-.Buttons.active {
+.Buttons:hover {
     color: blanchedalmond;
+    background-color: #a74747;
+}
+
+.Buttons:active {
+    color: rgb(255, 205, 130);
     background-color: #a74747;
 }
 

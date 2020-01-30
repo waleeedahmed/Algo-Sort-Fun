@@ -10,7 +10,7 @@ const arraySortData = props => {
     if (props.value.algorithms.bubble) {
         displayData = (
             <Auxiliary>
-                <h3 style = {{fontSize: '1.34rem', textDecoration: 'underline'}}>Sorting Statistics</h3>
+                <h3 style = {{fontSize: '1.34rem', fontFamily: 'Lato, sans-serif'}}>Sorting Statistics</h3>
                 <p>Number of times for loop entered: </p>
                 <p>Currently comparing %a% and %b%</p>
             </Auxiliary>

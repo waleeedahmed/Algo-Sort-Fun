@@ -6,14 +6,13 @@
     font-weight: bold;
     color: #4b4b4b;
     height: inherit;
-    margin: 10px 0;
-    margin-left: 8px;
-    margin-right: 2px;
     border-radius: 10px;
     text-align: left;  
     width: 32.9%;
-    line-height: 25px;
-    padding: 15px 15px;
+    line-height: 35px;
+    padding: 10px 15px;
     box-sizing: border-box;
     
+
+    margin: 10px 2px;
 }

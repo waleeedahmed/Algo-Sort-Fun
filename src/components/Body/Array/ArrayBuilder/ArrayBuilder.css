@@ -10,20 +10,25 @@
     padding-top: 55px;
     color: rgb(87, 91, 95);
     transition: all 0.2s ease-in-out;
-    transition: color 0.15 linear;
+    transition: color 0.05 linear;
 }
 
 .Arraycell {
     padding: 0 8px;
 }
 
-.CurrentSwap {
-    color: rgb(149, 1, 248);
+.ShouldSwap {
+    color: rgb(140, 3, 194);
     padding: 0 8px;
 }
 
-.CurrentNewArray {
-    color: rgb(57, 167, 23);
+.Swapping {
+    color: rgb(47, 161, 12);
+    padding: 0 8px;     
+}
+
+.PostSwap {
+    color: rgb(201, 142, 16);
     padding: 0 8px;    
 }
 

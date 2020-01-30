@@ -1,20 +1,25 @@
 .Li {
     font-size: 1.12rem;
     list-style: none;
-    padding: 15px 40px;
+    padding: 15px 20px;
     position: relative;
-    left: 57px;
-    height: 95%;
-    transition: color 0.3s ease-in-out;
+    left: 73px;
+    transition: color 0.2s ease-in-out;
     cursor: pointer;
 }
 
-/* .Li:hover, */
-.Li:active {
+.Li:hover {
     color: #f0ed5d;
 }
 
+.Li:active {
+    color: #bebc1a;   
+}
 
+.DrawerOn {
+    color: #f7f57f;
+    background-color: #a74747;
+}
 
 /* .algoBtn {
     border: 0;

@@ -5,11 +5,16 @@
     font-size: 1.05rem;
     color: #4b4b4b;
     height: inherit;
-    margin: 10px 2px;
+
+    margin: 10px 0;
+    margin-left: 2px;
+    margin-right: 8px;
+
+
     border-radius: 10px;
     text-align: left;  
     width: 32.9%;
-    padding: 20px 20px;
+    padding: 20px 35px;
     box-sizing: border-box;
-    
+    line-height: 32px;
 }

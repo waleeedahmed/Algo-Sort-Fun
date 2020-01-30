@@ -87,12 +87,11 @@ class Layout extends Component {
         // Decide whether to swap or not
         setTimeout(() => {
              this.setState({bubbleIndex: NaN, bubbleIndex2: i, bubbleArrayStatus: -1, bubbleSwapEntered: false})
-            
-        }, 600);
+        }, 700);
 
         setTimeout(() => {
 
-            this.setState({bubbleIndex: i, bubbleArrayStatus: 0, bubbleSwapEntered: false})   
+            this.setState({ bubbleArrayStatus: 0, bubbleSwapEntered: false})   
 
             if (extraArray[i] > extraArray[i + 1]) {
 
@@ -104,7 +103,8 @@ class Layout extends Component {
                         ...prevState.algoSteps.bubbleSteps,
                         swaps: true
                     }},
-                    bubbleSwapEntered: true
+                    bubbleSwapEntered: true,
+                    bubbleIndex: i
                 }), () => { 
 
                 // Swap in the state 
@@ -113,14 +113,14 @@ class Layout extends Component {
                 extraArray[i + 1] = k;
                     setTimeout(() => {
                         resolve(extraArray)
-                    }, 500)
+                    }, 800)
                 })
                                  
             } else {                
-                setTimeout(() => resolve(null), 100) 
+                setTimeout(() => resolve(null), 20) 
             }
        
-        }, 1200)  
+        }, 1500)  
     })}
     
 
@@ -132,7 +132,7 @@ class Layout extends Component {
             setTimeout(() => {
                 // Code 7 Highlights for loop
                 this.setState({bubbleArrayStatus: 7})
-            }, 10); 
+            }, 20); 
 
             for (let i = 0; i < ((extraArray.length - 1) - this.state.traverseLength); i++) {
 
@@ -140,17 +140,19 @@ class Layout extends Component {
 
                 if (result) {
                     // Sets state after animation
+                    
                     this.setState({ generatedNumArray: result, bubbleIndex: NaN, bubbleSwapEntered: false })  
                     setTimeout(() => {
-                        // Code 1 for green, swap performed
-                        this.setState({bubbleIndex2: i, bubbleSwapEntered: false, bubbleArrayStatus: 1}) 
-                    }, 5);       
+                    // Post Swap below, Code 1
+                        this.setState({bubbleIndex2: i, bubbleSwapEntered: false, bubbleArrayStatus: 1})
+
+                    }, 1);       
                 }
                 else {
                     setTimeout(() => {
-                        // Code 3 for red, no swap performed
+                        // No swap below, code 3
                         this.setState({bubbleIndex: NaN, bubbleIndex2: i, bubbleSwapEntered: false, bubbleArrayStatus: 3})
-                    }, 20);
+                    }, 3);
                 }
                 
             }
