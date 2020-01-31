@@ -151,7 +151,7 @@ class Layout extends Component {
                 })
                                  
             } else {                
-                setTimeout(() => resolve(null), 20) 
+                setTimeout(() => resolve(null), 100) 
             }
        
         }, 1500)  
@@ -257,7 +257,8 @@ class Layout extends Component {
                     newArrClicked: this.state.newArrayClicked,
                     arrayClickToggleHandler: this.arrayClickToggleHandler,
                     bubbleSwapEntered: this.state.bubbleSwapEntered,
-                    bubbleArrayStatus: this.state.bubbleArrayStatus
+                    bubbleArrayStatus: this.state.bubbleArrayStatus,
+                    swapsPerformed: this.state.algoSteps.bubbleSteps.swaps
                 }}>
                     <Header>
                         <span style = {{ fontFamily: 'Caveat, cursive', fontSize: '2rem', color: '#fcedb3', maxHeight: '98%' }}>Algo-Sort Fun!</span>

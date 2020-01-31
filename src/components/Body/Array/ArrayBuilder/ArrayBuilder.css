@@ -8,9 +8,9 @@
     justify-content: center;
     margin: auto;
     padding-top: 55px;
-    color: rgb(87, 91, 95);
+    color: rgb(68, 72, 76);
     transition: all 0.2s ease-in-out;
-    transition: color 0.05 linear;
+    transition: color 0.03 linear;
     z-index: 1;
 }
 

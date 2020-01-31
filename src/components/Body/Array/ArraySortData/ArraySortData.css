@@ -2,16 +2,15 @@
     background-color: #d8d8d8;
     font-family: 'Lato', sans-serif;
     font-weight: bold;
-    font-size: 1.05rem;
+    font-size: 1.15rem;
     color: #4b4b4b;
     height: inherit;
     margin-bottom: 5px;
-    margin-left: 2px;
-    margin-right: 8px;
+    margin: 0px 2px;
     border-radius: 10px;
     text-align: left;  
     width: 32.9%;
-    padding: 18px 35px;
+    padding: 22px 35px;
     box-sizing: border-box;
     line-height: 32px;
 }
