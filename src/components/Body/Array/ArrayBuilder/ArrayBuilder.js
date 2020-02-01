@@ -9,7 +9,7 @@ import trans from './BuilderAnimation.css';
 // This component will generate a series of number divs
 class ArrayBuilder extends Component {
 
-
+    // Below method determines the amount of space animation flips have to move
     indexHelper = (currentIndex, i) => {
             
         if (currentIndex === i && i < this.props.value.generatedNumArray.length - 1) return document.querySelector(`div[data-key = "${i + 1}"]`).clientWidth.toString() 
@@ -20,6 +20,7 @@ class ArrayBuilder extends Component {
 
     }
 
+    // Class assignments for different color changes 
     classAssignment = (currIdx, i, currIdx2) => {
 
         // During Swapping
@@ -33,7 +34,7 @@ class ArrayBuilder extends Component {
             return [classes.Array, classes.PostSwap].join(' ')
         }
         else if ((currIdx2 === i || currIdx2 + 1 === i) && this.props.value.bubbleArrayStatus === 3) {
-            return [classes.Array, classes.CurrentNoSwap].join(' ')
+            return [classes.Array, classes.CurrentNoSwap].join(' ') // Red, did not swap 
         }
         else if (isNaN(currIdx2) && this.props.value.bubbleArrayStatus === 5 && i <= ((this.props.value.generatedNumArray.length) - this.props.value.tLength)) {
             return [classes.Array, classes.TraverseComplete].join(' ')
@@ -55,6 +56,7 @@ class ArrayBuilder extends Component {
             let currentIdx = this.props.value.bubbleIdx;
             let currentIdx2 = this.props.value.bubbleIdx2;
             
+            // Rendering individual div for the array within JS map
             return  <Animate key = {index}>
                         {() => (
                             <div style = {{transform: `translateX(${this.props.value.bubbleSwapEntered ? this.indexHelper(currentIdx, index) : '0'}px)`}}

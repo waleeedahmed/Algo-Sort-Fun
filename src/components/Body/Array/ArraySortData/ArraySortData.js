@@ -5,7 +5,7 @@ import Auxiliary from '../../../../hoc/Auxiliary/Auxiliary';
 
 class ArraySortData extends React.Component {
     
-    
+    // displays the swapping status whether swap successful or not 
     compareNumbers = () => {
         if ((this.props.value.bubbleIdx2 || this.props.value.bubbleIdx2 === 0) && (this.props.value.bubbleArrayStatus === -1 || this.props.value.bubbleArrayStatus === 0)) {
             return <p>Currently comparing {this.props.value.generatedNumArray[this.props.value.bubbleIdx2]} and {this.props.value.generatedNumArray[this.props.value.bubbleIdx2 + 1]}</p>
@@ -35,6 +35,7 @@ class ArraySortData extends React.Component {
                     <p>Current value of swapsPerformed: {this.props.value.swapsPerformed ? <span style = {{color: 'green'}}>{this.props.value.swapsPerformed.toString()}</span> : 
                         <span style = {{color: '#bf150f'}}>{this.props.value.swapsPerformed.toString()}</span>}</p>
     
+                    
                     <h3 style = {{fontSize: '1.25rem', textDecoration: 'underline'}}>Time Complexity</h3>
                     <p>Best: O(n)</p>
                     <p>Average: O(n&#178;)</p>

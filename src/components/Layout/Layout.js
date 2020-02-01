@@ -61,33 +61,34 @@ class Layout extends Component {
             bubbleArrayStatus: 0
         }
 
+        // Merge provided args into the emptyState
         this.setState((state, props) => { 
             return Object.assign(emptyState, ...args)
         })
     }
 
-
+    // For CSSTransition animation purposes in arrayBuilder
     arrayClickToggleHandler = () => {
         this.setState({newArrayClicked: !this.state.newArrayClicked})
     }
 
     
-
+    
     toggleVisibility = () => {
         this.setState( {drawerVisibility: !this.state.drawerVisibility} )
     }
 
-
+    // when create new array button is clicked
     generateNumbers = (quantity) => {
         let newArray = []; 
 
         for (let i = 0; i <= quantity; i++) {
-            newArray.push(Number((Math.random() * 50).toFixed(0)));
+            newArray.push(Number((Math.random() * 99).toFixed(0)));
         }
         this.clearState({generatedNumArray: newArray, newArrayClicked: true, algorithms: {...this.state.algorithms}})
     }
 
-
+    // handler determines which algorithm was pressed
     algoSwitchOnHandler = (algoName) => {
         let newObj = {};
         Object.keys(this.state.algorithms) // [bubble, insertion, selection]
@@ -97,28 +98,25 @@ class Layout extends Component {
             this.setState( {algorithms: newObj, drawerVisibility: false} )
     }
 
-
+    // When visualize button is pressed
     visualizationHandler = () => {
     
         // vsPressed becomes true regardless of which algorithm is selected 
         this.setState({ visualizationPressed: true, traverseLength: 0 })
 
         if (this.state.algorithms.bubble) {
-        
-            // Tentative: TODO put below in an if statement
+    
             let clone = Object.assign({}, this.state)
-            
-            // NOTE: this was the original way of execution
             this.bubbleSort(clone.generatedNumArray)                         
         }
     }
 
 
-
+    // BUBBLE SORT IMPLEMENTATION***
 
     bubbleSwap = (extraArray, i) => {return new Promise(resolve => {
     
-        // Decide whether to swap or not
+        // Decide whether to swap or not (Code -1, shown in purple)
         setTimeout(() => {
              this.setState({bubbleIndex: NaN, bubbleIndex2: i, bubbleArrayStatus: -1, bubbleSwapEntered: false})
         }, 700);
@@ -150,7 +148,8 @@ class Layout extends Component {
                     }, 800)
                 })
                                  
-            } else {                
+            } else {
+                // Shows Red after this timeout                
                 setTimeout(() => resolve(null), 100) 
             }
        
@@ -173,18 +172,18 @@ class Layout extends Component {
                 let result = await this.bubbleSwap(extraArray, i)
 
                 if (result) {
-                    // Sets state after animation
-                    
-                    this.setState({ generatedNumArray: result, bubbleIndex: NaN, bubbleSwapEntered: false })  
+                    // Sets state immediately after animation flip
+                    this.setState({ generatedNumArray: result, bubbleIndex: NaN, bubbleSwapEntered: false }) 
+
                     setTimeout(() => {
-                    // Post Swap below, Code 1
+                    // Post Swap below (shown in Green), Code 1
                         this.setState({bubbleIndex2: i, bubbleSwapEntered: false, bubbleArrayStatus: 1})
 
-                    }, 1);       
+                    }, 0.05);       
                 }
                 else {
                     setTimeout(() => {
-                        // No swap below, code 3
+                        // No swap below (shown in RED), code 3
                         this.setState({bubbleIndex: NaN, bubbleIndex2: i, bubbleSwapEntered: false, bubbleArrayStatus: 3})
                     }, 3);
                 }
@@ -200,7 +199,7 @@ class Layout extends Component {
         do {
             let ans;
             setTimeout(() => {
-                // Code 6 highlights do initial do loop
+                // Code 6 highlights the initial two lines of DO loop
                 this.setState(prevState => ({
                     ...prevState,
                     algoSteps: {...prevState.algoSteps,
@@ -212,6 +211,7 @@ class Layout extends Component {
         
             }, 1000);                
             
+            // Waiting for array to be traversed 
             ans  = await this.arrayTraverse()
              
             // Traversal complete at this point   
@@ -226,17 +226,53 @@ class Layout extends Component {
                 // At below point, sorting is complete
                 } else {
                     setTimeout(() => {
-                        // Code 4 highlights the entire array once sorting complete
+                        // Code 4 highlights the entire 'traversed' array once sorting complete
                         this.setState({visualizationPressed: false, bubbleIndex: NaN, bubbleIndex2: NaN, bubbleArrayStatus: 4}) 
                     }, 20);
                 }   
             }
-
+        
         } while (this.state.algoSteps.bubbleSteps.swaps)
     })}
 
+    // BubbleSorting begins from here
     bubbleSort = () => {
         this.bubbleIteration();
+        return
+    }
+
+
+
+
+    // SELECTION SORT IMPLEMENTATION
+
+    selectionInner = (i) => {
+        for (let j = i + 1; j < len; j++) {
+            if (arr[min] > arr[j]) {
+                min = j;
+            }
+        }
+    }
+
+    selectionOuter = () => {
+
+        let arrayCopy = [...this.state.generatedNumArray]
+
+        for (let i = 0; i < arrayCopy.length; i++) {
+            let min = i;
+            this.selectionInner(i)
+
+            if (min !== i) {
+                let tmp = arr[i]
+                arr[i] = arr[min]
+                arr[min] = tmp
+            }
+        }
+    }
+
+
+    selectionSort = () => {
+        this.selectionOuter()
         return
     }
 
