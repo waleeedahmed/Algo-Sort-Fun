@@ -25,10 +25,10 @@ class Bubble extends React.Component {
             `\t\t{ // Swap 'i' and 'i + 1'
                   // Set 'swapsPerformed' to true }`
             
-        var bubbleCodeTraverse = `       // for loop (start: 0, end: array.length, current: i) {`
+        var bubbleCodeTraverse = `       // for loop (start: 0, end: < array.length, i++) {`
 
         var bubbleCodeIterate = 
-            `BubbleSort(unsortedArray) {
+            `function BubbleSort(unsortedArray) {
   // Initialize 'swapsPerformed: boolean'`
 
         var doLoop = 

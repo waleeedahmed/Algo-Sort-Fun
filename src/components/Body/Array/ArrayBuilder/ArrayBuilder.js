@@ -3,7 +3,7 @@ import { Animate } from 'react-move';
 import { CSSTransition } from 'react-transition-group';
 import classes from './ArrayBuilder.css';
 import withContext from '../../../../context/withContext';
-import trans from './BuilderAnimation.css';
+import transitionStyles from './BuilderAnimation.css';
 
 
 // This component will generate a series of number divs
@@ -68,7 +68,7 @@ class ArrayBuilder extends Component {
                     </Animate>     
             })
          
-            return (<CSSTransition in = {this.props.value.newArrClicked} onEntered = {this.props.value.arrayClickToggleHandler} classNames = {{...trans}} timeout = {100}>
+            return (<CSSTransition in = {this.props.value.newArrClicked} onEntered = {this.props.value.arrayClickToggleHandler} classNames = {{...transitionStyles}} timeout = {100}>
                         <div className = {isNaN(this.props.value.bubbleIdx2) && this.props.value.bubbleArrayStatus === 4 ? `${classes.Array} ${classes.Complete}` : classes.Array}>
                                 [{this.props.value.generatedNumArray.length === 0 ? emptyArray : displayNums}]
                         </div>

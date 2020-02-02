@@ -16,6 +16,9 @@ class ArraySortData extends React.Component {
         else if (this.props.value.bubbleArrayStatus === 3) {
             return <p style = {{color: '#bf150f'}}>Not Swapped</p>
         }
+        else if (this.props.value.bubbleArrayStatus === 4) {
+            return <p style = {{color: 'rgb(248, 28, 138)'}}>Sorting Complete</p>
+        }
         else {
             return <p>Waiting to get current array numbers...</p>
         }

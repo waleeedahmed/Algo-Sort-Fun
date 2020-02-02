@@ -10,6 +10,7 @@ import GlobalPropsContext from '../../context/globalPropsContext';
 
 class Layout extends Component {
 
+    // **Important: add into clearState whatever is added here 
     state = {
         generatedNumArray: [],
         algorithms: {
@@ -104,10 +105,15 @@ class Layout extends Component {
         // vsPressed becomes true regardless of which algorithm is selected 
         this.setState({ visualizationPressed: true, traverseLength: 0 })
 
+        //let clone = Object.assign({}, this.state)
+        
         if (this.state.algorithms.bubble) {
-    
-            let clone = Object.assign({}, this.state)
-            this.bubbleSort(clone.generatedNumArray)                         
+
+            this.bubbleSort()                         
+        }
+        else if (this.state.algorithms.selection) {
+            
+            this.selectionSort()
         }
     }
 
@@ -238,7 +244,7 @@ class Layout extends Component {
     // BubbleSorting begins from here
     bubbleSort = () => {
         this.bubbleIteration();
-        return
+        //return
     }
 
 
@@ -246,34 +252,40 @@ class Layout extends Component {
 
     // SELECTION SORT IMPLEMENTATION
 
-    selectionInner = (i) => {
-        for (let j = i + 1; j < len; j++) {
+    selectionInner = (i, min, arr) => {return new Promise(async (resolve) => {
+        for (let j = i + 1; j < arr.length; j++) {
             if (arr[min] > arr[j]) {
                 min = j;
             }
+            
         }
-    }
+        resolve(min)
+    })}
 
-    selectionOuter = () => {
+    
+    selectionOuter = async () => {
 
         let arrayCopy = [...this.state.generatedNumArray]
 
         for (let i = 0; i < arrayCopy.length; i++) {
             let min = i;
-            this.selectionInner(i)
+            let res = await this.selectionInner(i, min, arrayCopy)
 
-            if (min !== i) {
-                let tmp = arr[i]
-                arr[i] = arr[min]
-                arr[min] = tmp
+            if (res) {
+
+                if (res !== i) {
+                    let tmp = arrayCopy[i]
+                    arrayCopy[i] = arrayCopy[res]
+                    arrayCopy[res] = tmp
+                }
             }
-        }
+            this.setState({generatedNumArray: arrayCopy}, () => console.log(this.state.generatedNumArray))
+        }   
     }
 
 
     selectionSort = () => {
         this.selectionOuter()
-        return
     }
 
 

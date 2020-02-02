@@ -1,7 +1,7 @@
 .Bubble {
     white-space: pre-wrap;
     padding: 10px 10px;
-    
+    line-height: 37px;
 }
 
 .ShouldBubbleSwap, .ShouldBubbleSwap::after {

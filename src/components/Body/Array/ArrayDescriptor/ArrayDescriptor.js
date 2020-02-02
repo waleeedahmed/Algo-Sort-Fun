@@ -30,9 +30,16 @@ class ArrayDescriptor extends React.Component {
         }
         else if (this.props.value.algorithms.selection) {
             arrDescValue = (
-                <p>
-                    Selection Sort 
-                </p>
+                <Auxiliary>
+                    <h3 style = {{fontSize: '1.34rem', fontFamily: 'Lato, sans-serif'}}>Algorithm Overview</h3>
+                    <p>
+                        Selection Sort loops through the given array with two nested for
+                        loops. The inner for loop traverses the array and finds out the smallest 
+                        value whereas the outer for loop determines the position of the element which
+                        the current minimum should swap with. Sorting is complete when the outer loop
+                        has traversed the entire array and set all elements in their correct positions.
+                    </p>
+                </Auxiliary>
             )
         }
         else if (this.props.value.algorithms.insertion) {
