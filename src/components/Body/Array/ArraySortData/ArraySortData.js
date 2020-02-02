@@ -7,16 +7,16 @@ class ArraySortData extends React.Component {
     
     // displays the swapping status whether swap successful or not 
     compareNumbers = () => {
-        if ((this.props.value.bubbleIdx2 || this.props.value.bubbleIdx2 === 0) && (this.props.value.bubbleArrayStatus === -1 || this.props.value.bubbleArrayStatus === 0)) {
-            return <p>Currently comparing {this.props.value.generatedNumArray[this.props.value.bubbleIdx2]} and {this.props.value.generatedNumArray[this.props.value.bubbleIdx2 + 1]}</p>
+        if ((this.props.value.currIdx2 || this.props.value.currIdx2 === 0) && (this.props.value.arrayStatus === -1 || this.props.value.arrayStatus === 0)) {
+            return <p>Currently comparing {this.props.value.generatedNumArray[this.props.value.currIdx2]} and {this.props.value.generatedNumArray[this.props.value.currIdx2 + 1]}</p>
         }
-        else if (this.props.value.bubbleIdx2 && this.props.value.bubbleArrayStatus === 1) {
+        else if (this.props.value.currIdx2 && this.props.value.arrayStatus === 1) {
             return <p style = {{color: 'rgb(201, 142, 16)'}}>Successfully Swapped!</p>
         }
-        else if (this.props.value.bubbleArrayStatus === 3) {
+        else if (this.props.value.arrayStatus === 3) {
             return <p style = {{color: '#bf150f'}}>Not Swapped</p>
         }
-        else if (this.props.value.bubbleArrayStatus === 4) {
+        else if (this.props.value.arrayStatus === 4) {
             return <p style = {{color: 'rgb(248, 28, 138)'}}>Sorting Complete</p>
         }
         else {

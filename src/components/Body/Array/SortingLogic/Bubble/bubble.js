@@ -5,11 +5,11 @@ import classes from './Bubble.css';
 class Bubble extends React.Component {
     
     classAssign = () => {
-        if (this.props.value.bubbleArrayStatus === 3) return classes.BubbleNoSwap
+        if (this.props.value.arrayStatus === 3) return classes.BubbleNoSwap
 
-        else if (this.props.value.bubbleArrayStatus === -1) return classes.ShouldBubbleSwap
+        else if (this.props.value.arrayStatus === -1) return classes.ShouldBubbleSwap
 
-        else if (this.props.value.bubbleArrayStatus === 4) return null
+        else if (this.props.value.arrayStatus === 4) return null
     }
 
     classAssignSwap = () => {
@@ -46,12 +46,12 @@ class Bubble extends React.Component {
             <div className = {classes.Bubble}>
                 <h3 style = {{fontSize: '1.34rem', fontFamily: 'Lato, sans-serif'}}>Pseudocode Walkthrough</h3>
                 <div>{bubbleCodeIterate}</div>
-                <div className = {this.props.value.bubbleArrayStatus === 6 ? classes.DoLoop : null}>{doLoop}</div>
-                <div className = {this.props.value.bubbleArrayStatus === 7 ? classes.ForLoop : null}>{bubbleCodeTraverse}</div>
+                <div className = {this.props.value.arrayStatus === 6 ? classes.DoLoop : null}>{doLoop}</div>
+                <div className = {this.props.value.arrayStatus === 7 ? classes.ForLoop : null}>{bubbleCodeTraverse}</div>
                 <div className = {this.classAssign()}>{bubbleCodeSwap}</div>
                 <div className = {this.classAssignSwap()}>{bubbleCodeSwapBody}</div>
-                <div className = {this.props.value.bubbleArrayStatus === 5 && isNaN(this.props.value.bubbleIdx2) ? classes.TraverseComplete : null}>{endingCode}</div>
-                <div className = {this.props.value.bubbleArrayStatus === 4 ? classes.Complete : null}>{returnCode}</div>
+                <div className = {this.props.value.arrayStatus === 5 && isNaN(this.props.value.currIdx2) ? classes.TraverseComplete : null}>{endingCode}</div>
+                <div className = {this.props.value.arrayStatus === 4 ? classes.Complete : null}>{returnCode}</div>
                 }
             </div>
         )

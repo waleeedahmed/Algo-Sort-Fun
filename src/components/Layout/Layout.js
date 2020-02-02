@@ -27,11 +27,11 @@ class Layout extends Component {
         },
         drawerVisibility: false,
         traverseLength: 0,
-        bubbleIndex: NaN,
-        bubbleIndex2: NaN,
+        currentIndex: NaN,
+        currentIndex2: NaN,
         newArrayClicked: false,
         bubbleSwapEntered: false,
-        bubbleArrayStatus: 0
+        arrayStatus: 0
     }
 
 
@@ -55,11 +55,11 @@ class Layout extends Component {
             },
             drawerVisibility: false,
             traverseLength: 0,
-            bubbleIndex: NaN,
-            bubbleIndex2: NaN,
+            currentIndex: NaN,
+            currentIndex2: NaN,
             newArrayClicked: false,
             bubbleSwapEntered: false,
-            bubbleArrayStatus: 0
+            arrayStatus: 0
         }
 
         // Merge provided args into the emptyState
@@ -124,12 +124,12 @@ class Layout extends Component {
     
         // Decide whether to swap or not (Code -1, shown in purple)
         setTimeout(() => {
-             this.setState({bubbleIndex: NaN, bubbleIndex2: i, bubbleArrayStatus: -1, bubbleSwapEntered: false})
+             this.setState({currentIndex: NaN, currentIndex2: i, arrayStatus: -1, bubbleSwapEntered: false})
         }, 700);
 
         setTimeout(() => {
 
-            this.setState({ bubbleArrayStatus: 0, bubbleSwapEntered: false})   
+            this.setState({ arrayStatus: 0, bubbleSwapEntered: false})   
 
             if (extraArray[i] > extraArray[i + 1]) {
 
@@ -142,7 +142,7 @@ class Layout extends Component {
                         swaps: true
                     }},
                     bubbleSwapEntered: true,
-                    bubbleIndex: i
+                    currentIndex: i
                 }), () => { 
 
                 // Swap in the state 
@@ -170,7 +170,7 @@ class Layout extends Component {
             
             setTimeout(() => {
                 // Code 7 Highlights for loop
-                this.setState({bubbleArrayStatus: 7})
+                this.setState({arrayStatus: 7})
             }, 20); 
 
             for (let i = 0; i < ((extraArray.length - 1) - this.state.traverseLength); i++) {
@@ -179,18 +179,18 @@ class Layout extends Component {
 
                 if (result) {
                     // Sets state immediately after animation flip
-                    this.setState({ generatedNumArray: result, bubbleIndex: NaN, bubbleSwapEntered: false }) 
+                    this.setState({ generatedNumArray: result, currentIndex: NaN, bubbleSwapEntered: false }) 
 
                     setTimeout(() => {
                     // Post Swap below (shown in Green), Code 1
-                        this.setState({bubbleIndex2: i, bubbleSwapEntered: false, bubbleArrayStatus: 1})
+                        this.setState({currentIndex2: i, bubbleSwapEntered: false, arrayStatus: 1})
 
                     }, 0.05);       
                 }
                 else {
                     setTimeout(() => {
                         // No swap below (shown in RED), code 3
-                        this.setState({bubbleIndex: NaN, bubbleIndex2: i, bubbleSwapEntered: false, bubbleArrayStatus: 3})
+                        this.setState({currentIndex: NaN, currentIndex2: i, bubbleSwapEntered: false, arrayStatus: 3})
                     }, 3);
                 }
                 
@@ -212,7 +212,7 @@ class Layout extends Component {
                         bubbleSteps: {...prevState.bubbleSteps,
                             swaps: false}
                     },
-                    bubbleArrayStatus: 6
+                    arrayStatus: 6
                 }))
         
             }, 1000);                
@@ -226,14 +226,14 @@ class Layout extends Component {
                 if (this.state.algoSteps.bubbleSteps.swaps) {
                     setTimeout(() => {
                         // Code 5 highlights end for and while clause
-                        this.setState(prevState => ({traverseLength: prevState.traverseLength + 1, bubbleArrayStatus: 5, bubbleSwapEntered: false, bubbleIndex2: NaN }))
+                        this.setState(prevState => ({traverseLength: prevState.traverseLength + 1, arrayStatus: 5, bubbleSwapEntered: false, currentIndex2: NaN }))
                     }, 20); 
                     
                 // At below point, sorting is complete
                 } else {
                     setTimeout(() => {
                         // Code 4 highlights the entire 'traversed' array once sorting complete
-                        this.setState({visualizationPressed: false, bubbleIndex: NaN, bubbleIndex2: NaN, bubbleArrayStatus: 4}) 
+                        this.setState({visualizationPressed: false, currentIndex: NaN, currentIndex2: NaN, arrayStatus: 4}) 
                     }, 20);
                 }   
             }
@@ -299,13 +299,13 @@ class Layout extends Component {
                     algorithms: this.state.algorithms,
                     algoSwitchHandler: this.algoSwitchOnHandler,
                     tLength: this.state.traverseLength,
-                    bubbleIdx: this.state.bubbleIndex,
-                    bubbleIdx2: this.state.bubbleIndex2,
+                    currIdx: this.state.currentIndex,
+                    currIdx2: this.state.currentIndex2,
                     vsPressed: this.state.visualizationPressed,
                     newArrClicked: this.state.newArrayClicked,
                     arrayClickToggleHandler: this.arrayClickToggleHandler,
                     bubbleSwapEntered: this.state.bubbleSwapEntered,
-                    bubbleArrayStatus: this.state.bubbleArrayStatus,
+                    arrayStatus: this.state.arrayStatus,
                     swapsPerformed: this.state.algoSteps.bubbleSteps.swaps
                 }}>
                     <Header>
