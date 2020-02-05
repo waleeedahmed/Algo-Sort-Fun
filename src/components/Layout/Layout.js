@@ -30,13 +30,13 @@ class Layout extends Component {
         currentIndex: NaN,
         currentIndex2: NaN,
         newArrayClicked: false,
-        bubbleSwapEntered: false,
+        showSwapping: false,
         arrayStatus: 0
     }
 
 
     // This method clears up the state aside from 
-    // properties otherwise set in its args
+    // properties and their values provided in args
     clearState = (...args) => {
 
         const emptyState = {
@@ -58,7 +58,7 @@ class Layout extends Component {
             currentIndex: NaN,
             currentIndex2: NaN,
             newArrayClicked: false,
-            bubbleSwapEntered: false,
+            showSwapping: false,
             arrayStatus: 0
         }
 
@@ -124,12 +124,12 @@ class Layout extends Component {
     
         // Decide whether to swap or not (Code -1, shown in purple)
         setTimeout(() => {
-             this.setState({currentIndex: NaN, currentIndex2: i, arrayStatus: -1, bubbleSwapEntered: false})
+             this.setState({currentIndex: NaN, currentIndex2: i, arrayStatus: -1, showSwapping: false})
         }, 700);
 
         setTimeout(() => {
 
-            this.setState({ arrayStatus: 0, bubbleSwapEntered: false})   
+            this.setState({ arrayStatus: 0, showSwapping: false})   
 
             if (extraArray[i] > extraArray[i + 1]) {
 
@@ -141,7 +141,7 @@ class Layout extends Component {
                         ...prevState.algoSteps.bubbleSteps,
                         swaps: true
                     }},
-                    bubbleSwapEntered: true,
+                    showSwapping: true,
                     currentIndex: i
                 }), () => { 
 
@@ -179,18 +179,18 @@ class Layout extends Component {
 
                 if (result) {
                     // Sets state immediately after animation flip
-                    this.setState({ generatedNumArray: result, currentIndex: NaN, bubbleSwapEntered: false }) 
+                    this.setState({ generatedNumArray: result, currentIndex: NaN, showSwapping: false }) 
 
                     setTimeout(() => {
-                    // Post Swap below (shown in Green), Code 1
-                        this.setState({currentIndex2: i, bubbleSwapEntered: false, arrayStatus: 1})
+                    // Post Swap below (shown in gold), Code 1
+                        this.setState({currentIndex2: i, showSwapping: false, arrayStatus: 1})
 
                     }, 0.05);       
                 }
                 else {
                     setTimeout(() => {
                         // No swap below (shown in RED), code 3
-                        this.setState({currentIndex: NaN, currentIndex2: i, bubbleSwapEntered: false, arrayStatus: 3})
+                        this.setState({currentIndex: NaN, currentIndex2: i, showSwapping: false, arrayStatus: 3})
                     }, 3);
                 }
                 
@@ -226,7 +226,7 @@ class Layout extends Component {
                 if (this.state.algoSteps.bubbleSteps.swaps) {
                     setTimeout(() => {
                         // Code 5 highlights end for and while clause
-                        this.setState(prevState => ({traverseLength: prevState.traverseLength + 1, arrayStatus: 5, bubbleSwapEntered: false, currentIndex2: NaN }))
+                        this.setState(prevState => ({traverseLength: prevState.traverseLength + 1, arrayStatus: 5, showSwapping: false, currentIndex2: NaN }))
                     }, 20); 
                     
                 // At below point, sorting is complete
@@ -253,40 +253,89 @@ class Layout extends Component {
     // SELECTION SORT IMPLEMENTATION
 
     selectionInner = (i, min, arr) => {return new Promise(async (resolve) => {
+        
+        let a = i + 1;
         for (let j = i + 1; j < arr.length; j++) {
-            if (arr[min] > arr[j]) {
-                min = j;
-            }
             
+            // eslint-disable-next-line
+            setTimeout(() => {
+                
+                setTimeout(() => {
+                    this.setState({currentIndex: j})
+                }, 150);
+                
+
+                if (arr[min] > arr[j]) {
+                    min = j;
+                    setTimeout(() => {
+                        this.setState({currentIndex2: j})
+                    }, 500);
+                }
+
+                if (a === arr.length - 1) {
+                    setTimeout(() => {
+                        
+                        resolve(min)
+                    }, 600);
+                }
+                a++
+            }, 1000 * j);
         }
-        resolve(min)
+        
     })}
 
     
-    selectionOuter = async () => {
-
+    selectionSort = async () => {
         let arrayCopy = [...this.state.generatedNumArray]
 
         for (let i = 0; i < arrayCopy.length; i++) {
-            let min = i;
-            let res = await this.selectionInner(i, min, arrayCopy)
 
-            if (res) {
-
-                if (res !== i) {
+            //setTimeout(async () => {
+                let min = i;
+                setTimeout(() => {  
+                    this.setState({currentIndex2: i})
+                }, 1500);
+    
+    
+                let resMinimum = await this.selectionInner(i, min, arrayCopy) //*Stop at this point
+    
+                if (resMinimum && resMinimum !== i) {
+         
+                    // begin swap procedure
                     let tmp = arrayCopy[i]
-                    arrayCopy[i] = arrayCopy[res]
-                    arrayCopy[res] = tmp
+                    arrayCopy[i] = arrayCopy[resMinimum]
+                    arrayCopy[resMinimum] = tmp
+                    
+                    // set state one more time here, fetch value of i > currIdx2 and res > currIdx, perform animation
+                    this.setState({currentIndex2: i, currentIndex: resMinimum, showSwapping: true})
+
+                    setTimeout(() => {
+                        this.setState(prevState => ({generatedNumArray: arrayCopy, currentIndex2: NaN, currentIndex: NaN, showSwapping: !prevState.showSwapping}))
+                    }, 800);
+                    
                 }
-            }
-            this.setState({generatedNumArray: arrayCopy}, () => console.log(this.state.generatedNumArray))
-        }   
+           // }, 1500 * i);
+        } 
     }
 
 
-    selectionSort = () => {
-        this.selectionOuter()
-    }
+    // selectionSort = async (arr) => {
+    //     let len = arr.length;
+    //     for (let i = 0; i < len; i++) {
+    //         let min = i;
+    //         for (let j = i + 1; j < len; j++) {
+    //             if (arr[min] > arr[j]) {
+    //                 min = j;
+    //             }
+    //         }
+    //         if (min !== i) {
+    //             let tmp = arr[i];
+    //             arr[i] = arr[min];
+    //             arr[min] = tmp;
+    //         }
+    //     }
+    //     return arr;
+    // }
 
 
 
@@ -304,7 +353,7 @@ class Layout extends Component {
                     vsPressed: this.state.visualizationPressed,
                     newArrClicked: this.state.newArrayClicked,
                     arrayClickToggleHandler: this.arrayClickToggleHandler,
-                    bubbleSwapEntered: this.state.bubbleSwapEntered,
+                    showSwapping: this.state.showSwapping,
                     arrayStatus: this.state.arrayStatus,
                     swapsPerformed: this.state.algoSteps.bubbleSteps.swaps
                 }}>

@@ -13,7 +13,7 @@ class Bubble extends React.Component {
     }
 
     classAssignSwap = () => {
-        if (this.props.value.bubbleSwapEntered) return classes.BubbleSwap
+        if (this.props.value.showSwapping) return classes.BubbleSwap
         else return null
     }
 

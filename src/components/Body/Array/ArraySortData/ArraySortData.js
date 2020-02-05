@@ -27,7 +27,7 @@ class ArraySortData extends React.Component {
     render() {
         let displayData;
 
-        console.log('sorting stats render')
+        //console.log('sorting stats render')
         if (this.props.value.algorithms.bubble) {
             displayData = (
                 <Auxiliary>
