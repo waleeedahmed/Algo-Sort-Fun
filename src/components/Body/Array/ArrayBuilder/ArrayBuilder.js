@@ -106,6 +106,10 @@ class ArrayBuilder extends Component {
             }
             else if (currIdx === mapIndex) return [classes.Array, classes.Swapping].join(' ')
 
+            else if ((currIdx === mapIndex || currIdx2 === mapIndex) && this.props.value.showSwapping) return [classes.Array, classes.ShouldSwap].join(' ')
+
+            else if ((currIdx === mapIndex || currIdx2 === mapIndex) && this.props.value.arrayStatus === 1) return [classes.Array, classes.CurrentNoSwap].join(' ')
+
             else return classes.Arraycell
         }
         else return classes.Arraycell

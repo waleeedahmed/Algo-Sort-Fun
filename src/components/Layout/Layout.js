@@ -249,15 +249,16 @@ class Layout extends Component {
 
 
 
-
     // SELECTION SORT IMPLEMENTATION
 
     selectionInner = (i, min, arr) => {return new Promise(async (resolve) => {
-        
+       
         let a = i + 1;
+        let b = 1;
+
         for (let j = i + 1; j < arr.length; j++) {
-            
-            // eslint-disable-next-line
+
+            //eslint-disable-next-line
             setTimeout(() => {
                 
                 setTimeout(() => {
@@ -268,20 +269,20 @@ class Layout extends Component {
                 if (arr[min] > arr[j]) {
                     min = j;
                     setTimeout(() => {
-                        this.setState({currentIndex2: j})
-                    }, 500);
+                        this.setState({currentIndex2: j, showSwapping: false})
+                    }, 700);
                 }
 
                 if (a === arr.length - 1) {
-                    setTimeout(() => {
-                        
+                    setTimeout(() => { 
                         resolve(min)
-                    }, 600);
+                    }, 800);
                 }
                 a++
-            }, 1000 * j);
+            
+            }, 800 * b);  
+            b++ 
         }
-        
     })}
 
     
@@ -290,52 +291,37 @@ class Layout extends Component {
 
         for (let i = 0; i < arrayCopy.length; i++) {
 
-            //setTimeout(async () => {
-                let min = i;
-                setTimeout(() => {  
-                    this.setState({currentIndex2: i})
-                }, 1500);
-    
-    
-                let resMinimum = await this.selectionInner(i, min, arrayCopy) //*Stop at this point
-    
-                if (resMinimum && resMinimum !== i) {
-         
-                    // begin swap procedure
-                    let tmp = arrayCopy[i]
-                    arrayCopy[i] = arrayCopy[resMinimum]
-                    arrayCopy[resMinimum] = tmp
-                    
-                    // set state one more time here, fetch value of i > currIdx2 and res > currIdx, perform animation
-                    this.setState({currentIndex2: i, currentIndex: resMinimum, showSwapping: true})
+            let min = i;
+            setTimeout(() => {  
+                this.setState({currentIndex2: i, currentIndex: NaN, arrayStatus: 0})
+            }, 700);
 
-                    setTimeout(() => {
-                        this.setState(prevState => ({generatedNumArray: arrayCopy, currentIndex2: NaN, currentIndex: NaN, showSwapping: !prevState.showSwapping}))
-                    }, 800);
-                    
-                }
-           // }, 1500 * i);
+
+            let resMinimum = await this.selectionInner(i, min, arrayCopy) // *Stop at this point
+
+            if (resMinimum && resMinimum !== i) {
+
+                // fetch value of i > currIdx2 and res > currIdx, perform animation flip  
+                this.setState({currentIndex2: i, currentIndex: resMinimum, showSwapping: true, arrayStatus: 0})  
+                      
+                // begin swap procedure
+                let tmp = arrayCopy[i]
+                arrayCopy[i] = arrayCopy[resMinimum]
+                arrayCopy[resMinimum] = tmp
+                                
+
+                setTimeout(() => {
+                    // set new array
+                    this.setState(prevState => ({generatedNumArray: arrayCopy, currentIndex2: NaN, currentIndex: NaN, showSwapping: !prevState.showSwapping, arrayStatus: 0}))
+                }, 500); 
+
+                setTimeout(() => {
+                    this.setState(prevState => ({arrayStatus: 1, currentIndex2: i, currentIndex: resMinimum, showSwapping: false}))
+                }, 505);
+            }
         } 
     }
 
-
-    // selectionSort = async (arr) => {
-    //     let len = arr.length;
-    //     for (let i = 0; i < len; i++) {
-    //         let min = i;
-    //         for (let j = i + 1; j < len; j++) {
-    //             if (arr[min] > arr[j]) {
-    //                 min = j;
-    //             }
-    //         }
-    //         if (min !== i) {
-    //             let tmp = arr[i];
-    //             arr[i] = arr[min];
-    //             arr[min] = tmp;
-    //         }
-    //     }
-    //     return arr;
-    // }
 
 
 
@@ -384,3 +370,39 @@ class Layout extends Component {
  }
 
  export default Layout;
+
+
+
+
+
+
+
+
+
+
+
+
+
+             // let j = i + 1
+            // var myInterval = setInterval(() => {
+            //     setTimeout(() => {
+            //         this.setState({currentIndex: j})
+            //     }, 150);
+                
+
+            //     if (arr[min] > arr[j]) {
+            //         min = j;
+            //         setTimeout(() => {
+            //             this.setState({currentIndex2: j, showSwapping: false})
+            //         }, 500);
+            //     }
+
+            //     if (a === arr.length - 1) {
+            //         setTimeout(() => { 
+            //             resolve(min)
+            //             clearInterval(myInterval)
+            //         }, 800);
+            //     }
+            //     a++
+            //     j++
+            // }, 800);
