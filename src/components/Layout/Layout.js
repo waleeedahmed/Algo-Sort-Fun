@@ -261,26 +261,33 @@ class Layout extends Component {
             //eslint-disable-next-line
             setTimeout(() => {
                 
+                // setTimeout(() => {
+                //     this.setState({arrayStatus: 3})
+                // }, 100);
+
+                // Highlights the current number on the array
                 setTimeout(() => {
-                    this.setState({currentIndex: j})
-                }, 150);
+                    this.setState({currentIndex: j, arrayStatus: 3})
+                }, 5);
                 
 
                 if (arr[min] > arr[j]) {
                     min = j;
                     setTimeout(() => {
-                        this.setState({currentIndex2: j, showSwapping: false})
-                    }, 700);
+                        this.setState({currentIndex2: j, showSwapping: false, arrayStatus: 4})
+                    }, 300);
                 }
 
                 if (a === arr.length - 1) {
                     setTimeout(() => { 
                         resolve(min)
-                    }, 800);
+                    }, 400);
                 }
                 a++
-            
-            }, 800 * b);  
+                setTimeout(() => {
+                    this.setState({arrayStatus: 0})
+                }, 1000);
+            }, 1200 * b);  
             b++ 
         }
     })}
@@ -291,35 +298,54 @@ class Layout extends Component {
 
         for (let i = 0; i < arrayCopy.length; i++) {
 
+            //setTimeout (async () => {
             let min = i;
-            setTimeout(() => {  
-                this.setState({currentIndex2: i, currentIndex: NaN, arrayStatus: 0})
-            }, 700);
 
-
-            let resMinimum = await this.selectionInner(i, min, arrayCopy) // *Stop at this point
-
-            if (resMinimum && resMinimum !== i) {
-
-                // fetch value of i > currIdx2 and res > currIdx, perform animation flip  
-                this.setState({currentIndex2: i, currentIndex: resMinimum, showSwapping: true, arrayStatus: 0})  
-                      
-                // begin swap procedure
-                let tmp = arrayCopy[i]
-                arrayCopy[i] = arrayCopy[resMinimum]
-                arrayCopy[resMinimum] = tmp
-                                
-
+                // highlights outer for loop
                 setTimeout(() => {
-                    // set new array
-                    this.setState(prevState => ({generatedNumArray: arrayCopy, currentIndex2: NaN, currentIndex: NaN, showSwapping: !prevState.showSwapping, arrayStatus: 0}))
-                }, 500); 
+                    this.setState({traverseLength: i, arrayStatus: 2})
+                }, 900);
 
-                setTimeout(() => {
-                    this.setState(prevState => ({arrayStatus: 1, currentIndex2: i, currentIndex: resMinimum, showSwapping: false}))
-                }, 505);
-            }
-        } 
+                // highlights the current array min with purple
+                setTimeout(() => {  
+                    this.setState({currentIndex2: i, currentIndex: NaN})
+                }, 1000);
+    
+
+                let resMinimum = await this.selectionInner(i, min, arrayCopy) // *Stop at this point
+                
+    
+                if (resMinimum && resMinimum !== i) {
+
+                    // Highlights last IF statement
+                    //setTimeout(() => {
+                        this.setState({arrayStatus: 5})
+                    //}, 5);
+    
+                    // Highlights body of last IF statement
+                    setTimeout(() => {
+                        // fetch value of i > currIdx2 and res > currIdx, perform animation flip  
+                        this.setState({currentIndex2: i, currentIndex: resMinimum, showSwapping: true, arrayStatus: 6})                          
+                    }, 150);
+                          
+                    // begin swap procedure
+                    let tmp = arrayCopy[i]
+                    arrayCopy[i] = arrayCopy[resMinimum]
+                    arrayCopy[resMinimum] = tmp
+                                    
+    
+                    setTimeout(() => {
+                        // set new array
+                        this.setState(prevState => ({generatedNumArray: arrayCopy, currentIndex2: NaN, currentIndex: NaN, showSwapping: !prevState.showSwapping, arrayStatus: 0}))
+                    }, 800); 
+    
+                    // post swap confirmation stage 
+                    setTimeout(() => {
+                        this.setState(prevState => ({arrayStatus: 1, currentIndex2: i, currentIndex: resMinimum, showSwapping: false}))
+                    }, 805);
+                }
+            //}, 200 * i);
+        } // end for 
     }
 
 

@@ -101,14 +101,16 @@ class ArrayBuilder extends Component {
         }
 
         else if (this.props.value.algorithms.selection) {
-            if (currIdx2 === mapIndex) {
+            if (currIdx2 === mapIndex && !this.props.value.showSwapping) {
                 return [classes.Array, classes.ShouldSwap].join(' ')
             }
-            else if (currIdx === mapIndex) return [classes.Array, classes.Swapping].join(' ')
+            else if (currIdx === mapIndex && !this.props.value.showSwapping) return [classes.Array, classes.CurrentNoSwap].join(' ')
 
-            else if ((currIdx === mapIndex || currIdx2 === mapIndex) && this.props.value.showSwapping) return [classes.Array, classes.ShouldSwap].join(' ')
+            else if ((currIdx === mapIndex || currIdx2 === mapIndex) && this.props.value.showSwapping && this.props.value.arrayStatus === 0) return [classes.Array, classes.Swapping].join(' ')
 
-            else if ((currIdx === mapIndex || currIdx2 === mapIndex) && this.props.value.arrayStatus === 1) return [classes.Array, classes.CurrentNoSwap].join(' ')
+            else if ((currIdx === mapIndex || currIdx2 === mapIndex) && !this.props.value.showSwapping && this.props.value.arrayStatus === 1) return [classes.Array, classes.PostSwap].join(' ')
+
+            else if (mapIndex < this.props.value.tLength) return [classes.Array, classes.SortComplete].join(' ')
 
             else return classes.Arraycell
         }

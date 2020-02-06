@@ -1,30 +1,48 @@
 import React from 'react';
 import classes from './Selection.css';
+import withContext from '../../../../../context/withContext'
 
 class Selection extends React.Component {
     
-    
+    classAssign = () => {
+        if (this.props.value.arrayStatus === 3) return classes.ShouldSelectionSwap
+
+        else if (this.props.value.arrayStatus === 4) return classes.NewMin
+
+        else return null
+    }
+
+    endingClassAssign = () => {
+        if (this.props.value.arrayStatus === 5) return classes.SelectionNoSwap
+
+        if (this.props.value.arrayStatus === 6) return classes.SelectionSwap
+    }
     
     render() {
 
         var beginCode = `function SelectionSort(unsortedArray) {`
 
-        var selectionOuterbegin =  `   // initialize 'Len = unsortedArray.length' variable
-   // for loop (let i = 0; i < len; i++) {
-        // initialize 'min = i' variable`
+        var lengthCode = `   // initialize 'Len = unsortedArray.length' variable`
 
+        var selectionOuterbegin =  `   // for loop (let i = 0; i < len; i++) {
+     // initialize 'min = i' variable`
+
+        var selectionInnerBegin = `     // for loop (let j = i + 1; j < Len; j++) {` 
         
-        var selectionInner = `\t// for loop (let j = i + 1; j < Len; j++) {
-            if (arr[min] > arr[j]) { // is current min greater? 
-                min = j // set new found min as the current min
-            }
-        }`
+        var selectionInner = 
+        `\t if (arr[min] > arr[j]) {` 
+                
 
-        var selectionOuterEnd = `\tif (min !== i) { // if new min was found 
-            // swap arr[i] and arr[min]
-        }`
+        var selectionInnerTrue = `\t    min = j // set new minimum
+         }
+     }`
 
-        var endingCode = `    } // end outer for loop
+        var selectionOuterEnd = `     if (min !== i) { // if new min was found`
+
+        var selectionOuterEndTrue = `        // swap arr[i] and arr[min]
+     }`
+
+        var endingCode = `   } // end outer for loop
 return sortedArray
 }`
 
@@ -32,13 +50,17 @@ return sortedArray
            <div className = {classes.Selection}>
                <h3 style = {{fontSize: '1.34rem', fontFamily: 'Lato, sans-serif'}}>Pseudocode Walkthrough</h3>
                 <div>{beginCode}</div>
-                <div>{selectionOuterbegin}</div>
-                <div>{selectionInner}</div>
-                <div>{selectionOuterEnd}</div>
+                <div>{lengthCode}</div>
+                <div className = {this.props.value.arrayStatus === 2 ? classes.ForLoop : null}>{selectionOuterbegin}</div>
+                <div className = {this.props.value.arrayStatus === 3 ? classes.DoLoop : null}>{selectionInnerBegin}</div>
+                <div className = {this.classAssign()}>{selectionInner}</div>
+                <div className = {this.props.value.arrayStatus === 4 ? classes.NewMin : null}>{selectionInnerTrue}</div>
+                <div className = {this.endingClassAssign()}>{selectionOuterEnd}</div>
+                <div className = {this.props.value.arrayStatus === 6 ? classes.SelectionSwap : null}>{selectionOuterEndTrue}</div>
                 <div>{endingCode}</div>
            </div> 
         )
     }
 }
 
-export default Selection;
+export default withContext(Selection)
