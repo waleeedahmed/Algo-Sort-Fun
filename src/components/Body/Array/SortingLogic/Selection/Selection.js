@@ -15,7 +15,9 @@ class Selection extends React.Component {
     endingClassAssign = () => {
         if (this.props.value.arrayStatus === 5) return classes.SelectionNoSwap
 
-        if (this.props.value.arrayStatus === 6) return classes.SelectionSwap
+        else if (this.props.value.arrayStatus === 6) return classes.SelectionSwap
+
+        else if (this.props.value.arrayStatus === 8) return classes.SelectionNoSwap
     }
     
     render() {

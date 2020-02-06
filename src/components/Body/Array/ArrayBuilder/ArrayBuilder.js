@@ -106,11 +106,11 @@ class ArrayBuilder extends Component {
             }
             else if (currIdx === mapIndex && !this.props.value.showSwapping) return [classes.Array, classes.CurrentNoSwap].join(' ')
 
-            else if ((currIdx === mapIndex || currIdx2 === mapIndex) && this.props.value.showSwapping && this.props.value.arrayStatus === 0) return [classes.Array, classes.Swapping].join(' ')
+            else if ((currIdx === mapIndex || currIdx2 === mapIndex) && this.props.value.showSwapping && this.props.value.arrayStatus === 6) return [classes.Array, classes.Swapping].join(' ')
 
             else if ((currIdx === mapIndex || currIdx2 === mapIndex) && !this.props.value.showSwapping && this.props.value.arrayStatus === 1) return [classes.Array, classes.PostSwap].join(' ')
 
-            else if ((currIdx === mapIndex || currIdx2 === mapIndex) && !this.props.value.showSwapping && this.props.value.arrayStatus === 1) return [classes.Array, classes.PostSwap].join(' ')
+            //else if ((currIdx === mapIndex || currIdx2 === mapIndex) && !this.props.value.showSwapping && this.props.value.arrayStatus === 6) return [classes.Array, classes.PostSwap].join(' ')
 
             else if (mapIndex < this.props.value.tLength) return [classes.Array, classes.SortComplete].join(' ')
 
@@ -145,7 +145,7 @@ class ArrayBuilder extends Component {
             let currentIdx = this.props.value.currIdx;
             let currentIdx2 = this.props.value.currIdx2;
             
-            return <div style = {{transform: `translateX(${this.indexHelper(currentIdx, currentIdx2, index)}px)`, transition: `${this.props.value.showSwapping ? `transform 0.3s ease-in-out` : ``}`}}
+            return <div style = {{transform: `translateX(${this.indexHelper(currentIdx, currentIdx2, index)}px)`, transition: `${this.props.value.showSwapping ? `transform 0.35s ease-in-out` : ``}`}}
                     className = {this.cellClassAssign(currentIdx, currentIdx2, index)} 
                     key = {index} data-key = {index}> 
                         {index === this.props.value.generatedNumArray.length - 1 ? currentElement: currentElement + ','} 

@@ -277,12 +277,12 @@ class Layout extends Component {
     
                 setTimeout(() => {
                     this.setState({arrayStatus: 0})
-                }, 700);
+                }, 800);
 
                 if (a === arr.length - 1) {
-                    //setTimeout(() => { 
+                    setTimeout(() => { 
                         resolve(min)
-                    //}, 600);
+                    }, 600);
                 }
                 a++
                 
@@ -296,6 +296,8 @@ class Layout extends Component {
         let arrayCopy = [...this.state.generatedNumArray]
         
         for (let i = 0; i < arrayCopy.length; i++) {
+
+            //if (i === arrayCopy.length) {this.setState({currentIndex: NaN, currentIndex2: NaN, arrayStatus: 7, visualizationPressed: false}); break}
 
             let min = i;
 
@@ -318,15 +320,15 @@ class Layout extends Component {
                     console.log('IF resMin block entered')
                     if (resMinimum !== i) {
                         // Highlights last IF statement
-                        //setTimeout(() => {
+                        setTimeout(() => {
                             this.setState({arrayStatus: 5})
-                        //}, 5);
+                        }, 5);
         
                         // Highlights body of last IF statement
                         setTimeout(() => {
                             // fetch value of i > currIdx2 and res > currIdx, perform animation flip  
                             this.setState({currentIndex2: i, currentIndex: resMinimum, showSwapping: true, arrayStatus: 6})                          
-                        }, 300);
+                        }, 250);
                                                                    
                     
                         setTimeout(() => {
@@ -337,18 +339,26 @@ class Layout extends Component {
 
                             // set new array
                             this.setState({generatedNumArray: arrayCopy, currentIndex2: NaN, currentIndex: NaN, showSwapping: false, arrayStatus: 0})
-                        }, 700); 
+                        }, 900); 
                         
         
                         // post swap confirmation stage                     
                         setTimeout(() => {
                             this.setState({arrayStatus: 1, currentIndex2: i, currentIndex: resMinimum, showSwapping: false})
-                        }, 705);
+                        }, 902);
+                    }
+                    else {
+                        setTimeout(() => {
+                            this.setState({arrayStatus: 8, showSwapping: false, currentIndex: NaN, currentIndex2: NaN})
+                        }, 300);
                     }
                 }
+                if (this.state.traverseLength === arrayCopy.length - 1) {
+                    setTimeout(() => {
+                        this.setState({currentIndex: NaN, currentIndex2: NaN, arrayStatus: 7, visualizationPressed: false})
+                    }, 1000);    
+                }
         } // end for 
-
-        this.setState({currentIndex: NaN, currentIndex2: NaN, arrayStatus: 7, visualizationPressed: false})
     }
 
 
