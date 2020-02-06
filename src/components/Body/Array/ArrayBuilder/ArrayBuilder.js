@@ -110,6 +110,8 @@ class ArrayBuilder extends Component {
 
             else if ((currIdx === mapIndex || currIdx2 === mapIndex) && !this.props.value.showSwapping && this.props.value.arrayStatus === 1) return [classes.Array, classes.PostSwap].join(' ')
 
+            else if ((currIdx === mapIndex || currIdx2 === mapIndex) && !this.props.value.showSwapping && this.props.value.arrayStatus === 1) return [classes.Array, classes.PostSwap].join(' ')
+
             else if (mapIndex < this.props.value.tLength) return [classes.Array, classes.SortComplete].join(' ')
 
             else return classes.Arraycell
@@ -127,7 +129,10 @@ class ArrayBuilder extends Component {
             else {return classes.Array}
         }
         else if (this.props.value.algorithms.selection) {
-            return classes.Array
+            if (isNaN(this.props.value.bubbleIdx) && isNaN(this.props.value.bubbleIdx2) && this.props.value.arrayStatus === 7) {
+                return [classes.Array, classes.Complete].join(' ')
+            }
+            else return classes.Array
         }
         else return classes.Array
     }
@@ -140,7 +145,7 @@ class ArrayBuilder extends Component {
             let currentIdx = this.props.value.currIdx;
             let currentIdx2 = this.props.value.currIdx2;
             
-            return <div style = {{transform: `translateX(${this.indexHelper(currentIdx, currentIdx2, index)}px)`, transition: `${this.props.value.showSwapping ? `transform 0.4s ease` : ``}`}}
+            return <div style = {{transform: `translateX(${this.indexHelper(currentIdx, currentIdx2, index)}px)`, transition: `${this.props.value.showSwapping ? `transform 0.3s ease-in-out` : ``}`}}
                     className = {this.cellClassAssign(currentIdx, currentIdx2, index)} 
                     key = {index} data-key = {index}> 
                         {index === this.props.value.generatedNumArray.length - 1 ? currentElement: currentElement + ','} 

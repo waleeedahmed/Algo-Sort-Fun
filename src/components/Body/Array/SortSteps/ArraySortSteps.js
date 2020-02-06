@@ -16,7 +16,6 @@ class ArraySortSteps extends React.Component {
         }
 
 
-        
         return (
             <div className = {classes.ArraySortSteps}>
                 {algoComponent}          

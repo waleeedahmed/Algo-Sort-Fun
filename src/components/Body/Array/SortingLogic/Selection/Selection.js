@@ -57,7 +57,7 @@ return sortedArray
                 <div className = {this.props.value.arrayStatus === 4 ? classes.NewMin : null}>{selectionInnerTrue}</div>
                 <div className = {this.endingClassAssign()}>{selectionOuterEnd}</div>
                 <div className = {this.props.value.arrayStatus === 6 ? classes.SelectionSwap : null}>{selectionOuterEndTrue}</div>
-                <div>{endingCode}</div>
+                <div className = {this.props.value.arrayStatus === 7 ? classes.Complete : null}>{endingCode}</div>
            </div> 
         )
     }
