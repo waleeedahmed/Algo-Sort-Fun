@@ -12,7 +12,7 @@ const speedSlider = props => {
 
 
     return (
-        <div className = {assignedClasses.join(' ')} onClick = {props.visibilityToggler}>
+        <div className = {assignedClasses.join(' ')}>
             <input type = 'range' min = '1' max = '2' defaultValue = '1' className = {classes.Slider} id = 'speedSlider' onChange = {props.speedChangeHandler}/>
         </div>    
     )

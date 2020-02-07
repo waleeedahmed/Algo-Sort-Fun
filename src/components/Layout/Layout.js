@@ -33,7 +33,7 @@ class Layout extends Component {
         newArrayClicked: false,
         showSwapping: false,
         arrayStatus: 0,
-        speed: NaN,
+        speed: 1,
         speedSliderVisibility: false
     }
 
@@ -63,7 +63,7 @@ class Layout extends Component {
             newArrayClicked: false,
             showSwapping: false,
             arrayStatus: 0,
-            speed: NaN,
+            speed: 1,
             speedSliderVisibility: false
         }
 
@@ -85,7 +85,13 @@ class Layout extends Component {
 
     // Below method activates in speed Slider change
     speedChangeHandler = (speedArgEvent) => {
-        console.log(speedArgEvent.target.value)
+        
+        if (Number(speedArgEvent.target.value) === 1) {
+            this.setState({speed: Number(speedArgEvent.target.value)})
+        }
+        else if (Number(speedArgEvent.target.value) === 2) {
+            this.setState({speed: 0.4})
+        } 
     }
 
     // For CSSTransition animation purposes in arrayBuilder
@@ -149,7 +155,7 @@ class Layout extends Component {
         // Decide whether to swap or not (Code -1, shown in purple)
         setTimeout(() => {
              this.setState({currentIndex: NaN, currentIndex2: i, arrayStatus: -1, showSwapping: false})
-        }, 700);
+        }, 700 * this.state.speed);
 
         setTimeout(() => {
 
@@ -175,15 +181,15 @@ class Layout extends Component {
                 extraArray[i + 1] = k;
                     setTimeout(() => {
                         resolve(extraArray)
-                    }, 800)
+                    }, 800 * this.state.speed)
                 })
                                  
             } else {
                 // Shows Red after this timeout                
-                setTimeout(() => resolve(null), 100) 
+                setTimeout(() => resolve(null), 100 * this.state.speed) 
             }
        
-        }, 1500)  
+        }, 1500 * this.state.speed)  
     })}
     
 
@@ -195,7 +201,7 @@ class Layout extends Component {
             setTimeout(() => {
                 // Code 7 Highlights for loop
                 this.setState({arrayStatus: 7})
-            }, 20); 
+            }, 20 * this.state.speed); 
 
             for (let i = 0; i < ((extraArray.length - 1) - this.state.traverseLength); i++) {
 
@@ -209,18 +215,18 @@ class Layout extends Component {
                     // Post Swap below (shown in gold), Code 1
                         this.setState({currentIndex2: i, showSwapping: false, arrayStatus: 1})
 
-                    }, 0.05);       
+                    }, 0.05 );       
                 }
                 else {
                     setTimeout(() => {
                         // No swap below (shown in RED), code 3
                         this.setState({currentIndex: NaN, currentIndex2: i, showSwapping: false, arrayStatus: 3})
-                    }, 3);
+                    }, 3 );
                 }
                 
             }
             resolve(true)
-        }, 2000);
+        }, 2000 * this.state.speed);
     })}
 
 
@@ -239,7 +245,7 @@ class Layout extends Component {
                     arrayStatus: 6
                 }))
         
-            }, 1000);                
+            }, 1000 * this.state.speed);                
             
             // Waiting for array to be traversed 
             ans  = await this.arrayTraverse()
@@ -251,14 +257,14 @@ class Layout extends Component {
                     setTimeout(() => {
                         // Code 5 highlights end for and while clause
                         this.setState(prevState => ({traverseLength: prevState.traverseLength + 1, arrayStatus: 5, showSwapping: false, currentIndex2: NaN }))
-                    }, 20); 
+                    }, 20 * this.state.speed); 
                     
                 // At below point, sorting is complete
                 } else {
                     setTimeout(() => {
                         // Code 4 highlights the entire 'traversed' array once sorting complete
                         this.setState({visualizationPressed: false, currentIndex: NaN, currentIndex2: NaN, arrayStatus: 4}) 
-                    }, 20);
+                    }, 20 * this.state.speed);
                 }   
             }
         
@@ -268,7 +274,7 @@ class Layout extends Component {
     // BubbleSorting begins from here
     bubbleSort = () => {
         this.bubbleIteration();
-        //return
+        
     }
 
 
@@ -320,8 +326,6 @@ class Layout extends Component {
         let arrayCopy = [...this.state.generatedNumArray]
         
         for (let i = 0; i < arrayCopy.length; i++) {
-
-            //if (i === arrayCopy.length) {this.setState({currentIndex: NaN, currentIndex2: NaN, arrayStatus: 7, visualizationPressed: false}); break}
 
             let min = i;
 
@@ -391,9 +395,9 @@ class Layout extends Component {
 
 
     render() {
-        // this.state.drawerVisibility ? this.toggleVisibility : null
+        
         return (
-            <div onClick = {this.drawersCloseHandler}>
+            <div onClick = {this.state.drawerVisibility ? this.toggleVisibility : null}>
                 <GlobalPropsContext.Provider value = {{
                     generatedNumArray: this.state.generatedNumArray,
                     algorithms: this.state.algorithms,
@@ -406,7 +410,8 @@ class Layout extends Component {
                     arrayClickToggleHandler: this.arrayClickToggleHandler,
                     showSwapping: this.state.showSwapping,
                     arrayStatus: this.state.arrayStatus,
-                    swapsPerformed: this.state.algoSteps.bubbleSteps.swaps
+                    swapsPerformed: this.state.algoSteps.bubbleSteps.swaps,
+                    speed: this.state.speed
                 }}>
                     <Header>
                         <span style = {{ fontFamily: 'Caveat, cursive', fontSize: '2rem', color: '#fcedb3', maxHeight: '98%' }}>Algo-Sort Fun!</span>
@@ -426,7 +431,7 @@ class Layout extends Component {
  
                     </Header>
                     
-                    <main>
+                    <main onClick = {this.state.speedSliderVisibility ? this.speedSliderVisibilityToggler : null}>
                         <Algobody/>
                     </main>
                     <Footer>

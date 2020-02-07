@@ -8,7 +8,7 @@ class ArraySortData extends React.Component {
     // displays the swapping status whether swap successful or not 
     compareNumbers = () => {
 
-        if (this.props.value.bubble) {
+        if (this.props.value.algorithms.bubble) {
             if ((this.props.value.currIdx2 || this.props.value.currIdx2 === 0) && (this.props.value.arrayStatus === -1 || this.props.value.arrayStatus === 0)) {
                 return <p>Currently comparing {this.props.value.generatedNumArray[this.props.value.currIdx2]} and {this.props.value.generatedNumArray[this.props.value.currIdx2 + 1]}</p>
             }

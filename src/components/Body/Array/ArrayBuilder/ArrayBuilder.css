@@ -9,9 +9,17 @@
     margin: auto;
     padding-top: 55px;
     color: rgb(84, 89, 94);
-    transition: all 0.2s ease-in-out;
+    /* transition: all 0.2s ease-in-out; */
     transition: color 0.03 linear;
     z-index: 1;
+}
+
+.ArrayFast {
+    transition: all 0.1s ease-in-out;
+}
+
+.ArraySlow {
+    transition: all 0.2s ease-in-out;
 }
 
 .Arraycell {

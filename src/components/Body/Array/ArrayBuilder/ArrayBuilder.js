@@ -145,7 +145,8 @@ class ArrayBuilder extends Component {
             let currentIdx = this.props.value.currIdx;
             let currentIdx2 = this.props.value.currIdx2;
             
-            return <div style = {{transform: `translateX(${this.indexHelper(currentIdx, currentIdx2, index)}px)`, transition: `${this.props.value.showSwapping ? `transform 0.35s ease-in-out` : ``}`}}
+            return <div style = {{transform: `translateX(${this.indexHelper(currentIdx, currentIdx2, index)}px)`, 
+                                transition: `${this.props.value.showSwapping ? `transform  ${this.props.value.speed === 0.4 ? `0.2` : `0.3`}s ease-in-out` : ``}`}}
                     className = {this.cellClassAssign(currentIdx, currentIdx2, index)} 
                     key = {index} data-key = {index}> 
                         {index === this.props.value.generatedNumArray.length - 1 ? currentElement: currentElement + ','} 
@@ -155,7 +156,8 @@ class ArrayBuilder extends Component {
             return (<CSSTransition in = {this.props.value.newArrClicked} 
                         onEntered = {this.props.value.arrayClickToggleHandler} 
                         classNames = {{...transitionStyles}} timeout = {100}>
-                            <div className = {this.arrayClassAssignment()}>
+                            <div className = {this.props.value.speed === 0.4 ? [this.arrayClassAssignment(), classes.ArrayFast].join(' ') : 
+                                                                                [this.arrayClassAssignment(), classes.ArraySlow].join(' ')}>
                                 [{this.props.value.generatedNumArray.length === 0 ? emptyArray : displayNums}]
                             </div>
                     </CSSTransition>)
