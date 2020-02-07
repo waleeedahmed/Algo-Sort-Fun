@@ -1,9 +1,9 @@
 .Drawerext {
     background-color: antiquewhite;
-    position: absolute;
-    top: 62px;
+    position: relative;
+    margin-top: 312px;
     width: 200px;
-    left: 330px;
+    left: -46px;
     transition: display 0.05s;
     color: brown;
     list-style: none;

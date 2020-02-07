@@ -6,6 +6,7 @@ import Drawer from '../UI/Drawer/Drawer';
 import classes from './Layout.css';
 import Algobody from '../../containers/Algobody/Algobody';
 import GlobalPropsContext from '../../context/globalPropsContext';
+import SpeedSlider from '../UI/SpeedSlider/SpeedSlider';
 
 
 class Layout extends Component {
@@ -31,7 +32,9 @@ class Layout extends Component {
         currentIndex2: NaN,
         newArrayClicked: false,
         showSwapping: false,
-        arrayStatus: 0
+        arrayStatus: 0,
+        speed: NaN,
+        speedSliderVisibility: false
     }
 
 
@@ -59,7 +62,9 @@ class Layout extends Component {
             currentIndex2: NaN,
             newArrayClicked: false,
             showSwapping: false,
-            arrayStatus: 0
+            arrayStatus: 0,
+            speed: NaN,
+            speedSliderVisibility: false
         }
 
         // Merge provided args into the emptyState
@@ -68,12 +73,30 @@ class Layout extends Component {
         })
     }
 
+    drawersCloseHandler = () => {
+        if (this.state.drawerVisibility) {
+            this.toggleVisibility()
+        }
+
+        if (this.state.speedSliderVisibility) {
+            this.speedSliderVisibilityToggler()
+        }
+    }
+
+    // Below method activates in speed Slider change
+    speedChangeHandler = (speedArgEvent) => {
+        console.log(speedArgEvent.target.value)
+    }
+
     // For CSSTransition animation purposes in arrayBuilder
     arrayClickToggleHandler = () => {
         this.setState({newArrayClicked: !this.state.newArrayClicked})
     }
 
     
+    speedSliderVisibilityToggler = () => {
+        this.setState({speedSliderVisibility: !this.state.speedSliderVisibility})
+    }
     
     toggleVisibility = () => {
         this.setState( {drawerVisibility: !this.state.drawerVisibility} )
@@ -368,9 +391,9 @@ class Layout extends Component {
 
 
     render() {
-        
+        // this.state.drawerVisibility ? this.toggleVisibility : null
         return (
-            <div onClick = {this.state.drawerVisibility ? this.toggleVisibility : null}>
+            <div onClick = {this.drawersCloseHandler}>
                 <GlobalPropsContext.Provider value = {{
                     generatedNumArray: this.state.generatedNumArray,
                     algorithms: this.state.algorithms,
@@ -387,14 +410,20 @@ class Layout extends Component {
                 }}>
                     <Header>
                         <span style = {{ fontFamily: 'Caveat, cursive', fontSize: '2rem', color: '#fcedb3', maxHeight: '98%' }}>Algo-Sort Fun!</span>
-                        <Drawer visibility = {this.state.drawerVisibility} toggleVis = {this.toggleVisibility}/>                    
+                        <Drawer visibility = {this.state.drawerVisibility} toggleVis = {this.toggleVisibility}/>                 
                         <div className = {classes.Btndiv}>
                             <button className = {classes.Buttons} onClick = {() => this.generateNumbers(14)}>Create New Array</button>
                             <button className = {classes.Buttons} 
                                     onClick = {() => this.clearState({newArrayClicked: true, algorithms: {...this.state.algorithms}})}>Clear Array
                             </button>
+                            <button className = {classes.Buttons} onClick = {this.speedSliderVisibilityToggler}>Sort Speed</button>
+                            <button className = {classes.Buttons}>Array Size</button>
                             <button className = {`${classes.Buttons} ${classes.SmallBtn}`} onClick = {this.visualizationHandler}>Visualize!</button>
+                            <SpeedSlider speedChangeHandler = {this.speedChangeHandler} 
+                                visibilityToggler = {this.speedSliderVisibilityToggler}
+                                speedVisibilityStatus = {this.state.speedSliderVisibility}/> 
                         </div>
+ 
                     </Header>
                     
                     <main>

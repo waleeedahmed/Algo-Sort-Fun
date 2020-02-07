@@ -8,13 +8,6 @@
     cursor: pointer;   
 }
 
-/* .Li {
-    padding: 15px 20px;
-    font-size: 1.12rem;
-    list-style: none;
-    transition: color 0.2s ease-in-out;
-    cursor: pointer;
-} */
 
 .Ul:hover {
     color: #f0ed5d;
@@ -29,13 +22,6 @@
     background-color: #a74747;
 }
 
-/* .algoBtn {
-    border: 0;
-    padding: 0;
-    background: inherit;
-    color: inherit;
-    font: inherit;
-} */
 
 
 @media (max-width: 800px) {
