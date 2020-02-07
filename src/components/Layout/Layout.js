@@ -96,7 +96,8 @@ class Layout extends Component {
             .map((currAlgorithm) => {
                 return currAlgorithm === algoName ? newObj[currAlgorithm] = true : newObj[currAlgorithm] = false
             })
-            this.setState( {algorithms: newObj, drawerVisibility: false} )
+            //this.setState( {algorithms: newObj, drawerVisibility: false} )
+            this.clearState({algorithms: newObj, drawerVisibility: false, newArrayClicked: true})
     }
 
     // When visualize button is pressed
@@ -282,11 +283,11 @@ class Layout extends Component {
                 if (a === arr.length - 1) {
                     setTimeout(() => { 
                         resolve(min)
-                    }, 600);
+                    }, 800);
                 }
                 a++
                 
-            }, 1000 * b);  
+            }, 900 * b);  
             b++ 
         }
     })}
@@ -322,13 +323,13 @@ class Layout extends Component {
                         // Highlights last IF statement
                         setTimeout(() => {
                             this.setState({arrayStatus: 5})
-                        }, 5);
+                        }, 2);
         
                         // Highlights body of last IF statement
                         setTimeout(() => {
                             // fetch value of i > currIdx2 and res > currIdx, perform animation flip  
                             this.setState({currentIndex2: i, currentIndex: resMinimum, showSwapping: true, arrayStatus: 6})                          
-                        }, 250);
+                        }, 200);
                                                                    
                     
                         setTimeout(() => {
@@ -338,7 +339,7 @@ class Layout extends Component {
                             arrayCopy[resMinimum] = tmp 
 
                             // set new array
-                            this.setState({generatedNumArray: arrayCopy, currentIndex2: NaN, currentIndex: NaN, showSwapping: false, arrayStatus: 0})
+                            this.setState({generatedNumArray: arrayCopy, currentIndex2: NaN, currentIndex: NaN, showSwapping: false, arrayStatus: -5})
                         }, 900); 
                         
         
@@ -348,16 +349,18 @@ class Layout extends Component {
                         }, 902);
                     }
                     else {
+                        // Not swapped 
                         setTimeout(() => {
                             this.setState({arrayStatus: 8, showSwapping: false, currentIndex: NaN, currentIndex2: NaN})
                         }, 300);
                     }
                 }
-                if (this.state.traverseLength === arrayCopy.length - 1) {
-                    setTimeout(() => {
-                        this.setState({currentIndex: NaN, currentIndex2: NaN, arrayStatus: 7, visualizationPressed: false})
-                    }, 1000);    
-                }
+                // Final state set, sort complete at this point 
+                setTimeout(() => {
+                    if (this.state.traverseLength === arrayCopy.length - 1) {
+                            this.setState({currentIndex: NaN, currentIndex2: NaN, arrayStatus: 7, visualizationPressed: false})
+                        }
+                }, 500 * i);    
         } // end for 
     }
 
@@ -410,38 +413,3 @@ class Layout extends Component {
 
  export default Layout;
 
-
-
-
-
-
-
-
-
-
-
-
-
-             // let j = i + 1
-            // var myInterval = setInterval(() => {
-            //     setTimeout(() => {
-            //         this.setState({currentIndex: j})
-            //     }, 150);
-                
-
-            //     if (arr[min] > arr[j]) {
-            //         min = j;
-            //         setTimeout(() => {
-            //             this.setState({currentIndex2: j, showSwapping: false})
-            //         }, 500);
-            //     }
-
-            //     if (a === arr.length - 1) {
-            //         setTimeout(() => { 
-            //             resolve(min)
-            //             clearInterval(myInterval)
-            //         }, 800);
-            //     }
-            //     a++
-            //     j++
-            // }, 800);
