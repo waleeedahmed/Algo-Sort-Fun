@@ -14,6 +14,11 @@
 
 }
 
+.Buttons:disabled {
+    color: rgb(219, 97, 97);
+    cursor: progress;
+}
+
 .Buttons:focus {
     outline: 0;
 }

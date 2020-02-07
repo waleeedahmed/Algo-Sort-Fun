@@ -15,7 +15,7 @@
     color: rgb(248, 28, 28);
     font-size: 0.94rem;
     transition: all 0.2s ease-in-out;    
-    content: ' // is current min greater?';
+    content: ' // Current Min still smaller';
 }
 
 

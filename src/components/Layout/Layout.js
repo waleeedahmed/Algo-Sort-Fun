@@ -7,6 +7,7 @@ import classes from './Layout.css';
 import Algobody from '../../containers/Algobody/Algobody';
 import GlobalPropsContext from '../../context/globalPropsContext';
 import SpeedSlider from '../UI/SpeedSlider/SpeedSlider';
+import SizeSlider from '../UI/SizeSlider/SizeSlider';
 
 
 class Layout extends Component {
@@ -34,7 +35,8 @@ class Layout extends Component {
         showSwapping: false,
         arrayStatus: 0,
         speed: 1,
-        speedSliderVisibility: false
+        speedSliderVisibility: false,
+        sizeSliderVisibility: false
     }
 
 
@@ -64,7 +66,8 @@ class Layout extends Component {
             showSwapping: false,
             arrayStatus: 0,
             speed: 1,
-            speedSliderVisibility: false
+            speedSliderVisibility: false,
+            sizeSliderVisibility: false
         }
 
         // Merge provided args into the emptyState
@@ -81,6 +84,10 @@ class Layout extends Component {
         if (this.state.speedSliderVisibility) {
             this.speedSliderVisibilityToggler()
         }
+
+        if (this.state.sizeSliderVisibility) {
+            this.sizeSliderVisibilityToggler()
+        }
     }
 
     // Below method activates in speed Slider change
@@ -94,6 +101,19 @@ class Layout extends Component {
         } 
     }
 
+    arrSizeChangeHandler = (newSizeArg) => {
+        
+        if (this.state.generatedNumArray.length !== 0) {
+            if (Number(newSizeArg.target.value) === 1) {
+                this.generateNumbers(10)
+            }
+            else if (Number(newSizeArg.target.value) === 2) {
+                this.generateNumbers(14)
+            } 
+        }
+
+    }
+
     // For CSSTransition animation purposes in arrayBuilder
     arrayClickToggleHandler = () => {
         this.setState({newArrayClicked: !this.state.newArrayClicked})
@@ -102,6 +122,10 @@ class Layout extends Component {
     
     speedSliderVisibilityToggler = () => {
         this.setState({speedSliderVisibility: !this.state.speedSliderVisibility})
+    }
+
+    sizeSliderVisibilityToggler = () => {
+        this.setState({sizeSliderVisibility: !this.state.sizeSliderVisibility})
     }
     
     toggleVisibility = () => {
@@ -115,7 +139,7 @@ class Layout extends Component {
         for (let i = 0; i <= quantity; i++) {
             newArray.push(Number((Math.random() * 99).toFixed(0)));
         }
-        this.clearState({generatedNumArray: newArray, newArrayClicked: true, algorithms: {...this.state.algorithms}})
+        this.clearState({generatedNumArray: newArray, newArrayClicked: true, algorithms: {...this.state.algorithms}, speed: this.state.speed})
     }
 
     // handler determines which algorithm was pressed
@@ -126,7 +150,7 @@ class Layout extends Component {
                 return currAlgorithm === algoName ? newObj[currAlgorithm] = true : newObj[currAlgorithm] = false
             })
             //this.setState( {algorithms: newObj, drawerVisibility: false} )
-            this.clearState({algorithms: newObj, drawerVisibility: false, newArrayClicked: true})
+            this.clearState({generatedNumArray: this.state.generatedNumArray, algorithms: newObj, drawerVisibility: false, speed: this.state.speed})
     }
 
     // When visualize button is pressed
@@ -134,8 +158,6 @@ class Layout extends Component {
     
         // vsPressed becomes true regardless of which algorithm is selected 
         this.setState({ visualizationPressed: true, traverseLength: 0 })
-
-        //let clone = Object.assign({}, this.state)
         
         if (this.state.algorithms.bubble) {
 
@@ -294,29 +316,29 @@ class Layout extends Component {
                 // Highlights the current number on the array
                 setTimeout(() => {
                     this.setState({currentIndex: j, arrayStatus: 3})
-                }, 10);
+                }, 10 * this.state.speed);
                 
 
                 if (arr[min] > arr[j]) {
                     min = j;
                     setTimeout(() => {
                         this.setState({currentIndex2: j, showSwapping: false, arrayStatus: 4})
-                    }, 150);
+                    }, 150 * this.state.speed);
                 }
 
     
                 setTimeout(() => {
                     this.setState({arrayStatus: 0})
-                }, 800);
+                }, 800 * this.state.speed);
 
                 if (a === arr.length - 1) {
                     setTimeout(() => { 
                         resolve(min)
-                    }, 800);
+                    }, 800 * this.state.speed);
                 }
                 a++
                 
-            }, 900 * b);  
+            }, (900 * this.state.speed) * b);  
             b++ 
         }
     })}
@@ -332,14 +354,14 @@ class Layout extends Component {
                 await new Promise((resolve) => {
                     setTimeout(() => {
                         this.setState({traverseLength: i}, () => resolve('done'))
-                    }, 1500);
+                    }, 1500 * this.state.speed);
                 })
                 
 
                 // highlights outer for loop and current min 
                 setTimeout(() => {
                     this.setState({currentIndex2: i, currentIndex: NaN, arrayStatus: 2})
-                }, 300);
+                }, 300 * this.state.speed);
 
                 let resMinimum = await this.selectionInner(i, min, arrayCopy) // *Stop at this point
                 
@@ -356,7 +378,7 @@ class Layout extends Component {
                         setTimeout(() => {
                             // fetch value of i > currIdx2 and res > currIdx, perform animation flip  
                             this.setState({currentIndex2: i, currentIndex: resMinimum, showSwapping: true, arrayStatus: 6})                          
-                        }, 200);
+                        }, 200 * this.state.speed);
                                                                    
                     
                         setTimeout(() => {
@@ -367,19 +389,19 @@ class Layout extends Component {
 
                             // set new array
                             this.setState({generatedNumArray: arrayCopy, currentIndex2: NaN, currentIndex: NaN, showSwapping: false, arrayStatus: -5})
-                        }, 900); 
+                        }, 900 * this.state.speed); 
                         
         
                         // post swap confirmation stage                     
                         setTimeout(() => {
                             this.setState({arrayStatus: 1, currentIndex2: i, currentIndex: resMinimum, showSwapping: false})
-                        }, 902);
+                        }, 902 * this.state.speed);
                     }
                     else {
                         // Not swapped 
                         setTimeout(() => {
                             this.setState({arrayStatus: 8, showSwapping: false, currentIndex: NaN, currentIndex2: NaN})
-                        }, 300);
+                        }, 300 * this.state.speed);
                     }
                 }
                 // Final state set, sort complete at this point 
@@ -387,7 +409,7 @@ class Layout extends Component {
                     if (this.state.traverseLength === arrayCopy.length - 1) {
                             this.setState({currentIndex: NaN, currentIndex2: NaN, arrayStatus: 7, visualizationPressed: false})
                         }
-                }, 500 * i);    
+                }, (500 * this.state.speed) * i);    
         } // end for 
     }
 
@@ -395,9 +417,11 @@ class Layout extends Component {
 
 
     render() {
-        
+        // onClick = {this.state.drawerVisibility ? this.toggleVisibility : null}
+        // onClick = {this.state.speedSliderVisibility ? this.speedSliderVisibilityToggler : null}
+
         return (
-            <div onClick = {this.state.drawerVisibility ? this.toggleVisibility : null}>
+            <div onClick = {this.drawersCloseHandler}>
                 <GlobalPropsContext.Provider value = {{
                     generatedNumArray: this.state.generatedNumArray,
                     algorithms: this.state.algorithms,
@@ -415,23 +439,27 @@ class Layout extends Component {
                 }}>
                     <Header>
                         <span style = {{ fontFamily: 'Caveat, cursive', fontSize: '2rem', color: '#fcedb3', maxHeight: '98%' }}>Algo-Sort Fun!</span>
-                        <Drawer visibility = {this.state.drawerVisibility} toggleVis = {this.toggleVisibility}/>                 
+                        <Drawer visibility = {this.state.drawerVisibility} toggleVis = {this.toggleVisibility} vsPressed = {this.state.visualizationPressed}/>                 
                         <div className = {classes.Btndiv}>
-                            <button className = {classes.Buttons} onClick = {() => this.generateNumbers(14)}>Create New Array</button>
-                            <button className = {classes.Buttons} 
-                                    onClick = {() => this.clearState({newArrayClicked: true, algorithms: {...this.state.algorithms}})}>Clear Array
+                            <button disabled = {this.state.visualizationPressed} className = {classes.Buttons} onClick = {() => this.generateNumbers(10)}>Create New Array</button>
+                            <button disabled = {this.state.visualizationPressed} className = {classes.Buttons} 
+                                    onClick = {() => this.clearState({speed: this.state.speed, newArrayClicked: true, algorithms: {...this.state.algorithms}})}>Clear Array
                             </button>
-                            <button className = {classes.Buttons} onClick = {this.speedSliderVisibilityToggler}>Sort Speed</button>
-                            <button className = {classes.Buttons}>Array Size</button>
-                            <button className = {`${classes.Buttons} ${classes.SmallBtn}`} onClick = {this.visualizationHandler}>Visualize!</button>
+                            <button disabled = {this.state.visualizationPressed} className = {classes.Buttons} onClick = {this.speedSliderVisibilityToggler}>Sort Speed</button>
+                            <button disabled = {this.state.visualizationPressed} className = {classes.Buttons} onClick = {this.sizeSliderVisibilityToggler}>Array Size</button>
+                            <button disabled = {this.state.visualizationPressed} className = {`${classes.Buttons} ${classes.SmallBtn}`} onClick = {this.visualizationHandler}>Visualize!</button>
                             <SpeedSlider speedChangeHandler = {this.speedChangeHandler} 
                                 visibilityToggler = {this.speedSliderVisibilityToggler}
                                 speedVisibilityStatus = {this.state.speedSliderVisibility}/> 
+
+                            <SizeSlider visibilityToggler = {this.sizeSliderVisibilityToggler}
+                                        sizeVisibilityStatus = {this.state.sizeSliderVisibility}
+                                        arrSizeChangeHandler = {this.arrSizeChangeHandler}/>
                         </div>
  
                     </Header>
                     
-                    <main onClick = {this.state.speedSliderVisibility ? this.speedSliderVisibilityToggler : null}>
+                    <main>
                         <Algobody/>
                     </main>
                     <Footer>

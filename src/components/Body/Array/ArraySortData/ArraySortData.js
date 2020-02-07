@@ -90,7 +90,7 @@ class ArraySortData extends React.Component {
                     <h3 style = {{fontSize: '1.25rem', textDecoration: 'underline'}}>Space Complexity</h3>
                     <p>Worst: O(1)</p>
                     <p style = {{fontSize: '1rem'}}>{this.props.value.vsPressed ? <span style = {{color: 'coral'}}>
-                            Did you know? Selection Sort on average has a lower time complexity performance than bubble or insertion sort. 
+                            Did you know?<br/>Selection Sort has a lower sorting performance in terms of time complexity as compared to Bubble or Insertion sort. 
                         </span> : null}</p>
                 </Auxiliary>
             )            
