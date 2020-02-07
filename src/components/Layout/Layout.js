@@ -35,8 +35,10 @@ class Layout extends Component {
         showSwapping: false,
         arrayStatus: 0,
         speed: 1,
+        size: NaN,
         speedSliderVisibility: false,
-        sizeSliderVisibility: false
+        sizeSliderVisibility: false,
+        visualizeLabel: 'Visualize!'
     }
 
 
@@ -66,8 +68,10 @@ class Layout extends Component {
             showSwapping: false,
             arrayStatus: 0,
             speed: 1,
+            size: NaN,
             speedSliderVisibility: false,
-            sizeSliderVisibility: false
+            sizeSliderVisibility: false,
+            visualizeLabel: 'Visualize!'
         }
 
         // Merge provided args into the emptyState
@@ -93,10 +97,10 @@ class Layout extends Component {
     // Below method activates in speed Slider change
     speedChangeHandler = (speedArgEvent) => {
         
-        if (Number(speedArgEvent.target.value) === 1) {
+        if (speedArgEvent.target.value === '1') {
             this.setState({speed: Number(speedArgEvent.target.value)})
         }
-        else if (Number(speedArgEvent.target.value) === 2) {
+        else if (speedArgEvent.target.value === '2') {
             this.setState({speed: 0.4})
         } 
     }
@@ -104,11 +108,12 @@ class Layout extends Component {
     arrSizeChangeHandler = (newSizeArg) => {
         
         if (this.state.generatedNumArray.length !== 0) {
-            if (Number(newSizeArg.target.value) === 1) {
-                this.generateNumbers(10)
+
+            if (newSizeArg.target.value === '1') {
+                this.setState({size: 10}, () => this.generateNumbers(this.state.size))
             }
-            else if (Number(newSizeArg.target.value) === 2) {
-                this.generateNumbers(14)
+            else if (newSizeArg.target.value === '2') {
+                this.setState({size: 14}, () => this.generateNumbers(this.state.size))
             } 
         }
 
@@ -139,7 +144,7 @@ class Layout extends Component {
         for (let i = 0; i <= quantity; i++) {
             newArray.push(Number((Math.random() * 99).toFixed(0)));
         }
-        this.clearState({generatedNumArray: newArray, newArrayClicked: true, algorithms: {...this.state.algorithms}, speed: this.state.speed})
+        this.clearState({size: this.state.size, generatedNumArray: newArray, newArrayClicked: true, algorithms: {...this.state.algorithms}, speed: this.state.speed})
     }
 
     // handler determines which algorithm was pressed
@@ -156,19 +161,33 @@ class Layout extends Component {
     // When visualize button is pressed
     visualizationHandler = () => {
     
-        // vsPressed becomes true regardless of which algorithm is selected 
-        this.setState({ visualizationPressed: true, traverseLength: 0 })
-        
-        if (this.state.algorithms.bubble) {
-
-            this.bubbleSort()                         
+        let val = 0
+        for (let key in this.state.algorithms) {
+            if (this.state.algorithms[key]) {
+                val = 1 
+            }
         }
-        else if (this.state.algorithms.selection) {
+
+        if (val === 0) this.setState({visualizeLabel: 'No Algorithm found!'})
+
+        else if (this.state.generatedNumArray.length === 0) this.setState({visualizeLabel: 'No Array found!'})
+
+        else {
+            // vsPressed becomes true regardless of which algorithm is selected 
+            this.setState({ visualizationPressed: true, traverseLength: 0 })
             
-            this.selectionSort()
+            if (this.state.algorithms.bubble) {
+
+                this.bubbleSort()                         
+            }
+            else if (this.state.algorithms.selection) {
+                
+                this.selectionSort()
+            }
         }
     }
 
+ 
 
     // BUBBLE SORT IMPLEMENTATION***
 
@@ -441,13 +460,14 @@ class Layout extends Component {
                         <span style = {{ fontFamily: 'Caveat, cursive', fontSize: '2rem', color: '#fcedb3', maxHeight: '98%' }}>Algo-Sort Fun!</span>
                         <Drawer visibility = {this.state.drawerVisibility} toggleVis = {this.toggleVisibility} vsPressed = {this.state.visualizationPressed}/>                 
                         <div className = {classes.Btndiv}>
-                            <button disabled = {this.state.visualizationPressed} className = {classes.Buttons} onClick = {() => this.generateNumbers(10)}>Create New Array</button>
                             <button disabled = {this.state.visualizationPressed} className = {classes.Buttons} 
-                                    onClick = {() => this.clearState({speed: this.state.speed, newArrayClicked: true, algorithms: {...this.state.algorithms}})}>Clear Array
+                                    onClick = {() => this.state.size ? this.generateNumbers(this.state.size) : this.setState({size: 10}, () => this.generateNumbers(this.state.size))}>Create New Array</button>
+                            <button disabled = {this.state.visualizationPressed} className = {classes.Buttons} 
+                                    onClick = {() => this.clearState({size: this.state.size, speed: this.state.speed, newArrayClicked: true, algorithms: {...this.state.algorithms}})}>Clear Array
                             </button>
                             <button disabled = {this.state.visualizationPressed} className = {classes.Buttons} onClick = {this.speedSliderVisibilityToggler}>Sort Speed</button>
                             <button disabled = {this.state.visualizationPressed} className = {classes.Buttons} onClick = {this.sizeSliderVisibilityToggler}>Array Size</button>
-                            <button disabled = {this.state.visualizationPressed} className = {`${classes.Buttons} ${classes.SmallBtn}`} onClick = {this.visualizationHandler}>Visualize!</button>
+                            <button disabled = {this.state.visualizationPressed} className = {classes.Buttons} onClick = {this.visualizationHandler}>{this.state.visualizeLabel}</button>
                             <SpeedSlider speedChangeHandler = {this.speedChangeHandler} 
                                 visibilityToggler = {this.speedSliderVisibilityToggler}
                                 speedVisibilityStatus = {this.state.speedSliderVisibility}/> 

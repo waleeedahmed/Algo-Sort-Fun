@@ -8,11 +8,6 @@
     cursor: pointer;   
 }
 
-.Ul:disabled {
-    color: rgb(219, 97, 97);
-    cursor: progress;    
-}
-
 .Ul:hover {
     color: #f0ed5d;
 }

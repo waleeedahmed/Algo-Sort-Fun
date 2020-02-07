@@ -15,7 +15,7 @@
 }
 
 .Buttons:disabled {
-    color: rgb(219, 97, 97);
+    color: rgb(187, 179, 179);
     cursor: progress;
 }
 
@@ -36,10 +36,6 @@
 .Btndiv {
     position: absolute;
     right: 20px;
-}
-
-.SmallBtn {
-    width: 110px;
 }
 
 .FooterSpan {
