@@ -40,7 +40,38 @@
 
 .FooterSpan {
     float: right;
+    cursor: default;
+    height: inherit;
+    padding-top: 3px;
 }
+
+.FooterSpan:hover + .AboutInfo {
+    display: block;
+}
+
+.AboutInfo:hover {
+    display: block;
+    color: lightsalmon;
+}
+
+.AboutInfo {
+    position: relative;
+    float: right;
+    bottom: 91px;
+    right: -55px;
+    box-shadow: -3px -3px 5px rgb(158, 151, 151);
+    border-radius: 10px;
+    width: 250px;
+    height: 90px;
+    background: black;
+    color: antiquewhite;
+    font-size: 0.8rem;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+    padding: 10px 8px;
+    display: none;
+}
+
 
 
 @media (max-width: 800px) {

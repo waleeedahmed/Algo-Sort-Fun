@@ -484,6 +484,9 @@ class Layout extends Component {
                     </main>
                     <Footer>
                         <span className = {classes.FooterSpan} style = {{ color: '#FADADA', fontSize: '0.9rem'}}>About</span>
+                        <div className = {classes.AboutInfo}>Designed and Engineered by Waleed<br/><br/>Visit my&nbsp; 
+                                    <a style = {{color: 'antiquewhite'}} href = "https://www.linkedin.com/in/waleed-ahmed-8a173311b/">LinkedIn</a> /&nbsp; 
+                                    <a style = {{color: 'antiquewhite'}} href = "https://github.com/waleeedahmed">Github</a></div>
                     </Footer>
 
                 </GlobalPropsContext.Provider>   
