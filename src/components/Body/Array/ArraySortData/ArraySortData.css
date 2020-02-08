@@ -12,8 +12,43 @@
     width: 32.9%;
     padding: 22px 35px;
     box-sizing: border-box;
-    line-height: 32px;
-    
+    line-height: 32px; 
+}
+
+.SortDataHeading {
+    font-size: 1.34rem; 
+    font-family: Lato, sans-serif;
+}
+
+.SubHeadings {
+    font-size: 1.25rem;
+    text-decoration: underline;
+}
+
+
+@media (max-width: 1500px) {
+    .ArraySortData {
+        font-size: 0.95rem;
+        line-height: 25px;
+    }
+}
+
+
+@media (max-width: 800px) {
+    .ArraySortData {
+        font-size: 0.55rem;
+        font-weight: normal;
+        padding: 6px 12px;
+        line-height: 12px;
+    }
+
+    .SortDataHeading {
+        font-size: 0.7rem;
+    }
+
+    .SubHeadings {
+        font-size: 0.6rem;   
+    }
 }
 
 

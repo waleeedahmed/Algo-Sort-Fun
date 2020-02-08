@@ -17,3 +17,23 @@
     margin-left: 8px;
     margin-right: 2px;
 }
+
+
+@media (max-width: 1500px) {
+    .ArraySortSteps{
+        font-size: 0.73rem;
+    }
+}
+
+
+@media (max-width: 800px) {
+    .ArraySortSteps{
+        font-size: 0.53rem;
+        font-weight: normal;
+        padding: 0 5px;
+        padding-left: 9px;
+        padding-top: 5px;
+        margin-left: 4px;
+        margin-right: 1px;
+    }
+}

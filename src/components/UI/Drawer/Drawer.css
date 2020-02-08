@@ -28,3 +28,28 @@
         font-size: 1rem;
     }
 }
+
+
+@media (max-width: 1300px) {
+    .Ul {
+        font-size: 0.7rem;
+        left: 70px;
+    }
+}
+
+@media (max-width: 950px) {
+    /* .Buttons {
+        display: inline;
+    } */
+
+    .Ul {
+        left: 5px;
+    }
+}  
+
+
+/* @media (max-width: 1100px) {
+    .ArraySortSteps{
+        font-size: 0.53rem;
+    }
+} */

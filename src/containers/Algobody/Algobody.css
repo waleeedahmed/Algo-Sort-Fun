@@ -5,3 +5,9 @@
     height: 635px;
 
 }
+
+@media (max-height: 900px) {
+    .AlgobodyInfo {
+        height: 435px;
+    }   
+}

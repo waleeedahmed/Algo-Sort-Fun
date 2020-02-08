@@ -14,6 +14,12 @@
     z-index: 1;
 }
 
+.EmptyArray {
+    font-size: 1.98rem; 
+    padding: 4px 10px;
+    transition: font-size 0.2s ease-in-out;
+}
+
 .ArrayFast {
     transition: all 0.1s ease-in-out;
 }
@@ -66,10 +72,60 @@
     font-size: 2.3rem;
 }
 
+.EmptyArray:hover {
+    font-size: 2.1rem;   
+}
+
 @media (max-width: 1000px) {
     .Array {
         width: 700px;
         font-size: 1.5rem;
     }
+
+    .Arraycell {
+        padding: 0 4px;
+    }
+
+    .Array:hover {
+        font-size: 1.7rem;
+    }
+
+    .EmptyArray {
+        font-size: 1.5rem; 
+        padding: 4px 7px
+    }
+
+    .EmptyArray:hover {
+        font-size: 1.7rem;   
+    }
 }
 
+@media (max-width: 800px) {
+    .Array {
+        width: 200px;
+        font-size: 0.8rem;
+    }
+
+    .Arraycell {
+        padding: 0 2px;
+    }
+
+    .Array:hover {
+        font-size: 1rem;
+    }
+
+    .EmptyArray {
+        font-size: 0.8rem; 
+        padding: 1px 4px
+    }
+
+    .EmptyArray:hover {
+        font-size: 1rem;   
+    }
+}
+
+@media (max-height: 900px) {
+    .Array {
+        height: 80px;
+    }
+}

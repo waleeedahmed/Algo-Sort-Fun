@@ -457,7 +457,7 @@ class Layout extends Component {
                     speed: this.state.speed
                 }}>
                     <Header>
-                        <span style = {{ fontFamily: 'Caveat, cursive', fontSize: '2rem', color: '#fcedb3', maxHeight: '98%' }}>Algo-Sort Fun!</span>
+                        <span className = {classes.HeadingStyle}>Algo-Sort Fun!</span>
                         <Drawer visibility = {this.state.drawerVisibility} toggleVis = {this.toggleVisibility} vsPressed = {this.state.visualizationPressed}/>                 
                         <div className = {classes.Btndiv}>
                             <button disabled = {this.state.visualizationPressed} className = {classes.Buttons} 

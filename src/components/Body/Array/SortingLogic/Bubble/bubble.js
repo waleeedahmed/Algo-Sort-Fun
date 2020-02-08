@@ -44,7 +44,7 @@ class Bubble extends React.Component {
 
         return ( 
             <div className = {classes.Bubble}>
-                <h3 style = {{fontSize: '1.34rem', fontFamily: 'Lato, sans-serif'}}>Pseudocode Walkthrough</h3>
+                <h3 className = {classes.BubbleHeading}>Pseudocode Walkthrough</h3>
                 <div>{bubbleCodeIterate}</div>
                 <div className = {this.props.value.arrayStatus === 6 ? classes.DoLoop : null}>{doLoop}</div>
                 <div className = {this.props.value.arrayStatus === 7 ? classes.ForLoop : null}>{bubbleCodeTraverse}</div>

@@ -47,3 +47,32 @@
     font-size: 0.94rem;
     transition: all 0.2s ease-in-out;
 }
+
+.BubbleHeading {
+    font-size: 1.34rem; 
+    font-family: Lato, sans-serif;
+}
+
+@media (max-width: 1500px) {
+    .Bubble {
+        line-height: 30px;
+        padding: 5px 5px;
+    }
+
+    .BubbleHeading {
+        font-size: 1rem; 
+    }
+}
+
+
+@media (max-width: 800px) {
+    .Bubble {
+        line-height: 12px;
+        padding: 1px 3px;
+        white-space: pre-line;
+    }
+    
+    .BubbleHeading {
+        font-size: 0.7rem; 
+    }
+}

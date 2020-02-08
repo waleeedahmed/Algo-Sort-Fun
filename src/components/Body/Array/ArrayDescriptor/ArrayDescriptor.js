@@ -18,7 +18,7 @@ class ArrayDescriptor extends React.Component {
         if (this.props.value.algorithms.bubble) {
             arrDescValue = (
                 <Auxiliary>
-                    <h3 style = {{fontSize: '1.34rem', fontFamily: 'Lato, sans-serif'}}>Algorithm Overview</h3>
+                    <h3 className = {classes.DescriptorHeading}>Algorithm Overview</h3>
                     <p>
                         Bubble Sort traverses the array comparing values and 'bubbles' the
                         largest value to the end. In each comparison, values are swapped if
@@ -32,7 +32,7 @@ class ArrayDescriptor extends React.Component {
         else if (this.props.value.algorithms.selection) {
             arrDescValue = (
                 <Auxiliary>
-                    <h3 style = {{fontSize: '1.34rem', fontFamily: 'Lato, sans-serif'}}>Algorithm Overview</h3>
+                    <h3 className = {classes.DescriptorHeading}>Algorithm Overview</h3>
                     <p>
                         Selection Sort loops through the given array with two nested for
                         loops. The inner for loop traverses the array and finds out the smallest 
@@ -46,14 +46,14 @@ class ArrayDescriptor extends React.Component {
         else if (this.props.value.algorithms.insertion) {
             arrDescValue = (
                 <p>
-                    Insertion Sort
+                    Not yet available :(
                 </p>
             )
         }
         else if (this.props.value.algorithms.merge) {
             arrDescValue = (
                 <p>
-                    Merge Sort 
+                    Not yet available :(
                 </p>
             )
         }

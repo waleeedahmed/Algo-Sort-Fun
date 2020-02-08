@@ -139,7 +139,7 @@ class ArrayBuilder extends Component {
 
     render() {
         
-        const emptyArray = <div style = {{fontSize: '1.98rem', padding: '4px 10px'}}>Array currently empty</div>
+        const emptyArray = <div className = {classes.EmptyArray}>Array currently empty</div>
 
         var displayNums = this.props.value.generatedNumArray.map((currentElement, index) => {
             let currentIdx = this.props.value.currIdx;

@@ -50,7 +50,7 @@ return sortedArray
 
         return (
            <div className = {classes.Selection}>
-               <h3 style = {{fontSize: '1.34rem', fontFamily: 'Lato, sans-serif'}}>Pseudocode Walkthrough</h3>
+               <h3 className = {classes.SelectionHeading}>Pseudocode Walkthrough</h3>
                 <div>{beginCode}</div>
                 <div>{lengthCode}</div>
                 <div className = {this.props.value.arrayStatus === 2 ? classes.ForLoop : null}>{selectionOuterbegin}</div>

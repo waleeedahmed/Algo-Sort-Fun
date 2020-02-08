@@ -54,3 +54,31 @@
     font-size: 0.94rem;
     transition: all 0.2s ease-in-out;
 }
+
+
+.SelectionHeading {
+    font-size: 1.34rem; 
+    font-family: Lato, sans-serif;
+}
+
+@media (max-width: 1500px) {
+    .Selection {
+        line-height: 30px;
+    }
+
+    .SelectionHeading {
+        font-size: 1rem; 
+    }
+}
+
+
+@media (max-width: 800px) {
+    .Selection {
+        line-height: 12px;
+        padding: 1px 3px;
+    }
+
+    .SelectionHeading {
+        font-size: 0.7rem; 
+    }
+}

@@ -53,7 +53,7 @@ class ArraySortData extends React.Component {
         if (this.props.value.algorithms.bubble) {
             displayData = (
                 <Auxiliary>
-                    <h3 style = {{fontSize: '1.34rem', fontFamily: 'Lato, sans-serif'}}>Sorting Statistics</h3>
+                    <h3 className = {classes.SortDataHeading}>Sorting Statistics</h3>
                     
                     {this.compareNumbers()}
     
@@ -61,12 +61,12 @@ class ArraySortData extends React.Component {
                         <span style = {{color: '#bf150f'}}>{this.props.value.swapsPerformed.toString()}</span>}</p>
     
                     
-                    <h3 style = {{fontSize: '1.25rem', textDecoration: 'underline'}}>Time Complexity</h3>
+                    <h3 className = {classes.SubHeadings}>Time Complexity</h3>
                     <p>Best: O(n)</p>
                     <p>Average: O(n&#178;)</p>
                     <p>Worst: O(n&#178;)</p>
 
-                    <h3 style = {{fontSize: '1.25rem', textDecoration: 'underline'}}>Space Complexity</h3>
+                    <h3 className = {classes.SubHeadings}>Space Complexity</h3>
                     <p>Worst: O(1)</p>
                 </Auxiliary>
             )
@@ -74,7 +74,7 @@ class ArraySortData extends React.Component {
         else if (this.props.value.algorithms.selection) {
             displayData = (
                 <Auxiliary>
-                    <h3 style = {{fontSize: '1.34rem', fontFamily: 'Lato, sans-serif'}}>Sorting Statistics</h3>
+                    <h3 className = {classes.SortDataHeading}>Sorting Statistics</h3>
                     
                     {this.compareNumbers()}
     
@@ -82,12 +82,12 @@ class ArraySortData extends React.Component {
                         <span>Waiting for current Minimum</span>}
     
                     
-                    <h3 style = {{fontSize: '1.25rem', textDecoration: 'underline'}}>Time Complexity</h3>
+                    <h3 className = {classes.SubHeadings}>Time Complexity</h3>
                     <p>Best: O(n&#178;)</p>
                     <p>Average: O(n&#178;)</p>
                     <p>Worst: O(n&#178;)</p>
 
-                    <h3 style = {{fontSize: '1.25rem', textDecoration: 'underline'}}>Space Complexity</h3>
+                    <h3 className = {classes.SubHeadings}>Space Complexity</h3>
                     <p>Worst: O(1)</p>
                     <p style = {{fontSize: '1rem'}}>{this.props.value.vsPressed ? <span style = {{color: 'coral'}}>
                             Did you know?<br/>Selection Sort has a lower sorting performance in terms of time complexity as compared to Bubble or Insertion sort. 
