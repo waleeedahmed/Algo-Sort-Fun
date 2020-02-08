@@ -8,13 +8,21 @@
 .NewMin {
     color: rgb(140, 3, 194);
     font-size: 0.94rem;
-    transition: all 0.2s ease-in-out;    
+    transition: all 0.2s ease-in-out;  
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;  
 }
 
 .ShouldSelectionSwap, .ShouldSelectionSwap::after {
     color: rgb(248, 28, 28);
     font-size: 0.94rem;
-    transition: all 0.2s ease-in-out;    
+    transition: all 0.2s ease-in-out;   
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out; 
     content: ' // Current Min still smaller';
 }
 
@@ -23,36 +31,60 @@
     color: rgb(47, 161, 12);
     font-size: 0.94rem;
     transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
 }
 
 .SelectionNoSwap {
     color: rgb(248, 28, 28);
     font-size: 0.94rem;
     transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
 }
 
 .TraverseComplete {
     color: rgb(248, 98, 28);
     font-size: 0.94rem;
     transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
 }
 
 .DoLoop {
     color: rgb(248, 28, 28);
     font-size: 0.94rem;
-    transition: all 0.2s ease-in-out;    
+    transition: all 0.2s ease-in-out;  
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;  
 }
 
 .ForLoop {
     color: rgb(209, 97, 5);
     font-size: 0.94rem;
-    transition: all 0.2s ease-in-out;     
+    transition: all 0.2s ease-in-out;  
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;   
 }
 
 .Complete {
     color: rgb(248, 28, 138);
     font-size: 0.94rem;
     transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
 }
 
 

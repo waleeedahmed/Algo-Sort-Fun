@@ -5,6 +5,10 @@
     width: 200px;
     left: -46px;
     transition: display 0.05s;
+    -webkit-transition: display 0.05s;
+    -moz-transition: display 0.05s;
+    -ms-transition: display 0.05s;
+    -o-transition: display 0.05s;
     color: brown;
     list-style: none;
     font-size: 1.08rem;
@@ -44,4 +48,13 @@
         font-size: 0.5rem;
         width: 100px;
     }
-}  
+}
+
+@media (max-width: 800px) {
+    .Drawerext {
+        font-size: 0.4rem; 
+        width: 150px;
+        left: -80px;
+        margin-top: 280px;
+    }
+}

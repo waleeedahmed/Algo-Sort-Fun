@@ -4,6 +4,10 @@
   
   .enterActive {
     transition: opacity 50ms;
+    -webkit-transition: opacity 50ms;
+    -moz-transition: opacity 50ms;
+    -ms-transition: opacity 50ms;
+    -o-transition: opacity 50ms;
   }
 
   

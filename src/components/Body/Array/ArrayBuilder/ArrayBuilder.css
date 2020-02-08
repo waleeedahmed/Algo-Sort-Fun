@@ -11,6 +11,10 @@
     color: rgb(84, 89, 94);
     /* transition: all 0.2s ease-in-out; */
     transition: color 0.03 linear;
+    -webkit-transition: color 0.03 linear;
+    -moz-transition: color 0.03 linear;
+    -ms-transition: color 0.03 linear;
+    -o-transition: color 0.03 linear;
     z-index: 1;
 }
 
@@ -18,14 +22,26 @@
     font-size: 1.98rem; 
     padding: 4px 10px;
     transition: font-size 0.2s ease-in-out;
+    -webkit-transition: font-size 0.2s ease-in-out;
+    -moz-transition: font-size 0.2s ease-in-out;
+    -ms-transition: font-size 0.2s ease-in-out;
+    -o-transition: font-size 0.2s ease-in-out;
 }
 
 .ArrayFast {
     transition: all 0.1s ease-in-out;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -ms-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
 }
 
 .ArraySlow {
     transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
 }
 
 .Arraycell {

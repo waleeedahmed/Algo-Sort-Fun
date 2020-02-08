@@ -13,6 +13,10 @@
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.05s ease-in-out;
+    -webkit-transition: all 0.05s ease-in-out;
+    -moz-transition: all 0.05s ease-in-out;
+    -ms-transition: all 0.05s ease-in-out;
+    -o-transition: all 0.05s ease-in-out;
 }
 
 .Ul .Li:hover,
