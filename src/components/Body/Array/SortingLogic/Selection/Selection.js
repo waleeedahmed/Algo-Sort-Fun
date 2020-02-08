@@ -26,7 +26,7 @@ class Selection extends React.Component {
 
         var lengthCode = `   // initialize 'Len = unsortedArray.length' variable`
 
-        var selectionOuterbegin =  `   // for loop (let i = 0; i < len; i++) {
+        var selectionOuterbegin =  `   // for loop (let i = 0; i < Len; i++) {
      // initialize 'min = i' variable`
 
         var selectionInnerBegin = `     // for loop (let j = i + 1; j < Len; j++) {` 
