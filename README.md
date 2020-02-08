@@ -1,3 +1,6 @@
+<h1>Welcome to 'Algo-Sort Fun!'</h1>
+
+
 Thank you for visiting 'Algo-Sort Fun' project. Feel free to fork and/or have a look at the source code. 
 
 Alternatively, you can play around with my project at the https://waleeedahmed.github.io/learn-algosorting-project/.
