@@ -3,7 +3,7 @@
 
 Thank you for visiting 'Algo-Sort Fun' project. Feel free to fork and/or have a look at the source code. 
 
-Alternatively, you can play around with my project at the https://waleeedahmed.github.io/learn-algosorting-project/.
+Alternatively, you can play around with my project at the https://waleeedahmed.github.io/Algo-Sort-Fun/.
 
 Recommended browser is only desktop version of chrome at this point since I'm still working on cross browser compatibility. 
 
